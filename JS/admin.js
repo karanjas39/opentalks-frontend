@@ -4858,6 +4858,11 @@ document.querySelectorAll(".nav-link").forEach((el) => {
   });
 });
 
+// ** NOTIFICATIONS
+document.querySelector(".popup-msg-close").addEventListener("click", () => {
+  hideNotification();
+});
+
 // ** DEPARTMENTS
 
 document

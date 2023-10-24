@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opentalks - Connect and Engage</title>
+    <link
+      rel="shortcut icon"
+      href=".././CSS/IMAGES/microphone.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href=".././CSS/login.css" />
+    <!-- Loading styles -->
+    <link rel="stylesheet" href=".././CSS/loading.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <a class="website-name" href=".././index.html">Opentalks🎙️</a>
+      <div class="links">
+        <a href="#">Contact Us</a>
+        <a href="#">Quick Demo</a>
+      </div>
+    </nav>
+    <div class="main-container">
+      <!-- ********************************************************************LOGIN -->
+      <div class="login-container fade active">
+        <div class="login-title">Login panel</div>
+
+        <div class="login-inner">
+          <div class="login-inner-top">
+            <input
+              type="number"
+              class="user-regisNo"
+              placeholder="Registration number"
+            />
+            <input
+              type="password"
+              class="user-password"
+              placeholder="Password"
+            />
+          </div>
+          <p class="forget-password">Forget <span>Password?</span></p>
+          <button class="login-btn">LOGIN</button>
+        </div>
+
+        <div class="login-bottom">
+          <p>Don't have an account?</p>
+          <p class="signup-page">SIGNUP NOW</p>
+        </div>
+      </div>
+      <!-- ********************************************************************SIGNUP -->
+
+      <div class="signup-container fade">
+        <div class="signup-title">Signup panel</div>
+
+        <div class="signup-inner">
+          <div class="signup-inner-top">
+            <input type="text" class="user-name" placeholder="Full name" />
+            <input
+              type="number"
+              class="user-regisNo"
+              placeholder="Registration number"
+            />
+            <input type="email" class="user-email" placeholder="Email" />
+            <select class="user-departmnet">
+              <option value="" selected>Select your department</option>
+              <option value="1">Department 1</option>
+              <option value="1">Department 1</option>
+              <option value="1">Department 1</option>
+              <option value="1">Department 1</option>
+            </select>
+          </div>
+
+          <button class="signup-btn">SIGNUP</button>
+        </div>
+
+        <div class="signup-bottom">
+          <p>Have an account?</p>
+          <p class="login-page">LOGIN NOW</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ********************************************************************ADDITIONAL POPUPS -->
+    <!-- NOTIFICATION POPUP -->
+    <div class="popup-msg-notification">
+      <div class="popup-msg" id="notification">
+        <div class="popup-msg-content">
+          <span class="popup-msg-message">This is a notification message.</span>
+          <span class="popup-msg-close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="popup-msg-progress"></div>
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src=".././JS/login.js"></script>
+  </body>
+</html>

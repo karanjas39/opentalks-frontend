@@ -1,3 +1,4 @@
+// @collapse
 const imgBtn = document.querySelector(".img__btn");
 const formName = document.querySelector(".form-name");
 const formRegisNo = document.querySelector(".form-regis-no");
