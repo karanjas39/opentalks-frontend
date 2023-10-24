@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opentalks - Connect and Engage</title>
+    <link
+      rel="shortcut icon"
+      href=".././CSS/IMAGES/microphone.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href=".././CSS/user1.css" />
+    <link rel="stylesheet" href=".././CSS/loading.css" />
+  </head>
+  <body onload="getDetails()">
+    <!-- NAVBAR -->
+    <nav>
+      <a class="website-name" href=".././index.html">Opentalks🎙️</a>
+      <div class="links">
+        <a href="#" class="show-dashboard nav-link" data-value="main-dashboard"
+          >Dashboard</a
+        >
+        <a href="#" class="show-posts nav-link" data-value="main-posts"
+          >My Posts</a
+        >
+        <a href="#" class="show-forums nav-link" data-value="main-forums"
+          >Forums</a
+        >
+        <a href="#" class="show-notification">Notifications</a>
+        <a href=".././index.html" class="user-logout-btn">Logout</a>
+      </div>
+    </nav>
+    <!-- MAIN SECTION -->
+    <section class="main-section">
+      <!-- ***************************************************************************************DASHBOARD -->
+      <section class="main-dashboard">
+        <div class="top-part-main-dashboard-panel">
+          <div class="user-profile-top">
+            <img
+              src="../CSS/IMAGES/avatar.jpg"
+              class="user-profile-pic-change"
+              alt="user-image"
+              title="Click to change profile pic"
+            />
+            <div class="user-more-info">
+              <div class="user-more-info-top">
+                <div class="user-salute">
+                  <span class="time">Good Morning,</span>
+                  <span class="user-name">Jaskaran Singh</span>
+                </div>
+                <div class="user-info-links">
+                  <i
+                    class="fa-solid fa-pencil edit-user-profile"
+                    title="Edit User Profile"
+                  ></i>
+                  <i
+                    class="fa-solid fa-lock change-password"
+                    title="Change password"
+                  ></i>
+                </div>
+              </div>
+
+              <div class="user-profile-bottom">
+                <div class="bottom-fields">
+                  <i class="fa-solid fa-address-card"></i>
+                  <p class="user-regisNo">
+                    Registration Number: <span>12100160</span>
+                  </p>
+                </div>
+                <div class="bottom-fields">
+                  <i class="fa-solid fa-at"></i>
+                  <p class="user-email">Email: <span>user@gmail.com</span></p>
+                </div>
+                <div class="bottom-fields">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  <p class="date-joined">
+                    Date Joined: <span> 12 September 2023 </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+        <div class="dashboard-stats-card">
+          <div class="stat-card">
+            <div class="stat-card-icon">
+              <i class="fa-solid fa-image"></i>
+            </div>
+            <div class="stat-card-content">
+              <p class="stat-card-title">Total Posts</p>
+              <p class="stat-card-count stat-card-post-a">
+                Active: <span>10</span>
+              </p>
+              <p class="stat-card-count stat-card-post-ia">
+                Inactive: <span>0</span>
+              </p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-card-content">
+              <p class="stat-card-title">Forums Created</p>
+              <p class="stat-card-count stat-card-created-a">
+                Active: <span>10</span>
+              </p>
+              <p class="stat-card-count stat-card-created-ia">
+                Inactive: <span>0</span>
+              </p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div class="stat-card-content">
+              <p class="stat-card-title">Forums Joined</p>
+              <p class="stat-card-count stat-card-joined-a">
+                Active: <span>10</span>
+              </p>
+              <p class="stat-card-count stat-card-joined-ia">
+                Inactive: <span>0</span>
+              </p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon">
+              <i class="fa-solid fa-reply"></i>
+            </div>
+            <div class="stat-card-content">
+              <p class="stat-card-title">Total Replies</p>
+              <p class="stat-card-count stat-card-reply-a">
+                Active: <span>10</span>
+              </p>
+              <p class="stat-card-count stat-card-reply-ia">
+                Inactive: <span>0</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-updates">
+          <div class="recent-posts-all">
+            <div class="recent-posts-top">
+              <h2>Recent Posts</h2>
+            </div>
+            <div class="recent-posts-list"></div>
+          </div>
+          <div class="top-forums-all">
+            <div class="top-forums-top">
+              <h2>Top Forums</h2>
+              <div class="top-forums-list"></div>
+            </div>
+          </div>
+          <div class="recent-replies hide">
+            <div class="top-recent-replies">
+              <h2>Recent Replies</h2>
+              <div class="recent-replies-list"></div>
+            </div>
+          </div>
+          <div class="paddle-btns">
+            <i class="fa-solid fa-caret-right move-right"></i>
+            <i class="fa-solid fa-caret-left move-left hide"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- ***************************************************************************************POSTS -->
+      <section class="main-posts hide">
+        <h2 class="main-posts-heading">My Posts</h2>
+        <div class="main-posts-top">
+          <input
+            type="text"
+            class="search-post-main-posts"
+            placeholder="Search by title or description"
+          />
+          <div class="main-posts-top-buttons">
+            <button class="favourite-posts-main-posts">Favourite Posts</button>
+            <button class="reset-posts-main-posts">Reset</button>
+          </div>
+        </div>
+        <div class="main-posts-parent-container">
+          <div class="searched-posts-main hide">
+            <h2>Results : <span>Not found</span></h2>
+            <div class="searched-main-posts-container">Searched Posts</div>
+          </div>
+          <div class="favourite-posts-main hide">
+            <h2>Favourite Posts</h2>
+            <div class="favourite-main-posts-container">Favourite Posts</div>
+          </div>
+          <div class="recent-posts-main">
+            <h2>My Recent Posts</h2>
+            <div class="recent-main-posts-container"></div>
+          </div>
+          <div class="liked-posts-main">
+            <h2>Most Liked Creations</h2>
+            <div class="liked-main-posts-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ***************************************************************************************FORUMS -->
+      <section class="main-forums hide">
+        <div class="main-forum-parent-top">
+          <h2 class="main-heading-forums">Forums</h2>
+          <div class="main-forums-top">
+            <input
+              type="text"
+              class="main-forum-search-input"
+              placeholder="Search by forum name or description"
+            />
+            <div class="main-forum-top-buttons">
+              <button class="create-main-forums">Create Forum</button>
+              <button class="filter-search-main-forums">Advance Filter</button>
+              <button class="reset-main-forums-section">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-forums-bottom">
+          <div class="main-forums-searched-list hide">
+            <h2>Results: <span>1</span></h2>
+            <div class="main-forums-searched-container">Search Forum</div>
+          </div>
+          <div class="main-forums-created-list">
+            <h2>Created Forums</h2>
+            <div class="main-forums-created-container">Created Forums</div>
+          </div>
+          <div class="main-forums-joined-list">
+            <h2>Joined Forums</h2>
+            <div class="main-forums-joined-container">Joined forums</div>
+          </div>
+        </div>
+        <div class="main-forums-forum-layout hide">
+          <div class="forum-main-layout-top">
+            <div class="forum-main-layout-top-right">
+              <div class="forum-main-layout-top-name">Forum Name</div>
+              <div class="forum-main-layout-top-buttons">
+                <i class="fa-solid fa-plus main-add-post" title="Add post"></i>
+                <i
+                  class="fa-solid fa-pencil main-edit-forum"
+                  title="Edit forum"
+                ></i>
+                <i
+                  class="fa-solid fa-rotate-right main-refresh-forum"
+                  title="Refresh forum"
+                ></i>
+                <i
+                  class="fa-solid fa-right-from-bracket main-close-forum"
+                  title="Close forum"
+                ></i>
+              </div>
+            </div>
+            <div class="forum-main-layout-top-description">
+              This is forum description
+            </div>
+          </div>
+
+          <div class="forum-main-layout-buttons">
+            <button class="delete-forum-main">Delete</button>
+            <button class="detail-forum-main">Details</button>
+            <button class="members-forum-main">Members</button>
+            <button class="search-post-forum-main">Search Post</button>
+            <button class="complaints-forum-main">Complaints</button>
+            <button class="requests-forum-main">Requests</button>
+            <button class="reviews-forum-main">Reviews</button>
+          </div>
+          <div class="forum-main-layout-container">No post found</div>
+        </div>
+
+        <div class="joined-forums-forum-layout hide">
+          <div class="forum-joined-layout-top">
+            <div class="forum-joined-layout-top-right">
+              <div class="forum-joined-layout-top-name">Forum Name</div>
+              <div class="forum-joined-layout-top-buttons">
+                <i
+                  class="fa-solid fa-right-from-bracket joined-close-forum"
+                  title="Close forum"
+                ></i>
+              </div>
+            </div>
+            <div class="forum-joined-layout-top-description">
+              This is forum description
+            </div>
+          </div>
+
+          <div class="forum-joined-layout-buttons">
+            <button class="refresh-forum-joined">Refresh</button>
+            <button class="detail-forum-joined">Details</button>
+            <button class="add-post-forum-joined">Add Post</button>
+            <button class="search-post-forum-joined">Search Post</button>
+            <button class="complaints-forum-joined">Complaints</button>
+            <button class="rate-forum-joined">Rate forum</button>
+            <button class="left-forum-joined">Left forum</button>
+          </div>
+          <div class="forum-joined-layout-container">No post found</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ***************************************************************************************DASHBOARD POPUPS -->
+    <!-- EDIT PROFILE IMAGE -->
+    <div class="edit-user-container hide">
+      <div class="edit-user-top">
+        <h3>Edit Profile</h3>
+        <i class="fa-solid fa-xmark close-edit-user"></i>
+      </div>
+      <section class="">
+        <div class="edit-user-profile-pic">
+          <img
+            src=""
+            alt="User Profile Pic"
+            class="edit-user-profile-pic-img"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            class="edit-user-profile-pic-upload"
+            id="edit-user-profile-pic-upload"
+          />
+          <label for="edit-user-profile-pic-upload" class="edit-user-pic-label">
+            Click to Upload New Profile Pic
+          </label>
+        </div>
+        <button class="edit-user-upload-btn">Save Upload</button>
+      </section>
+    </div>
+
+    <!-- EDIT USER PROFILE DETAILS -->
+    <div class="edit-user-container2 hide">
+      <div class="edit-user-top">
+        <h3>Edit Details</h3>
+        <i class="fa-solid fa-xmark close-edit-user2"></i>
+      </div>
+      <section class="edit-user-details-main">
+        <div class="edit-user-details-field">
+          <label for="edit-user-details-name">Name</label>
+          <input
+            type="text"
+            class="edit-user-details-name"
+            id="edit-user-details-name"
+          />
+        </div>
+        <div class="edit-user-details-field">
+          <label for="edit-user-details-department">Department</label>
+          <select class="edit-user-details-department" required></select>
+        </div>
+        <div class="edit-user-details-field">
+          <label for="edit-user-details-email">Email</label>
+          <input
+            type="email"
+            class="edit-user-details-email"
+            id="edit-user-details-email"
+          />
+        </div>
+        <button class="edit-user-details-btn">Submit Details</button>
+      </section>
+    </div>
+
+    <!-- CHANGE PASSWORD -->
+    <div class="edit-user-container3 hide">
+      <div class="edit-user-top">
+        <h3>CHANGE PASSWORD</h3>
+        <i class="fa-solid fa-xmark close-edit-user3"></i>
+      </div>
+      <section class="edit-user-password-main">
+        <div class="edit-user-password-fields">
+          <label for="edit-user-previous-password">Previous Password</label>
+          <input
+            type="password"
+            class="edit-user-previous-password"
+            id="edit-user-previous-password"
+            placeholder="Previous password"
+          />
+        </div>
+        <div class="edit-user-password-fields">
+          <label for="edit-user-new-password">New Password</label>
+          <input
+            type="password"
+            class="edit-user-new-password"
+            id="edit-user-new-password"
+            placeholder="New password"
+          />
+        </div>
+        <div class="edit-user-password-fields">
+          <label for="edit-user-confirm-password">Confirm New Password</label>
+          <input
+            type="password"
+            class="edit-user-confirm-password"
+            id="edit-user-confirm-password"
+            placeholder="Confirm new password"
+          />
+        </div>
+        <p class="forget-user-passowrd" title="Reset Password">
+          Forget password?
+        </p>
+        <button class="edit-user-save-password-btn">Save Changes</button>
+      </section>
+    </div>
+
+    <!-- ***************************************************************************************FORUM POPUPS -->
+    <!-- CREATE FORUM -->
+    <div class="add-forum-container hide">
+      <div class="add-forum-top">
+        <h2>Add Forum</h2>
+        <i class="fa-solid fa-xmark close-add-forum"></i>
+      </div>
+      <div class="add-forum-main">
+        <div class="add-forum-fields">
+          <label for="name" class="add-forum-label">Forum name</label>
+          <input
+            type="text"
+            class="add-forum-name"
+            placeholder="Type forum name(Max 5 words)..."
+          />
+        </div>
+        <div class="add-forum-fields">
+          <label for="description" class="add-forum-label"
+            >Forum description</label
+          >
+          <textarea
+            class="add-forum-description"
+            placeholder="Type forum description(Max 20 words)..."
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="add-forum-fields">
+          <label for="department" class="add-forum-label"
+            >Forum department</label
+          >
+          <select name="department" class="add-forum-department"></select>
+        </div>
+      </div>
+      <button class="add-forum-btn">Create new forum</button>
+    </div>
+
+    <!-- FORUM FILTER -->
+    <div class="forum-filter-container hide">
+      <div class="forum-filter-top">
+        <h3 class="forum-filter-heading">Forum Filter</h3>
+        <i class="fa-solid fa-xmark close-forum-filter"></i>
+      </div>
+      <div class="forum-filter-field">
+        <label for="forum-filter-department" class="forum-filter-label"
+          >Department</label
+        >
+        <select
+          id="forum-filter-department"
+          class="forum-filter-department"
+        ></select>
+      </div>
+      <div class="forum-filter-field">
+        <label for="forum-filter-username" class="forum-filter-label"
+          >Forum Admin's Name</label
+        >
+        <input
+          type="text"
+          id="forum-filter-username"
+          class="forum-filter-username"
+          placeholder="Type admin's name"
+        />
+      </div>
+      <div class="forum-filter-field">
+        <label for="forum-filter-date-createdAt" class="forum-filter-label"
+          >Creation date</label
+        >
+        <input
+          type="date"
+          class="forum-filter-date-createdAt forum-filter-date"
+        />
+      </div>
+      <div class="forum-filter-buttons">
+        <button class="forum-filter-clear-button">Clear Filters</button>
+        <button class="forum-filter-apply-button">Apply Filter</button>
+      </div>
+    </div>
+
+    <!-- REVIEWS FORUM -->
+    <div class="review-forum hide">
+      <div class="review-forum-top">
+        <h2>Reviews</h2>
+        <i class="fa-solid fa-xmark close-review-forum"></i>
+      </div>
+      <div class="review-forum-mid">
+        <div class="review-forum-mid-inner">
+          <p class="review-forum-mid-head">
+            <span>Likes</span> <i class="fa-solid fa-thumbs-up"></i>
+          </p>
+          <p class="review-forum-mid-likes">12</p>
+        </div>
+        <p>|</p>
+        <div class="review-forum-mid-inner">
+          <p class="review-forum-mid-head">
+            <span>Dislikes</span> <i class="fa-solid fa-thumbs-down"></i>
+          </p>
+          <p class="review-forum-mid-dislikes">2</p>
+        </div>
+      </div>
+      <div class="review-forum-list"></div>
+    </div>
+
+    <!-- EDIT FORUM -->
+    <div class="edit-forum hide">
+      <div class="edit-forum-top">
+        <h2>Edit Forum</h2>
+        <i class="fa-solid fa-xmark close-edit-forum"></i>
+      </div>
+
+      <div class="edit-forum-fields">
+        <label for="forum-name" class="edit-forum-label">Forum Name: </label>
+        <input
+          type="text"
+          class="edit-forum-input edit-forum-name"
+          placeholder="Enter forum name"
+        />
+
+        <label for="forum-description" class="edit-forum-label"
+          >Forum Description:
+        </label>
+        <textarea
+          class="edit-forum-input edit-forum-description"
+          placeholder="Enter forum description"
+          maxlength="150"
+        ></textarea>
+      </div>
+      <button class="edit-forum-submit">Save Changes</button>
+    </div>
+
+    <!-- FORUM DETAILS -->
+    <div class="details-of-forum hide">
+      <div class="details-forum-top">
+        <h2>Forum Details</h2>
+        <i class="fa-solid fa-xmark close-details-of-forum"></i>
+      </div>
+      <div class="details-of-forum-data">
+        <div class="details-of-forum-fields">
+          <p>Forum Name:</p>
+          <span class="details-of-forum-name">Forum 1</span>
+        </div>
+        <div class="details-of-forum-fields">
+          <p>Description:</p>
+          <span class="details-of-forum-description">Forum 1</span>
+        </div>
+        <div class="details-of-forum-fields">
+          <p>Department:</p>
+          <span class="details-of-forum-department">Forum 1</span>
+        </div>
+        <div class="details-of-forum-fields">
+          <p>Created By:</p>
+          <span class="details-of-forum-createdBy">Forum 1</span>
+        </div>
+        <div class="details-of-forum-fields">
+          <p>Created On:</p>
+          <span class="details-of-forum-createdOn">Forum 1</span>
+        </div>
+        <div class="details-of-forum-fields">
+          <p>Updated On:</p>
+          <span class="details-of-forum-updatedOn">Forum 1</span>
+        </div>
+        <div class="details-of-forum-fields">
+          <p>Members:</p>
+          <span class="details-of-forum-members">10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORUM MEMBERS TABLE -->
+    <div class="forum-members-container hide">
+      <h3>Members</h3>
+      <i class="fa-solid fa-xmark close-forum-member"></i>
+      <input
+        type="text"
+        class="forum-member-search-bar"
+        placeholder="Search by Member name"
+      />
+      <div class="forum-member-table-top">
+        <h4>Recent Users List</h4>
+      </div>
+      <div class="forum-member-table-container">No member found</div>
+    </div>
+
+    <!-- FORUM COMPLAINTS -->
+    <div class="forum-complaints-container hide">
+      <div class="forum-complaints-top">
+        <h2>Forum Complaints</h2>
+        <i class="fa-solid fa-xmark close-forum-complaints-container"></i>
+      </div>
+      <input
+        type="text"
+        class="complaint-search-bar"
+        placeholder="Search by complaint number"
+      />
+      <!-- <h3 class="forum-complaints-sub-heading">Recent Complaints</h3> -->
+      <div class="forum-complaints-main"></div>
+    </div>
+
+    <!-- FORUM RESPONSES -->
+    <div class="forum-response-container hide">
+      <div class="forum-response-top">
+        <h2></h2>
+        <i class="fa-solid fa-xmark close-forum-responses-container"></i>
+      </div>
+      <div class="forum-response-main"></div>
+    </div>
+
+    <!-- FORUM JOIN REQUESTS LIST -->
+    <div class="forum-member-join-list hide">
+      <div class="forum-member-join-list-top">
+        <h2>Join Requests</h2>
+        <i class="fa-solid fa-xmark close-forum-member-join-list"></i>
+      </div>
+      <div class="forum-member-join-list-main"></div>
+    </div>
+
+    <!-- FORUM POST SEARCH -->
+    <div class="user-created-forum-post-search-container hide">
+      <div class="forum-post-search-top">
+        <h2>Post Search</h2>
+        <i class="fa-solid fa-xmark close-forum-post-search-container"></i>
+      </div>
+      <div class="forum-post-search-middle">
+        <div class="forum-post-search-input-container">
+          <input
+            type="text"
+            class="user-created-forum-post-search-input-field"
+            placeholder="Search by post's title or description..."
+          />
+          <i
+            class="fa-solid fa-shuffle interchage-post-search-input"
+            title="Interchage search input"
+          ></i>
+        </div>
+      </div>
+      <h4 class="forum-post-search-results">
+        Results: <span>Nothing searched</span>
+      </h4>
+      <div class="forum-post-search-list"></div>
+    </div>
+
+    <!-- ***************************************************************************************JOINED FORUM POPUPS -->
+    <!-- FORUM DETAILS -->
+    <div class="details-of-joined-forum hide">
+      <div class="details-joined-forum-top">
+        <h2>Forum Details</h2>
+        <i class="fa-solid fa-xmark close-details-of-joined-forum"></i>
+      </div>
+      <div class="details-of-joined-forum-data">
+        <div class="details-of-joined-forum-fields">
+          <p>Forum Name:</p>
+          <span class="details-of-joined-forum-name">Forum 1</span>
+        </div>
+        <div class="details-of-joined-forum-fields">
+          <p>Description:</p>
+          <span class="details-of-joined-forum-description">Forum 1</span>
+        </div>
+        <div class="details-of-joined-forum-fields">
+          <p>Department:</p>
+          <span class="details-of-joined-forum-department">Forum 1</span>
+        </div>
+        <div class="details-of-joined-forum-fields">
+          <p>Created By:</p>
+          <span class="details-of-joined-forum-createdBy">Forum 1</span>
+        </div>
+        <div class="details-of-joined-forum-fields">
+          <p>Created On:</p>
+          <span class="details-of-joined-forum-createdOn">Forum 1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORUM COMPLAINTS -->
+    <div class="joined-forum-complaints-container hide">
+      <div class="joined-forum-complaints-top">
+        <h2>Forum Complaints</h2>
+        <i
+          class="fa-solid fa-xmark close-joined-forum-complaints-container"
+        ></i>
+      </div>
+      <input
+        type="text"
+        class="joined-forum-complaint-search-bar"
+        placeholder="Search by complaint number"
+      />
+      <div class="joined-forum-complaints-main"></div>
+
+      <input
+        type="text"
+        class="forum-create-complaint-input"
+        placeholder="Write complaint here... (Max 30 words)"
+      />
+    </div>
+
+    <!-- FORUM RESPONSES -->
+    <div class="joined-forum-response-container hide">
+      <div class="joined-forum-response-top">
+        <h2></h2>
+        <i class="fa-solid fa-xmark close-joined-forum-responses-container"></i>
+      </div>
+      <div class="joined-forum-response-main"></div>
+    </div>
+
+    <!-- JOINED FORUM RATING  -->
+    <div class="forum-rating hide">
+      <div class="forum-rating-top">
+        <h2>Rate Us</h2>
+        <i class="fa-solid fa-xmark close-forum-rating"></i>
+      </div>
+      <div class="forum-rating-main">
+        <div class="forum-rating-field">
+          <p>Like forum</p>
+          <i
+            class="fa-solid fa-thumbs-up like-forum-rating"
+            data-rating="1"
+          ></i>
+        </div>
+        <div class="forum-rating-field">
+          <p>Dislike forum</p>
+          <i
+            class="fa-solid fa-thumbs-down dislike-forum-rating"
+            data-rating="-1"
+          ></i>
+        </div>
+      </div>
+      <button class="submit-forum-rating">Submit rating</button>
+    </div>
+
+    <!-- ***************************************************************************************POSTS POPUPS -->
+    <!-- POST LIKES CONTAINER -->
+    <div class="post-likes-container hide">
+      <div class="post-likes-container-top">
+        <h2>Post Likes</h2>
+        <i class="fa-solid fa-xmark close-post-like-container"></i>
+      </div>
+      <div class="post-like-list"></div>
+    </div>
+
+    <!--  POST REPLY CONTAINER -->
+    <div class="post-reply-container hide">
+      <div class="post-reply-top">
+        <h2>Post Replies</h2>
+        <i class="fa-solid fa-xmark close-post-reply-container"></i>
+      </div>
+      <div class="post-reply-list"></div>
+      <input
+        type="text"
+        placeholder="Reply here... (Max 20 words)"
+        class="post-add-reply-input"
+      />
+    </div>
+
+    <!-- ADD POST EDITOR -->
+    <div class="post-editor-container hide">
+      <div class="post-editor-top">
+        <h2>Add Post</h2>
+        <i class="fa-solid fa-xmark close-post-editor-container"></i>
+      </div>
+      <div class="post-editor-main">
+        <div class="post-editor-main">
+          <div class="post-editor-fields">
+            <p>Post Title</p>
+            <input
+              type="text"
+              class="post-editor-title"
+              placeholder="Type post title here... (Max 10 words)"
+            />
+          </div>
+        </div>
+        <div class="post-editor-fields">
+          <div class="post-editor-description-inner">
+            <p>Post Description</p>
+            <div class="post-editor-description-links">
+              <i
+                class="fa-solid fa-link add-external-link-btn"
+                title="Add external links"
+              ></i>
+              <i
+                class="fa-solid fa-eye preview-forum-post"
+                title="Preview post"
+              ></i>
+            </div>
+          </div>
+          <textarea
+            class="post-editor-description"
+            placeholder="Type post description here... (Max 100 words)"
+          ></textarea>
+        </div>
+      </div>
+      <button class="post-editor-submit-button">Submit</button>
+    </div>
+
+    <!-- ADD POST LINK -->
+    <div class="editor-add-link-container hide">
+      <div class="editor-add-link-top">
+        <h2>Add Link</h2>
+        <i class="fa-solid fa-xmark close-editor-add-link-container"></i>
+      </div>
+      <div class="editor-add-link-main">
+        <div class="editor-add-link-fields">
+          <div class="editor-add-link-inner">
+            <p>Title</p>
+            <div class="editor-add-link-btns">
+              <button class="added-links-list">Added links</button>
+            </div>
+          </div>
+          <input
+            type="text"
+            class="editor-link-title"
+            placeholder="Type link title here... (Max 10 words)"
+          />
+        </div>
+        <div class="editor-add-link-fields">
+          <div class="editor-add-link-inner">
+            <p>URL</p>
+            <div class="editor-add-link-options">
+              <i
+                class="fa-solid fa-eye preview-add-link"
+                title="Preview Link"
+              ></i>
+            </div>
+          </div>
+          <input
+            type="text"
+            class="editor-link-main"
+            placeholder="Type link url here..."
+          />
+        </div>
+      </div>
+      <button class="editor-link-main-button">Submit</button>
+    </div>
+
+    <!-- DISPLAY ADDED LINKS IN POST -->
+    <div class="display-added-links hide">
+      <div class="display-added-link-top">
+        <h2>Added URLs</h2>
+        <i class="fa-solid fa-xmark close-display-added-link"></i>
+      </div>
+      <div class="display-added-links-main"></div>
+    </div>
+
+    <!-- POST PREVIEW -->
+    <div class="display-post-preview hide">
+      <div class="display-post-preview-top">
+        <h2>Post preview</h2>
+        <i class="fa-solid fa-xmark close-display-post-preview"></i>
+      </div>
+      <div class="display-post-preview-main"></div>
+    </div>
+
+    <!-- ***************************************************************************************ADDITIONAL POPUPS -->
+    <!-- NOTIFICATIONS -->
+    <div class="notification-container hide">
+      <div class="notification-top">
+        <h2>Notification</h2>
+        <i class="fa-solid fa-xmark close-notification"></i>
+      </div>
+      <button class="clear-notification hide">Clear Notifications</button>
+      <div class="notification-list"></div>
+    </div>
+
+    <!-- BLUR -->
+    <div class="blur hide"></div>
+    <div class="blur2 hide"></div>
+
+    <!-- NOTIFICATION POPUP -->
+    <div class="popup-msg-notification">
+      <div class="popup-msg" id="notification">
+        <div class="popup-msg-content">
+          <span class="popup-msg-message">This is a notification message.</span>
+          <span class="popup-msg-close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="popup-msg-progress"></div>
+      </div>
+    </div>
+
+    <!-- ADMIN PASSWORD CONFIRM -->
+    <div class="user-confirm-pass-container hide">
+      <h2 class="user-confirm-pass-title">Confirm your Password</h2>
+      <i class="fa-solid fa-xmark close-user-pass-confirm-form"></i>
+      <input
+        class="user-confirm-pass-input"
+        type="password"
+        placeholder="Enter user password"
+        required
+      />
+      <button class="user-confirm-pass-button">Confirm</button>
+    </div>
+
+    <!-- CONFIRM-BOX -->
+    <div class="confirm-box hide">
+      <p></p>
+      <div>
+        <button value="true">Yes</button>
+        <button value="false">No</button>
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=".././JS//user.js"></script>
+  </body>
+</html>
