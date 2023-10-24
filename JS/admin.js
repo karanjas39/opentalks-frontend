@@ -51,7 +51,7 @@ let post_links = [];
 
 async function getDetail1() {
   try {
-    let response1 = fetch("https://expensive-foal-tux.cyclic.app/api/detail", {
+    let response1 = fetch("https://opentalks.cyclic.app/api/detail", {
       method: "POST",
       body: JSON.stringify({
         _id: sessionStorage.getItem("user"),
@@ -62,7 +62,7 @@ async function getDetail1() {
         Authorization: sessionStorage.getItem("token"),
       },
     });
-    let response2 = fetch("https://expensive-foal-tux.cyclic.app/admin/stats", {
+    let response2 = fetch("https://opentalks.cyclic.app/admin/stats", {
       method: "POST",
       headers: {
         "Content-type": "application/json;charset=utf-8",
@@ -70,26 +70,20 @@ async function getDetail1() {
       },
     });
 
-    let response3 = fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/recent/posts",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
-    let response4 = fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/recent/forums",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response3 = fetch("https://opentalks.cyclic.app/admin/recent/posts", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
+    let response4 = fetch("https://opentalks.cyclic.app/admin/recent/forums", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
 
     let preFetchData = await Promise.all([
       response1,
@@ -132,7 +126,7 @@ function setUserDetails_Dashboard(data) {
     user_name.textContent = data.name;
     date_joined.textContent = formatDate(data.createdAt);
     user_email.textContent = data.email;
-    user_pic.src = `https://expensive-foal-tux.cyclic.app${data.image}`;
+    user_pic.src = `https://opentalks.cyclic.app${data.image}`;
   } catch (error) {
     console.log(`Error: ${error.toString()} in setUserDetails_Dashboard`);
   }
@@ -209,9 +203,7 @@ function fetchRecentPosts(data) {
                     </div>
                     <div class="user-info">
                       <img
-                        src="https://expensive-foal-tux.cyclic.app${
-                          el.userId.image
-                        }"
+                        src="https://opentalks.cyclic.app${el.userId.image}"
                         alt="User Avatar"
                         class="avatar-image-small recent-post-user-image"
                       />
@@ -253,7 +245,7 @@ function fetchRecentForums(data) {
         </div>
         <div class="user-info">
           <img
-            src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+            src="https://opentalks.cyclic.app${el.userId.image}"
             alt="User Avatar"
             class="avatar-image-small recent-post-user-image"
           />
@@ -475,7 +467,7 @@ async function deleteDepartmentmain(password, _id) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/delete",
+      "https://opentalks.cyclic.app/admin/department/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -542,7 +534,7 @@ async function editDetailsOfDepartment(password) {
       }, 2500);
     } else {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/department/update",
+        "https://opentalks.cyclic.app/admin/department/update",
         {
           method: "POST",
           body: JSON.stringify({
@@ -578,7 +570,7 @@ async function editDetailsOfDepartment(password) {
 async function addNewDepartment(newDepName, password) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/create",
+      "https://opentalks.cyclic.app/admin/department/create",
       {
         method: "POST",
         body: JSON.stringify({
@@ -630,7 +622,7 @@ async function addNewDepartment(newDepName, password) {
 async function fetchAllDepartments() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/all",
+      "https://opentalks.cyclic.app/admin/department/all",
       {
         method: "POST",
         body: JSON.stringify({ byAdmin: true }),
@@ -682,7 +674,7 @@ async function fetchAllDepartments() {
 async function searchDepartment(name) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/search",
+      "https://opentalks.cyclic.app/admin/department/search",
       {
         method: "POST",
         body: JSON.stringify({ name: name }),
@@ -742,7 +734,7 @@ async function searchDepartment(name) {
 async function searchDepartmentScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/search",
+      "https://opentalks.cyclic.app/admin/department/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -801,19 +793,16 @@ async function searchDepartmentScroll() {
 
 async function fetchtop3Forums() {
   try {
-    let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/top",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          byAdmin: true,
-        }),
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response = await fetch("https://opentalks.cyclic.app/admin/forum/top", {
+      method: "POST",
+      body: JSON.stringify({
+        byAdmin: true,
+      }),
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
     let data = await response.json();
     let result = "";
     let container = document.querySelector(".top3-forums-display-list");
@@ -865,7 +854,7 @@ async function fetchtop3Forums() {
 async function getForumBySearch(searchQuery) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/search",
+      "https://opentalks.cyclic.app/admin/forum/search",
       {
         method: "POST",
         body: JSON.stringify({ searchQuery, byAdmin: true }),
@@ -937,7 +926,7 @@ async function viewForumDetails(target) {
     let _id = target.value;
     sessionStorage.setItem("currentForum", _id);
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/detail",
+      "https://opentalks.cyclic.app/admin/forum/detail",
       {
         method: "POST",
         body: JSON.stringify({ _id, byAdmin: true }),
@@ -965,7 +954,7 @@ async function deleteForum(password, forumId) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/delete",
+      "https://opentalks.cyclic.app/admin/forum/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1059,7 +1048,7 @@ async function editForumMain(password) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/update",
+      "https://opentalks.cyclic.app/admin/forum/update",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1164,7 +1153,7 @@ async function deleteUserPostMain(password, postId) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/delete",
+      "https://opentalks.cyclic.app/admin/post/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1208,17 +1197,14 @@ async function deleteUserPostMain(password, postId) {
 async function fetchUserPosts() {
   try {
     let forumId = sessionStorage.getItem("currentForum");
-    let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/all",
-      {
-        method: "POST",
-        body: JSON.stringify({ forumId }),
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response = await fetch("https://opentalks.cyclic.app/admin/post/all", {
+      method: "POST",
+      body: JSON.stringify({ forumId }),
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
     let data = await response.json();
     let result = "";
     let container = document.querySelector(".forum-m2-posts-container");
@@ -1239,7 +1225,7 @@ async function fetchUserPosts() {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+                src="https://opentalks.cyclic.app${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -1274,7 +1260,7 @@ async function fetchUserPosts() {
             </div>
             <div class="forum-post-user-info">
               <img
-              src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+              src="https://opentalks.cyclic.app${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -1312,7 +1298,7 @@ async function fetchPostLikes(target) {
     document.querySelector(".blur").classList.remove("hide");
     let result = "";
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/likes",
+      "https://opentalks.cyclic.app/admin/post/likes",
       {
         method: "POST",
         body: JSON.stringify({ postId, byAdmin: true }),
@@ -1337,7 +1323,7 @@ async function fetchPostLikes(target) {
         result += `
         <div class="post-like-template ${isActive}">
           <div class="post-like-profile">
-            <img src="https://expensive-foal-tux.cyclic.app${
+            <img src="https://opentalks.cyclic.app${
               el.userId.image
             }" alt="User Profile" />
           </div>
@@ -1367,7 +1353,7 @@ async function fetchPostLikesScroll() {
     let result = "";
     let container = document.querySelector(".post-like-list");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/likes",
+      "https://opentalks.cyclic.app/admin/post/likes",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1396,7 +1382,7 @@ async function fetchPostLikesScroll() {
         result += `
         <div class="post-like-template ${isActive}">
           <div class="post-like-profile">
-            <img src="https://expensive-foal-tux.cyclic.app${
+            <img src="https://opentalks.cyclic.app${
               el.userId.image
             }" alt="User Profile" />
           </div>
@@ -1452,7 +1438,7 @@ async function unlikeUserPostMain(password, data1) {
     let query = JSON.parse(data1);
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/unlike",
+      "https://opentalks.cyclic.app/admin/post/unlike",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1525,7 +1511,7 @@ async function editForumPostMain(password, data1) {
       .value.trim();
     let query = JSON.parse(data1);
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/update",
+      "https://opentalks.cyclic.app/admin/post/update",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1595,7 +1581,7 @@ async function fetchPostComments(target) {
     document.querySelector(".post-reply-container").classList.remove("hide");
     document.querySelector(".blur").classList.remove("hide");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/reply/all",
+      "https://opentalks.cyclic.app/admin/post/reply/all",
       {
         method: "POST",
         body: JSON.stringify({ postId, byAdmin: true }),
@@ -1616,7 +1602,7 @@ async function fetchPostComments(target) {
           <div class="post-reply-template">
           <div class="post-reply-info">
             <div class="post-reply-profile-pic">
-              <img src="https://expensive-foal-tux.cyclic.app${
+              <img src="https://opentalks.cyclic.app${
                 el.byWhom.image
               }" alt="user-profile-pic" />
               <div class="post-reply-template-inner">
@@ -1644,7 +1630,7 @@ data-replyid="${el._id}"
           result += `<div class="post-reply-template ${isDeleted}">
           <div class="post-reply-info">
             <div class="post-reply-profile-pic">
-              <img src="https://expensive-foal-tux.cyclic.app${
+              <img src="https://opentalks.cyclic.app${
                 el.byWhom.image
               }" alt="user-profile-pic" />
               <div class="post-reply-template-inner">
@@ -1702,7 +1688,7 @@ async function deleteReplyMain(password, replyId) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/reply/delete",
+      "https://opentalks.cyclic.app/admin/post/reply/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1772,7 +1758,7 @@ async function reActivateReplyMain(password, replyId) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/reply/activate",
+      "https://opentalks.cyclic.app/admin/post/reply/activate",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1836,7 +1822,7 @@ async function editReplyMain(password, data1) {
     let adminMessage = document.querySelector(".message-admin-pass-confirm");
     let { message, _id } = JSON.parse(data1);
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/reply/update",
+      "https://opentalks.cyclic.app/admin/post/reply/update",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1884,7 +1870,7 @@ async function fetchMemberJoinRequests() {
       byAdmin: true,
     };
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/join/list",
+      "https://opentalks.cyclic.app/admin/forum/join/list",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -1907,7 +1893,7 @@ async function fetchMemberJoinRequests() {
       <div class="forum-member-join-list-template">
           <div class="forum-member-join-info">
             <img
-              src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+              src="https://opentalks.cyclic.app${el.userId.image}"
               class="forum-member-join-user-pic"
               alt="user-pic"
             />
@@ -1966,7 +1952,7 @@ async function respondeMemberRequestForumMain(password, data1) {
     };
 
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/join",
+      "https://opentalks.cyclic.app/admin/forum/join",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -2010,7 +1996,7 @@ async function getForumMembers() {
   try {
     let forumId = sessionStorage.getItem("currentForum");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/members",
+      "https://opentalks.cyclic.app/admin/forum/members",
       {
         method: "POST",
         body: JSON.stringify({ forumId, byAdmin: true }),
@@ -2028,7 +2014,7 @@ async function getForumMembers() {
         if (el.active == true) {
           result += `<div class="forum-member-template">
         <div class="forum-member-top">
-          <img src="https://expensive-foal-tux.cyclic.app${
+          <img src="https://opentalks.cyclic.app${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -2046,7 +2032,7 @@ async function getForumMembers() {
           result += `
 <div class="forum-member-template deletedForumMember">
         <div class="forum-member-top">
-          <img src="https://expensive-foal-tux.cyclic.app${
+          <img src="https://opentalks.cyclic.app${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -2100,7 +2086,7 @@ async function deleteForumMemberMain(password, userId) {
   try {
     let message = document.querySelector(".message-admin-pass-confirm");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/member/delete",
+      "https://opentalks.cyclic.app/admin/forum/member/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2147,7 +2133,7 @@ async function deleteForumMemberMain(password, userId) {
 async function fetchSearchedForumMembers() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/member/search",
+      "https://opentalks.cyclic.app/admin/forum/member/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2175,7 +2161,7 @@ async function fetchSearchedForumMembers() {
         if (el.active == true) {
           result += `<div class="forum-member-template">
         <div class="forum-member-top">
-          <img src="https://expensive-foal-tux.cyclic.app${
+          <img src="https://opentalks.cyclic.app${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -2193,7 +2179,7 @@ async function fetchSearchedForumMembers() {
           result += `
 <div class="forum-member-template deletedForumMember">
         <div class="forum-member-top">
-          <img src="https://expensive-foal-tux.cyclic.app${
+          <img src="https://opentalks.cyclic.app${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -2221,7 +2207,7 @@ async function fetchSearchedForumMembers() {
 async function fetchForumMemberScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/member/search",
+      "https://opentalks.cyclic.app/admin/forum/member/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2250,7 +2236,7 @@ async function fetchForumMemberScroll() {
         if (el.active == true) {
           result += `<div class="forum-member-template">
         <div class="forum-member-top">
-          <img src="https://expensive-foal-tux.cyclic.app${
+          <img src="https://opentalks.cyclic.app${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -2268,7 +2254,7 @@ async function fetchForumMemberScroll() {
           result += `
 <div class="forum-member-template deletedForumMember">
         <div class="forum-member-top">
-          <img src="https://expensive-foal-tux.cyclic.app${
+          <img src="https://opentalks.cyclic.app${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -2296,7 +2282,7 @@ async function addForumMemberMain(password, data1) {
     let message = document.querySelector(".message-admin-pass-confirm");
     let { registration_number, forumId } = JSON.parse(data1);
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/member/add",
+      "https://opentalks.cyclic.app/admin/forum/member/add",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2342,7 +2328,7 @@ async function addForumMemberMain(password, data1) {
 async function fetchForumComplaint() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/complaints",
+      "https://opentalks.cyclic.app/admin/forum/complaints",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2378,7 +2364,7 @@ async function fetchForumComplaint() {
   <p class="forum-complaint-message highlight">${el.complaint}</p>
   <div class="forum-complaint-info">
     <div>
-      By <img src="https://expensive-foal-tux.cyclic.app${
+      By <img src="https://opentalks.cyclic.app${
         el.userId.image
       }" alt="user-image" />${el.userId.name}
     </div>
@@ -2402,7 +2388,7 @@ async function fetchForumComplaint() {
 async function fetchForumComplaintScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/complaints",
+      "https://opentalks.cyclic.app/admin/forum/complaints",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2440,7 +2426,7 @@ async function fetchForumComplaintScroll() {
   <p class="forum-complaint-message highlight">${el.complaint}</p>
   <div class="forum-complaint-info">
     <div>
-      By <img src="https://expensive-foal-tux.cyclic.app${
+      By <img src="https://opentalks.cyclic.app${
         el.userId.image
       }" alt="user-image" />${el.userId.name}
     </div>
@@ -2476,7 +2462,7 @@ async function responsesToForumCompalints(btnData, target) {
       .querySelector(".forum-response-container")
       .classList.remove("hide");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/responses",
+      "https://opentalks.cyclic.app/admin/forum/responses",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2540,7 +2526,7 @@ async function createForumMemberPost(data) {
 async function createForumMemberPostMain(password, data1) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin//post/add/main",
+      "https://opentalks.cyclic.app/admin//post/add/main",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2582,17 +2568,14 @@ async function addNewForum(password, data1) {
       password,
       userIdA: sessionStorage.getItem("user"),
     };
-    let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/add",
-      {
-        method: "POST",
-        body: JSON.stringify(query),
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response = await fetch("https://opentalks.cyclic.app/admin/forum/add", {
+      method: "POST",
+      body: JSON.stringify(query),
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
     let data = await response.json();
     if (!!data && data.success == true) {
       message.textContent = "Forum created successfuly";
@@ -2622,16 +2605,13 @@ async function addNewForum(password, data1) {
 // POST SECTION => POSTS
 async function fetchTop10Posts() {
   try {
-    let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/top",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response = await fetch("https://opentalks.cyclic.app/admin/post/top", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
     let data = await response.json();
     let result = "";
     let container = document.querySelector(".top-10-posts-list");
@@ -2653,7 +2633,7 @@ async function fetchTop10Posts() {
           </div>
           <div class="top-10-post-user-info-main">
             <img
-              src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+              src="https://opentalks.cyclic.app${el.userId.image}"
               alt="user-profile-pic"
               class="top-10-post-user-profile"
             />
@@ -2751,7 +2731,7 @@ async function editUserPost_postSection(target) {
 async function searchPost(search) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/search",
+      "https://opentalks.cyclic.app/admin/post/search",
       {
         method: "POST",
         body: JSON.stringify({ search: search.trim() }),
@@ -2803,7 +2783,7 @@ async function searchPost(search) {
     </div>
     <div class="top-10-post-user-info-main">
       <img
-        src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+        src="https://opentalks.cyclic.app${el.userId.image}"
         alt="user-profile-pic"
         class="top-10-post-user-profile"
       />
@@ -2856,7 +2836,7 @@ async function postSearchWithFilter(filter) {
   try {
     let message = document.querySelector(".message-post-filter");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/search",
+      "https://opentalks.cyclic.app/admin/post/search",
       {
         method: "POST",
         body: JSON.stringify({ filter, isFilter: true }),
@@ -2906,7 +2886,7 @@ async function postSearchWithFilter(filter) {
     </div>
     <div class="top-10-post-user-info-main">
       <img
-        src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+        src="https://opentalks.cyclic.app${el.userId.image}"
         alt="user-profile-pic"
         class="top-10-post-user-profile"
       />
@@ -2990,7 +2970,7 @@ async function addPost_postSectionMain(password, data1) {
     let message = document.querySelector(".message-admin-pass-confirm");
     let query = { password, ...data1, userIdA: sessionStorage.getItem("user") };
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/post/add/main",
+      "https://opentalks.cyclic.app/admin/post/add/main",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -3031,7 +3011,7 @@ async function addPost_postSectionMain(password, data1) {
 async function fetchRecent5Users() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/recent",
+      "https://opentalks.cyclic.app/admin/user/recent",
       {
         method: "POST",
         headers: {
@@ -3061,7 +3041,7 @@ async function fetchRecent5Users() {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://expensive-foal-tux.cyclic.app${el.image}"
+            src="https://opentalks.cyclic.app${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3116,17 +3096,14 @@ async function addUser(password, data1) {
   try {
     let query = { data1, password, userIdA: sessionStorage.getItem("user") };
     let message = document.querySelector(".message-admin-pass-confirm");
-    let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/add",
-      {
-        method: "POST",
-        body: JSON.stringify(query),
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response = await fetch("https://opentalks.cyclic.app/admin/user/add", {
+      method: "POST",
+      body: JSON.stringify(query),
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
     let data = await response.json();
     if (!!data && data.success == true) {
       message.textContent = "User created";
@@ -3188,27 +3165,21 @@ async function editUser(userId) {
     let departmentList = document.querySelector(
       ".edit-user-details-department"
     );
-    let response1 = fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/detail",
-      {
-        method: "POST",
-        body: JSON.stringify({ userId }),
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
-    let response2 = fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/all",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json;charset=utf-8",
-          Authorization: sessionStorage.getItem("token"),
-        },
-      }
-    );
+    let response1 = fetch("https://opentalks.cyclic.app/admin/user/detail", {
+      method: "POST",
+      body: JSON.stringify({ userId }),
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
+    let response2 = fetch("https://opentalks.cyclic.app/admin/department/all", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json;charset=utf-8",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    });
     let data = await Promise.all([response1, response2]);
     let data1 = await data[0].json();
     let data2 = await data[1].json();
@@ -3221,7 +3192,7 @@ async function editUser(userId) {
       document.querySelector(".edit-user-details-email").value = user.email;
       document.querySelector(
         ".edit-user-profile-pic-img"
-      ).src = `https://expensive-foal-tux.cyclic.app${user.image}`;
+      ).src = `https://opentalks.cyclic.app${user.image}`;
       document.querySelector(".edit-user-details-btn").value =
         JSON.stringify(user);
       document.querySelector(".edit-user-save-password-btn").value =
@@ -3246,7 +3217,7 @@ async function editUserMain(password, data1) {
     let message = document.querySelector(".message-admin-pass-confirm");
     let query = { data1, password, userIdA: sessionStorage.getItem("user") };
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/update/detail",
+      "https://opentalks.cyclic.app/admin/user/update/detail",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -3287,7 +3258,7 @@ async function editUserPasswordMain(password, data1) {
     let message = document.querySelector(".message-admin-pass-confirm");
     let query = { data1, password, userIdA: sessionStorage.getItem("user") };
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/update/password",
+      "https://opentalks.cyclic.app/admin/user/update/password",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -3335,7 +3306,7 @@ async function editUserProfile(password, data1) {
     formData.append("_id", data1._id);
 
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/update/image",
+      "https://opentalks.cyclic.app/admin/user/update/image",
       {
         method: "POST",
         body: formData,
@@ -3378,7 +3349,7 @@ async function editUserProfile(password, data1) {
 async function getUserBySearch(query) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/search",
+      "https://opentalks.cyclic.app/admin/user/search",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -3426,7 +3397,7 @@ function renderSearchedUser_single(data) {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://expensive-foal-tux.cyclic.app${data.user.image}"
+            src="https://opentalks.cyclic.app${data.user.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3506,7 +3477,7 @@ function renderSearchedUser_multiple(data, query) {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://expensive-foal-tux.cyclic.app${el.image}"
+            src="https://opentalks.cyclic.app${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3563,7 +3534,7 @@ async function getUserBySearchWithFilter(filter) {
   try {
     let message = document.querySelector(".message-user-filter");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/user/search/filter",
+      "https://opentalks.cyclic.app/admin/user/search/filter",
       {
         method: "POST",
         body: JSON.stringify({ filter: { ...filter } }),
@@ -3612,7 +3583,7 @@ async function getUserBySearchWithFilter(filter) {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://expensive-foal-tux.cyclic.app${el.image}"
+            src="https://opentalks.cyclic.app${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3673,7 +3644,7 @@ async function getForumByFilter(filter) {
   try {
     let message = document.querySelector(".forum-filter-message");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/search/filter",
+      "https://opentalks.cyclic.app/admin/forum/search/filter",
       {
         method: "POST",
         body: JSON.stringify({ filter: { ...filter } }),
@@ -3754,7 +3725,7 @@ async function getForumByFilter(filter) {
 async function fetchForumReviews() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/rate/all",
+      "https://opentalks.cyclic.app/admin/forum/rate/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3776,7 +3747,7 @@ async function fetchForumReviews() {
   <div class="review-forum-template">
   <div class="review-forum-template-left">
     <div class="review-forum-template-info">
-      <img src="https://expensive-foal-tux.cyclic.app${
+      <img src="https://opentalks.cyclic.app${
         el.userId.image
       }" alt="user-image" />
       <p>By ${el.userId.name}</p>
@@ -3812,7 +3783,7 @@ async function fetchForumReviews() {
 async function fetchForumReviewsScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/rate/all",
+      "https://opentalks.cyclic.app/admin/forum/rate/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3835,7 +3806,7 @@ async function fetchForumReviewsScroll() {
   <div class="review-forum-template">
   <div class="review-forum-template-left">
     <div class="review-forum-template-info">
-      <img src="https://expensive-foal-tux.cyclic.app${
+      <img src="https://opentalks.cyclic.app${
         el.userId.image
       }" alt="user-image" />
       <p>By ${el.userId.name}</p>
@@ -3864,7 +3835,7 @@ async function fetchForumReviewsScroll() {
 async function fetchRecentNotifications() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/recent",
+      "https://opentalks.cyclic.app/admin/notification/recent",
       {
         method: "POST",
         headers: {
@@ -3897,7 +3868,7 @@ async function fetchRecentNotifications() {
         result += `<div class="main-notification-template ${isDeleted}">
   <div class="main-notification-upper">
     <div class="main-notification-user-info">
-      <img src="https://expensive-foal-tux.cyclic.app${
+      <img src="https://opentalks.cyclic.app${
         el.userId.image
       }" alt="user-image" />
       <p>${el.userId.name} <span>(${el.userId.registration_number})</span></p>
@@ -3922,7 +3893,7 @@ async function fetchRecentNotifications() {
 async function fetchNotificationSearch(registration_number) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/search",
+      "https://opentalks.cyclic.app/admin/notification/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3962,7 +3933,7 @@ async function fetchNotificationSearch(registration_number) {
         result += `<div class="main-notification-template ${isDeleted}">
   <div class="main-notification-upper">
     <div class="main-notification-user-info">
-      <img src="https://expensive-foal-tux.cyclic.app${
+      <img src="https://opentalks.cyclic.app${
         el.userId.image
       }" alt="user-image" />
       <p>${el.userId.name} <span>(${el.userId.registration_number})</span></p>
@@ -3992,7 +3963,7 @@ async function fetchNotificationSearch(registration_number) {
 async function fetchNotificationSearchScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/search",
+      "https://opentalks.cyclic.app/admin/notification/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4029,7 +4000,7 @@ async function fetchNotificationSearchScroll() {
         result += `<div class="main-notification-template ${isDeleted}">
     <div class="main-notification-upper">
       <div class="main-notification-user-info">
-        <img src="https://expensive-foal-tux.cyclic.app${
+        <img src="https://opentalks.cyclic.app${
           el.userId.image
         }" alt="user-image" />
         <p>${el.userId.name} <span>(${el.userId.registration_number})</span></p>
@@ -4081,7 +4052,7 @@ async function createNotification(query) {
 async function createNotificationMain(password, query) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/create",
+      "https://opentalks.cyclic.app/admin/notification/create",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4146,7 +4117,7 @@ async function updateNotification(id, message) {
 async function editNotificationMain(password, query) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/update",
+      "https://opentalks.cyclic.app/admin/notification/update",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4205,7 +4176,7 @@ async function deletNotification(id) {
 async function deleteNotificationMain(password, query) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/delete",
+      "https://opentalks.cyclic.app/admin/notification/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4241,7 +4212,7 @@ async function deleteNotificationMain(password, query) {
 async function fetchAdminNotifications() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/notification/contact",
+      "https://opentalks.cyclic.app/admin/notification/contact",
       {
         method: "POST",
         headers: {
@@ -4257,7 +4228,7 @@ async function fetchAdminNotifications() {
       data.notifications.forEach((el) => {
         result += `<div class="admin-notification-template">
           <div class="admin-notification-user">
-            <img src="https://expensive-foal-tux.cyclic.app${
+            <img src="https://opentalks.cyclic.app${
               el.userId.image
             }" alt="user-image" />
             <p>By ${el.userId.name}</p>
@@ -4283,7 +4254,7 @@ async function fetchAdminNotifications() {
 async function recentJoinees() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/joinee/recent",
+      "https://opentalks.cyclic.app/admin/forum/joinee/recent",
       {
         method: "POST",
         headers: {
@@ -4328,9 +4299,7 @@ async function recentJoinees() {
                 <div class="forum-joinee-info">
                   <p>
                     <img
-                      src="https://expensive-foal-tux.cyclic.app${
-                        el.userId.image
-                      }"
+                      src="https://opentalks.cyclic.app${el.userId.image}"
                       title="${el.userId.registration_number}"
                       alt="user-image"
                     />
@@ -4353,7 +4322,7 @@ async function recentJoinees() {
 async function recentJoineesScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/joinee/recent",
+      "https://opentalks.cyclic.app/admin/forum/joinee/recent",
       {
         method: "POST",
         body: JSON.stringify({ startPoint: recent_joinee_startPoint }),
@@ -4399,9 +4368,7 @@ async function recentJoineesScroll() {
                 <div class="forum-joinee-info">
                   <p>
                     <img
-                      src="https://expensive-foal-tux.cyclic.app${
-                        el.userId.image
-                      }"
+                      src="https://opentalks.cyclic.app${el.userId.image}"
                       title="${el.userId.registration_number}"
                       alt="user-image"
                     />
@@ -4423,7 +4390,7 @@ async function recentJoineesScroll() {
 async function searchJoinee(registration_number) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/joinee/search",
+      "https://opentalks.cyclic.app/admin/forum/joinee/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4475,9 +4442,7 @@ async function searchJoinee(registration_number) {
                 <div class="forum-joinee-info">
                   <p>
                     <img
-                      src="https://expensive-foal-tux.cyclic.app${
-                        el.userId.image
-                      }"
+                      src="https://opentalks.cyclic.app${el.userId.image}"
                       title="${el.userId.registration_number}"
                       alt="user-image"
                     />
@@ -4503,7 +4468,7 @@ async function searchJoinee(registration_number) {
 async function searchJoineeScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/joinee/search",
+      "https://opentalks.cyclic.app/admin/forum/joinee/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4552,9 +4517,7 @@ async function searchJoineeScroll() {
                 <div class="forum-joinee-info">
                   <p>
                     <img
-                      src="https://expensive-foal-tux.cyclic.app${
-                        el.userId.image
-                      }"
+                      src="https://opentalks.cyclic.app${el.userId.image}"
                       title="${el.userId.registration_number}"
                       alt="user-image"
                     />
@@ -4596,7 +4559,7 @@ async function removeJoinee(data) {
 async function removeJoineeMain(password, query) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/member/delete",
+      "https://opentalks.cyclic.app/admin/forum/member/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4634,7 +4597,7 @@ async function removeJoineeMain(password, query) {
 async function filterJoinee(query) {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/joinee/search/filter",
+      "https://opentalks.cyclic.app/admin/forum/joinee/search/filter",
       {
         method: "POST",
         body: JSON.stringify({ ...query }),
@@ -4689,9 +4652,7 @@ async function filterJoinee(query) {
                 <div class="forum-joinee-info">
                   <p>
                     <img
-                      src="https://expensive-foal-tux.cyclic.app${
-                        el.userId.image
-                      }"
+                      src="https://opentalks.cyclic.app${el.userId.image}"
                       title="${el.userId.registration_number}"
                       alt="user-image"
                     />
@@ -4717,7 +4678,7 @@ async function filterJoinee(query) {
 async function filterJoineeScroll() {
   try {
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/forum/joinee/search/filter",
+      "https://opentalks.cyclic.app/admin/forum/joinee/search/filter",
       {
         method: "POST",
         body: JSON.stringify({
@@ -4766,9 +4727,7 @@ async function filterJoineeScroll() {
                 <div class="forum-joinee-info">
                   <p>
                     <img
-                      src="https://expensive-foal-tux.cyclic.app${
-                        el.userId.image
-                      }"
+                      src="https://opentalks.cyclic.app${el.userId.image}"
                       title="${el.userId.registration_number}"
                       alt="user-image"
                     />
@@ -5156,7 +5115,7 @@ document
     if (isTop) {
       let forumId = sessionStorage.getItem("currentForum");
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/post/all",
+        "https://opentalks.cyclic.app/admin/post/all",
         {
           method: "POST",
           body: JSON.stringify({ forumId, startPoint: forum_startPoint }),
@@ -5186,7 +5145,7 @@ document
               </div>
               <div class="forum-post-user-info">
                 <img
-                  src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+                  src="https://opentalks.cyclic.app${el.userId.image}"
                   class="forum-post-main-user-profile"
                 />
                 <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -5221,7 +5180,7 @@ document
               </div>
               <div class="forum-post-user-info">
                 <img
-                src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+                src="https://opentalks.cyclic.app${el.userId.image}"
                   class="forum-post-main-user-profile"
                 />
                 <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -5275,7 +5234,7 @@ document
     document.querySelector(".edit-forum-description").value =
       getForum.description;
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/all",
+      "https://opentalks.cyclic.app/admin/department/all",
       {
         method: "POST",
         headers: {
@@ -5324,7 +5283,7 @@ document
 //       document.querySelector(".forum-create-post-user").value = "";
 
 //       let forumId = sessionStorage.getItem("currentForum");
-//       let response = await fetch("https://expensive-foal-tux.cyclic.app/admin/forum/members", {
+//       let response = await fetch("https://opentalks.cyclic.app/admin/forum/members", {
 //         method: "POST",
 //         body: JSON.stringify({ forumId, byAdmin: true }),
 //         headers: {
@@ -5759,7 +5718,7 @@ document.querySelector(".add-forum").addEventListener("click", async () => {
   document.querySelector(".add-forum-registration-no").value = "";
 
   let response = await fetch(
-    "https://expensive-foal-tux.cyclic.app/admin/department/all",
+    "https://opentalks.cyclic.app/admin/department/all",
     {
       method: "POST",
       headers: {
@@ -5892,7 +5851,7 @@ document
               startPoint: post_startPoint,
             };
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/post/search",
+        "https://opentalks.cyclic.app/admin/post/search",
         {
           method: "POST",
           body: JSON.stringify(query),
@@ -5945,7 +5904,7 @@ document
     </div>
     <div class="top-10-post-user-info-main">
       <img
-        src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+        src="https://opentalks.cyclic.app${el.userId.image}"
         alt="user-profile-pic"
         class="top-10-post-user-profile"
       />
@@ -6163,7 +6122,7 @@ document
     document.querySelector(".add-user-password").value = "";
     document.querySelector(".add-user-confirm-password").value = "";
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/all",
+      "https://opentalks.cyclic.app/admin/department/all",
       {
         method: "POST",
         headers: {
@@ -6497,7 +6456,7 @@ document
       userSearchedByFilter == true
     ) {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/user/search/filter",
+        "https://opentalks.cyclic.app/admin/user/search/filter",
         {
           method: "POST",
           body: JSON.stringify({
@@ -6542,7 +6501,7 @@ document
           <div class="recent-user-template ${isDeleted} ${isAdmin}">
           <div class="recent-user-profile">
             <img
-              src="https://expensive-foal-tux.cyclic.app${el.image}"
+              src="https://opentalks.cyclic.app${el.image}"
               alt="User Profile Pic"
               class="recent-user-profile-pic"
             />
@@ -6603,7 +6562,7 @@ document
       userSearchedByFilter == false
     ) {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/user/search",
+        "https://opentalks.cyclic.app/admin/user/search",
         {
           method: "POST",
           body: JSON.stringify({ ...userFilter, startPoint: user_startPoint }),
@@ -6640,7 +6599,7 @@ document
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://expensive-foal-tux.cyclic.app${el.image}"
+            src="https://opentalks.cyclic.app${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -6696,7 +6655,7 @@ document
     document.querySelector(".filter-user-container").classList.remove("hide");
     document.querySelector(".blur").classList.remove("hide");
     let response = await fetch(
-      "https://expensive-foal-tux.cyclic.app/admin/department/all",
+      "https://opentalks.cyclic.app/admin/department/all",
       {
         method: "POST",
         headers: {
@@ -6801,7 +6760,7 @@ document.querySelector(".forum-filter").addEventListener("click", async () => {
   document.querySelector(".forum-filter-container").classList.remove("hide");
   document.querySelector(".blur").classList.remove("hide");
   let response = await fetch(
-    "https://expensive-foal-tux.cyclic.app/admin/department/all",
+    "https://opentalks.cyclic.app/admin/department/all",
     {
       method: "POST",
       headers: {
@@ -6910,7 +6869,7 @@ document
       forumSearchedByFilter == true
     ) {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/forum/search/filter",
+        "https://opentalks.cyclic.app/admin/forum/search/filter",
         {
           method: "POST",
           body: JSON.stringify({
@@ -6988,7 +6947,7 @@ document
       forumSearchedByFilter == false
     ) {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/forum/search",
+        "https://opentalks.cyclic.app/admin/forum/search",
         {
           method: "POST",
           body: JSON.stringify({
@@ -7060,7 +7019,7 @@ document
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/recent/posts",
+        "https://opentalks.cyclic.app/admin/recent/posts",
         {
           method: "POST",
           body: JSON.stringify({
@@ -7097,7 +7056,7 @@ document
             </div>
             <div class="user-info">
               <img
-                src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+                src="https://opentalks.cyclic.app${el.userId.image}"
                 alt="User Avatar"
                 class="avatar-image-small recent-post-user-image"
               />
@@ -7127,7 +7086,7 @@ document
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
       let response = await fetch(
-        "https://expensive-foal-tux.cyclic.app/admin/recent/forums",
+        "https://opentalks.cyclic.app/admin/recent/forums",
         {
           method: "POST",
           body: JSON.stringify({
@@ -7157,7 +7116,7 @@ document
             </div>
             <div class="user-info">
               <img
-                src="https://expensive-foal-tux.cyclic.app${el.userId.image}"
+                src="https://opentalks.cyclic.app${el.userId.image}"
                 alt="User Avatar"
                 class="avatar-image-small recent-post-user-image"
               />

@@ -99,7 +99,7 @@ function formEmpty() {
 }
 
 function createUser(data) {
-  fetch("https://expensive-foal-tux.cyclic.app/api/register", {
+  fetch("https://opentalks.cyclic.app/api/register", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -144,7 +144,7 @@ function login() {
       registration_number: formLoginRegisNo.value,
       password: formLoginPassword.value,
     };
-    fetch("https://expensive-foal-tux.cyclic.app/api/login", {
+    fetch("https://opentalks.cyclic.app/api/login", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
