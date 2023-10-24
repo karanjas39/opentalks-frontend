@@ -2,7 +2,7 @@
 
 Welcome to the frontend repository of Opentalks Forum. This repository houses the client-side code for Opentalks, a forum designed for university students to enhance their learning experience.
 
-**Important Note**: This project is private and intended for use with permission. You may not use, modify, distribute, or reproduce any part of this project without explicit written permission from the project owner, [Your Name].
+**Important Note**: This project is private and intended for use with permission. You may not use, modify, distribute, or reproduce any part of this project without explicit written permission from the project owner, Jaskaran Singh.
 
 ## Table of Contents
 
