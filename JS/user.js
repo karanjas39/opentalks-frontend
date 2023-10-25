@@ -2822,26 +2822,26 @@ async function searchForumPost(query) {
       results.textContent = data.result;
       data.posts.forEach((el) => {
         let likeIconClass = el.isLiked ? "fa-solid" : "fa-regular";
-        let highlightedTitle, highlightedDescription;
+        let highlightedTitle;
         if (query.byNumber == false) {
           let searchRegex = new RegExp(forum_post_search.search.trim(), "gi");
           highlightedTitle = el.title.replace(
             searchRegex,
             (match) => `<span class="highlight">${match}</span>`
           );
-          highlightedDescription = el.description.replace(
-            searchRegex,
-            (match) => `<span class="highlight">${match}</span>`
-          );
+          // highlightedDescription = el.description.replace(
+          //   searchRegex,
+          //   (match) => `<span class="highlight">${match}</span>`
+          // );
         } else {
           highlightedTitle = el.title;
-          highlightedDescription = el.description;
+          // highlightedDescription = el.description;
         }
         if (el.userId._id == sessionStorage.getItem("user")) {
           result += `
           <div class="forum-post-template-search">
           <h3 class="forum-post-title">${highlightedTitle}</h3>
-          <p class="forum-post-description">${highlightedDescription}</p>
+          <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
               <span class="forum-post-date">${formatDate(el.createdAt)}</span>
@@ -2874,7 +2874,7 @@ async function searchForumPost(query) {
           result += `
           <div class="forum-post-template-search">
           <h3 class="forum-post-title">${highlightedTitle}</h3>
-          <p class="forum-post-description">${highlightedDescription}</p>
+          <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
               <span class="forum-post-date">${formatDate(el.createdAt)}</span>
@@ -2942,26 +2942,26 @@ async function searchForumPostScroll(query) {
     if (!!data && data.success == true) {
       data.posts.forEach((el) => {
         let likeIconClass = el.isLiked ? "fa-solid" : "fa-regular";
-        let highlightedTitle, highlightedDescription;
+        let highlightedTitle;
         if (query.byNumber == false) {
           let searchRegex = new RegExp(forum_post_search.search.trim(), "gi");
           highlightedTitle = el.title.replace(
             searchRegex,
             (match) => `<span class="highlight">${match}</span>`
           );
-          highlightedDescription = el.description.replace(
-            searchRegex,
-            (match) => `<span class="highlight">${match}</span>`
-          );
+          // highlightedDescription = el.description.replace(
+          //   searchRegex,
+          //   (match) => `<span class="highlight">${match}</span>`
+          // );
         } else {
           highlightedTitle = el.title;
-          highlightedDescription = el.description;
+          // highlightedDescription = el.description;
         }
         if (el.userId._id == sessionStorage.getItem("user")) {
           result += `
           <div class="forum-post-template-search">
           <h3 class="forum-post-title">${highlightedTitle}</h3>
-          <p class="forum-post-description">${highlightedDescription}</p>
+          <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
               <span class="forum-post-date">${formatDate(el.createdAt)}</span>
@@ -2994,7 +2994,7 @@ async function searchForumPostScroll(query) {
           result += `
           <div class="forum-post-template-search">
           <h3 class="forum-post-title">${highlightedTitle}</h3>
-          <p class="forum-post-description">${highlightedDescription}</p>
+          <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
               <span class="forum-post-date">${formatDate(el.createdAt)}</span>
