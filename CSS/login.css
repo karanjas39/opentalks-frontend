@@ -328,6 +328,66 @@ nav a,
   color: var(--main-color-shade3-extra-dark);
 }
 
+/*! REGISTER USER */
+.register-container {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  background-color: var(--ffffff);
+  width: 30%;
+  border-radius: 60px 60px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.register-title {
+  width: 100%;
+  background-color: var(--main-color);
+  border: solid -2px var(--main-color);
+  border-radius: 50px 50px 0 0;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 32px;
+  color: var(--ffffff);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.register-inner-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 30px 0;
+}
+.register-inner-top > input {
+  width: 90%;
+  border: none;
+  padding: 15px;
+  background-color: var(--f1f1f1);
+  color: var(--C3333333);
+  border-radius: 20px;
+  outline: none;
+  transition: border 0.6s;
+}
+.register-inner > button {
+  width: 50%;
+  padding: 10px 30px;
+  font-size: 16px;
+  color: var(--ffffff);
+  background-color: var(--main-color);
+  outline: none;
+  border: none;
+  align-self: center;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.register-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
 /*! REMOVE BUTTONS IN NUMBER INPUT FIELD */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -377,15 +437,4 @@ button:hover {
 
 button:active {
   transform: scale(0.95) !important;
-}
-
-.fade {
-  opacity: 0;
-  display: none;
-  transition: opacity 1s cubic-bezier(0.26, -0.06, 0.95, 0.95);
-}
-
-.fade.active {
-  opacity: 1;
-  display: block;
 }

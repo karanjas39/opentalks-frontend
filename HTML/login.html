@@ -37,14 +37,14 @@
     </nav>
     <div class="main-container">
       <!-- ********************************************************************LOGIN -->
-      <div class="login-container fade active">
+      <div class="login-container">
         <div class="login-title">Login panel</div>
 
         <div class="login-inner">
           <div class="login-inner-top">
             <input
               type="number"
-              class="user-regisNo"
+              class="user-regisNo-login"
               placeholder="Registration number"
             />
             <input
@@ -64,25 +64,19 @@
       </div>
       <!-- ********************************************************************SIGNUP -->
 
-      <div class="signup-container fade">
+      <div class="signup-container hide">
         <div class="signup-title">Signup panel</div>
 
         <div class="signup-inner">
           <div class="signup-inner-top">
-            <input type="text" class="user-name" placeholder="Full name" />
+            <input type="text" class="user-fullname" placeholder="Full name" />
             <input
               type="number"
-              class="user-regisNo"
+              class="user-regisNo-signup"
               placeholder="Registration number"
             />
             <input type="email" class="user-email" placeholder="Email" />
-            <select class="user-departmnet">
-              <option value="" selected>Select your department</option>
-              <option value="1">Department 1</option>
-              <option value="1">Department 1</option>
-              <option value="1">Department 1</option>
-              <option value="1">Department 1</option>
-            </select>
+            <select class="user-departmnet"></select>
           </div>
 
           <button class="signup-btn">SIGNUP</button>
@@ -106,6 +100,38 @@
         <div class="popup-msg-progress"></div>
       </div>
     </div>
+
+    <!-- PASSWORD FOR REGISTRATION -->
+    <div class="register-container hide">
+      <div class="register-title">Create Password</div>
+
+      <div class="register-inner">
+        <div class="register-inner-top">
+          <input
+            type="password"
+            class="user-register-password"
+            placeholder="Password"
+          />
+          <input
+            type="password"
+            class="user-register-password-confirm"
+            placeholder="Confirm Password"
+          />
+        </div>
+
+        <button class="register-user-btn">Register</button>
+      </div>
+    </div>
+
+    <!-- BLUR -->
+    <div class="blur hide"></div>
+
+    <!--LOADER  -->
+    <img
+      src=".././CSS/IMAGES/loading.svg"
+      class="loading hide"
+      alt="loading-svg"
+    />
 
     <!-- JAVASCRIPT -->
     <script src=".././JS/login.js"></script>

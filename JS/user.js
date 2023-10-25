@@ -459,16 +459,6 @@ function showConfirmation(message) {
   });
 }
 
-// VALIDATE URL
-function isUrlValid(userInput) {
-  const res = userInput.match(
-    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
-  );
-  console.log(res);
-  if (res == null) return false;
-  else return true;
-}
-
 // ! ********************************************************************************************************************************************************DASHBOARD SECTION
 // SEND FORUM JOIN REQUEST
 async function sentForumJoinRequest(forumId) {
