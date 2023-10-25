@@ -137,6 +137,8 @@ async function isUserAllowed(query) {
     let data = await response.json();
     loader(0);
     if (!!data && data.success == true) {
+      document.querySelector(".user-register-password").value = "";
+      document.querySelector(".user-register-password-confirm").value = "";
       document.querySelector(".register-container").classList.remove("hide");
       document.querySelector(".signup-container").classList.add("hide");
     } else {
@@ -211,6 +213,10 @@ document.querySelector(".popup-msg-close").addEventListener("click", () => {
 document.querySelector(".signup-page").addEventListener("click", async () => {
   document.querySelector(".login-container").classList.add("hide");
   document.querySelector(".signup-container").classList.remove("hide");
+  document.querySelector(".user-regisNo-signup").value = "";
+  document.querySelector(".user-email").value = "";
+  document.querySelector(".user-departmnet").value = "";
+  document.querySelector(".user-fullname").value = "";
   if (departments.length == 0) await fetchDepartments();
 });
 

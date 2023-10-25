@@ -46,12 +46,16 @@ let notificationTimeout;
 let progressBarInterval;
 let departmentList = [];
 
+const blurElement = document.querySelector(".blur2");
+const loaderElement = document.querySelector(".loading");
+
 let i = 0;
 
 // ! **************************************************************************************************************************************************** GENERAL PURPOSE FUNCTION
 
 async function getDetails() {
   try {
+    loader(1);
     let response1 = fetch("https://opentalks.cyclic.app/api/detail", {
       method: "POST",
       body: JSON.stringify({
@@ -139,6 +143,7 @@ async function getDetails() {
     fetchRecentPosts(recentPosts);
     fetchtopForums(topForums);
     fetchRecentReplies(recentReplies.recentReplies);
+    loader(0);
   } catch (error) {
     console.log(`Error: ${error.toString()} in getDetailsC`);
   }
@@ -459,10 +464,22 @@ function showConfirmation(message) {
   });
 }
 
+function loader(state) {
+  if (state === 1) {
+    blurElement.classList.remove("hide");
+    loaderElement.classList.remove("hide");
+  } else if (state === 0) {
+    blurElement.classList.add("hide");
+    loaderElement.classList.add("hide");
+  }
+}
+
 // ! ********************************************************************************************************************************************************DASHBOARD SECTION
 // SEND FORUM JOIN REQUEST
 async function sentForumJoinRequest(forumId) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/request",
       {
@@ -479,6 +496,7 @@ async function sentForumJoinRequest(forumId) {
     );
 
     let data = await response.json();
+    loader(0);
 
     if (!!data && data.success == true) {
       showNotification(data.message, 5000);
@@ -517,6 +535,8 @@ async function updateUserProfile(updateData) {
 
 async function updateUserProfileMain(updateData, password) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/update/details",
       {
@@ -533,6 +553,8 @@ async function updateUserProfileMain(updateData, password) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -585,6 +607,7 @@ async function updateUserPicMain(password) {
     formData.append("_id", sessionStorage.getItem("user"));
     formData.append("user_id", sessionStorage.getItem("user"));
     formData.append("user_password", password);
+    loader(1);
 
     let response = await fetch(
       "https://opentalks.cyclic.app/api/update/image",
@@ -598,6 +621,8 @@ async function updateUserPicMain(password) {
     );
 
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -625,6 +650,8 @@ async function updateUserPicMain(password) {
 // FETCH POST AFTER LAST LOGIN
 async function fetchPostsAfterLastLogin() {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/recent", {
       method: "POST",
       body: JSON.stringify({
@@ -638,6 +665,8 @@ async function fetchPostsAfterLastLogin() {
       },
     });
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".recent-posts-list");
     if (!!data && data.success == true) {
@@ -690,6 +719,8 @@ async function fetchPostsAfterLastLogin() {
 // FETCH TOP FORUMS ON DASHBOARD BY SCROLLING
 async function fetchtopForumsScroll() {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/forum/top", {
       method: "POST",
       body: JSON.stringify({
@@ -701,6 +732,8 @@ async function fetchtopForumsScroll() {
       },
     });
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".top-forums-list");
     if (!!data && data.success == true) {
@@ -786,6 +819,8 @@ async function fetchRecentReplies(data) {
 
 async function fetchRecentRepliesScroll() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/reply/recent",
       {
@@ -802,6 +837,8 @@ async function fetchRecentRepliesScroll() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".recent-replies-list");
     if (!!data && data.success == true && data.recentReplies.length != 0) {
@@ -838,6 +875,8 @@ async function fetchRecentRepliesScroll() {
 // NOTIFICATIONS
 async function fetchNotifications() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/notification/all",
       {
@@ -852,6 +891,8 @@ async function fetchNotifications() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".notification-list");
     if (!!data && data.success == true && data.notifications.length != 0) {
@@ -875,6 +916,8 @@ async function fetchNotifications() {
 
 async function fetchNotificationsScroll() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/notification/all",
       {
@@ -890,6 +933,8 @@ async function fetchNotificationsScroll() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".notification-list");
     if (!!data && data.success == true && data.notifications.length != 0) {
@@ -912,6 +957,8 @@ async function fetchNotificationsScroll() {
 // CLEAR NOTIFICATIONS
 async function clearNotifications() {
   try {
+    loader(1);
+
     await fetch("https://opentalks.cyclic.app/api/notification/delete/all", {
       method: "POST",
       body: JSON.stringify({
@@ -922,6 +969,7 @@ async function clearNotifications() {
         Authorization: sessionStorage.getItem("token"),
       },
     });
+    loader(0);
 
     const notifications = document.querySelectorAll(".notification-template");
     document.querySelector(".notification-list").style.overflowY = "hidden";
@@ -945,6 +993,8 @@ async function clearNotifications() {
 // UPDATE PASSWORD
 async function updateUserPassword(prevPassword, newPassword) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/update/password",
       {
@@ -961,6 +1011,8 @@ async function updateUserPassword(prevPassword, newPassword) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document.querySelector(".edit-user-container3").classList.add("hide");
       document.querySelector(".blur").classList.add("hide");
@@ -978,6 +1030,8 @@ async function updateUserPassword(prevPassword, newPassword) {
 // FETCH USER RECENT POSTS
 async function userRecentPosts() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/recent/5",
       {
@@ -990,6 +1044,8 @@ async function userRecentPosts() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".recent-main-posts-container");
     if (!!data && data.success == true) {
@@ -1035,6 +1091,8 @@ async function userRecentPosts() {
 // FETCH POSTS OF USER THAT OTHER PEOPLE LIKED
 async function userLikedPosts() {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/top", {
       method: "POST",
       body: JSON.stringify({ userId: sessionStorage.getItem("user") }),
@@ -1044,6 +1102,8 @@ async function userLikedPosts() {
       },
     });
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".liked-main-posts-container");
     if (!!data && data.success == true) {
@@ -1090,6 +1150,8 @@ async function userLikedPosts() {
 // FETCH POSTS THAT USER LIKED
 async function fetchFavouritePosts() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/favourite",
       {
@@ -1104,6 +1166,7 @@ async function fetchFavouritePosts() {
       }
     );
     let data = await response.json();
+    loader(0);
 
     let result = "";
     let container = document.querySelector(".favourite-main-posts-container");
@@ -1154,6 +1217,8 @@ async function fetchFavouritePosts() {
 // FETCH THE FORUMS THAT USER CREATED
 async function fetchCreatedForums() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/created/detail",
       {
@@ -1166,6 +1231,7 @@ async function fetchCreatedForums() {
       }
     );
     let data = await response.json();
+    loader(0);
 
     let result = "";
     let container = document.querySelector(".main-forums-created-container");
@@ -1195,6 +1261,8 @@ async function fetchCreatedForums() {
 // FETCH THE FORUMS THAT USER JOINED
 async function fetchJoinedForums() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/member",
       {
@@ -1209,6 +1277,7 @@ async function fetchJoinedForums() {
       }
     );
     let data = await response.json();
+    loader(0);
 
     let result = "";
     let container = document.querySelector(".main-forums-joined-container");
@@ -1241,6 +1310,8 @@ async function fetchJoinedForums() {
 // FETCH THE FORUM DETAILS
 async function fetchForumData_initially(forumId, joined = false) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/detail",
       {
@@ -1255,6 +1326,8 @@ async function fetchForumData_initially(forumId, joined = false) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       currentForumDetails = { ...data.forum };
       currentForumDetails.members = data.members;
@@ -1358,6 +1431,8 @@ async function updateForumDetails(data) {
 
 async function updateForumDetailsMain(password, query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/update",
       {
@@ -1375,6 +1450,8 @@ async function updateForumDetailsMain(password, query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -1398,6 +1475,8 @@ async function updateForumDetailsMain(password, query) {
 // FETCH FORUM MEMBERS
 async function fetchForumMembers() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/member",
       {
@@ -1410,6 +1489,8 @@ async function fetchForumMembers() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let conatiner = document.querySelector(".forum-member-table-container");
     if (!!data && data.success == true) {
@@ -1443,6 +1524,8 @@ async function fetchForumMembers() {
 // FETCH FORUM MEMBER SCROLLING AFTER SEARCH
 async function fetchForumMemberScroll() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/member/search",
       {
@@ -1459,6 +1542,8 @@ async function fetchForumMemberScroll() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-member-table-container");
     if (!!data && data.success == true) {
@@ -1500,6 +1585,8 @@ async function fetchForumMemberScroll() {
 
 async function fetchSearchedForumMembers() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/member/search",
       {
@@ -1515,6 +1602,8 @@ async function fetchSearchedForumMembers() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-member-table-container");
     if (!!data && data.success == true) {
@@ -1584,6 +1673,8 @@ async function removeForumMember(target) {
 
 async function removeForumMemberMain(password, query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/left",
       {
@@ -1601,6 +1692,8 @@ async function removeForumMemberMain(password, query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -1622,6 +1715,8 @@ async function removeForumMemberMain(password, query) {
 // FETCH FORUM COMPLAINTS
 async function fetchAllComplaints() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint/all",
       {
@@ -1634,6 +1729,8 @@ async function fetchAllComplaints() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-complaints-main");
     if (!!data && data.success == true) {
@@ -1696,6 +1793,8 @@ async function fetchAllComplaints() {
 // FETCH FORUM COMPLAINTS SCROLL
 async function fetchAllComplaintsScroll() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint/all",
       {
@@ -1711,6 +1810,8 @@ async function fetchAllComplaintsScroll() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-complaints-main");
     if (!!data && data.success == true) {
@@ -1771,6 +1872,8 @@ async function fetchAllComplaintsScroll() {
 // FETCH JOINED FORUM COMPLAINTS
 async function fetchJoinedForumComplaints() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint/user/all",
       {
@@ -1786,6 +1889,8 @@ async function fetchJoinedForumComplaints() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".joined-forum-complaints-main");
     if (!!data && data.success == true) {
@@ -1830,6 +1935,8 @@ async function fetchJoinedForumComplaints() {
 // FETCH FORUM COMPLAINTS SCROLL
 async function fetchJoinedForumComplaintsScroll() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint/user/all",
       {
@@ -1846,6 +1953,8 @@ async function fetchJoinedForumComplaintsScroll() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".joined-forum-complaints-main");
     if (!!data && data.success == true) {
@@ -1890,6 +1999,8 @@ async function fetchJoinedForumComplaintsScroll() {
 // FETCH SEARCHED COMPLAINT IN JOINED FORUM
 async function fetchSearchedComplaintinJoinedForum() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint/search",
       {
@@ -1906,6 +2017,8 @@ async function fetchSearchedComplaintinJoinedForum() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".joined-forum-complaints-main");
     if (!!data && data.success == true) {
@@ -1945,6 +2058,8 @@ async function fetchSearchedComplaintinJoinedForum() {
 // FETCH SEARCHED COMPLAINT
 async function fetchSearchedComplaint() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint/search",
       {
@@ -1960,6 +2075,8 @@ async function fetchSearchedComplaint() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-complaints-main");
     if (!!data && data.success == true) {
@@ -2022,6 +2139,8 @@ async function fetchSearchedComplaint() {
 // ADD RESPONSE TO COMAPLINT
 async function sendResponseToComplaint(complaintId, userId, response, target) {
   let forumId = createdForumID;
+  loader(1);
+
   try {
     let response1 = await fetch(
       "https://opentalks.cyclic.app/api/forum/response",
@@ -2035,6 +2154,8 @@ async function sendResponseToComplaint(complaintId, userId, response, target) {
       }
     );
     let data = await response1.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       let btnData = JSON.stringify({ complaintId, userId });
       target.querySelector(
@@ -2053,6 +2174,8 @@ async function sendResponseToComplaint(complaintId, userId, response, target) {
 // FETCH RESPONSES OF COMPLAINT
 async function fetchComplaintResponses(data1, target) {
   try {
+    loader(1);
+
     let forumId = createdForumID;
     let complainth2 = `Responses of ${
       target.querySelector(".forum-complaint-id").textContent
@@ -2074,6 +2197,8 @@ async function fetchComplaintResponses(data1, target) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-response-main");
     if (!!data && data.success == true && data.responses.length != 0) {
@@ -2103,6 +2228,8 @@ async function fetchJoinedForumComplaintResponses(data1, target) {
     }`;
     document.querySelector(".joined-forum-response-top h2").textContent =
       complainth2;
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/response/all",
       {
@@ -2119,6 +2246,8 @@ async function fetchJoinedForumComplaintResponses(data1, target) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".joined-forum-response-main");
     if (!!data && data.success == true && data.responses.length != 0) {
@@ -2142,6 +2271,8 @@ async function fetchJoinedForumComplaintResponses(data1, target) {
 // CREATE COMPLAINT
 async function createComplaint(complaint) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/complaint",
       {
@@ -2158,6 +2289,8 @@ async function createComplaint(complaint) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".joined-forum-complaints-main");
     if (!!data && data.success == true) {
@@ -2196,6 +2329,8 @@ async function fetchMemberJoinRequests() {
       userId: sessionStorage.getItem("user"),
       forumId: currentForumID,
     };
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/request/list",
       {
@@ -2208,6 +2343,8 @@ async function fetchMemberJoinRequests() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-member-join-list-main");
     if (!!data && data.results != 0) {
@@ -2252,6 +2389,8 @@ async function fetchMemberJoinRequests() {
 async function respondJoinRequest(target, status) {
   try {
     let { requestId, userId } = JSON.parse(target.value);
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/forum/join", {
       method: "POST",
       body: JSON.stringify({
@@ -2266,6 +2405,8 @@ async function respondJoinRequest(target, status) {
       },
     });
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       let container = target.closest(".forum-member-join-list-template");
 
@@ -2280,6 +2421,8 @@ async function respondJoinRequest(target, status) {
 // FETCH 10 POSTS OF THE FORUMS IN FORUM CONTAINER
 async function fetchForumPosts_initially(forumId, joined = false) {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/all", {
       method: "POST",
       body: JSON.stringify({
@@ -2292,6 +2435,8 @@ async function fetchForumPosts_initially(forumId, joined = false) {
       },
     });
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container =
       joined == false
@@ -2379,6 +2524,8 @@ async function likeUserPost(target) {
   try {
     let postId = target.dataset.postid;
     let forumId = currentForumID;
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/like", {
       method: "POST",
       body: JSON.stringify({
@@ -2392,6 +2539,7 @@ async function likeUserPost(target) {
       },
     });
     let data = await response.json();
+    loader(0);
 
     if (!!data && data.success == true) {
       target.classList.remove("fa-regular");
@@ -2407,6 +2555,8 @@ async function unlikeUserPost(target) {
   try {
     let postId = target.dataset.postid;
     let forumId = currentForumID;
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/unlike", {
       method: "POST",
       body: JSON.stringify({
@@ -2420,6 +2570,7 @@ async function unlikeUserPost(target) {
       },
     });
     let data = await response.json();
+    loader(0);
 
     if (!!data && data.success == true) {
       target.classList.remove("fa-solid");
@@ -2435,6 +2586,8 @@ async function unlikeUserFavouritePost(target) {
   try {
     let postId = target.dataset.postid;
     let forumId = target.dataset.forumid;
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/unlike", {
       method: "POST",
       body: JSON.stringify({
@@ -2448,6 +2601,7 @@ async function unlikeUserFavouritePost(target) {
       },
     });
     let data = await response.json();
+    loader(0);
 
     if (!!data && data.success == true) {
       target.closest(".favourite-main-post-template").remove();
@@ -2467,6 +2621,8 @@ async function fetchUserComments(target) {
     document.querySelector(".post-add-reply-input").dataset.postid = postId;
     document.querySelector(".post-reply-container").classList.remove("hide");
     document.querySelector(".blur").classList.remove("hide");
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/reply/all",
       {
@@ -2481,6 +2637,8 @@ async function fetchUserComments(target) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".post-reply-list");
     if (!!data && data.success == true) {
@@ -2531,6 +2689,8 @@ ${canDelete}
 async function addPostReply(reply, target, isJoined = false) {
   try {
     let forumId = isJoined == false ? createdForumID : joinedForumID;
+    loader(1);
+
     const response = await fetch(
       "https://opentalks.cyclic.app/api/post/reply/add",
       {
@@ -2548,6 +2708,8 @@ async function addPostReply(reply, target, isJoined = false) {
       }
     );
     const data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".post-reply-list");
     if (!!data && data.success == true) {
@@ -2591,6 +2753,8 @@ async function deleteReply(target) {
 
 async function deleteReplyMain(password, query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/reply/delete",
       {
@@ -2607,6 +2771,8 @@ async function deleteReplyMain(password, query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -2628,6 +2794,8 @@ async function deleteReplyMain(password, query) {
 // SEARCH USER POST
 async function searchForumPost(query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/post/search",
       {
@@ -2645,6 +2813,8 @@ async function searchForumPost(query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-post-search-list");
     let results = document.querySelector(".forum-post-search-results span");
@@ -2745,6 +2915,8 @@ async function searchForumPost(query) {
 // SEARCH USER POST IN FORUM SCROLL
 async function searchForumPostScroll(query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/post/search",
       {
@@ -2763,6 +2935,8 @@ async function searchForumPostScroll(query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".forum-post-search-list");
     if (!!data && data.success == true) {
@@ -2880,6 +3054,8 @@ async function deleteUserPost(target) {
 
 async function deleteUserPostMain(password, query) {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/post/delete", {
       method: "POST",
       body: JSON.stringify({
@@ -2893,6 +3069,8 @@ async function deleteUserPostMain(password, query) {
       },
     });
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -2915,6 +3093,8 @@ async function deleteUserPostMain(password, query) {
 async function fetchPostLikesUsers(target) {
   try {
     targetedContainer = target;
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/like/user",
       {
@@ -2929,6 +3109,8 @@ async function fetchPostLikesUsers(target) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".post-like-list");
     if (!!data && data.success == true) {
@@ -2963,6 +3145,8 @@ async function fetchPostLikesUsers(target) {
 
 async function fetchPostLikesUsersScroll(target) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/post/like/user",
       {
@@ -2978,6 +3162,8 @@ async function fetchPostLikesUsersScroll(target) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".post-like-list");
     if (!!data && data.success == true) {
@@ -3038,6 +3224,8 @@ async function createPost(data) {
 
 async function createPostMain(query, password) {
   try {
+    loader(1);
+
     let forumId =
       currentForumID == createdForumID ? createdForumID : joinedForumID;
     let joined = currentForumID == createdForumID ? false : true;
@@ -3056,6 +3244,8 @@ async function createPostMain(query, password) {
       },
     });
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -3095,6 +3285,8 @@ async function deleteCreatedForum() {
 
 async function deleteCreatedForumMain(password) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/delete",
       {
@@ -3112,6 +3304,8 @@ async function deleteCreatedForumMain(password) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-button")
@@ -3137,6 +3331,8 @@ async function deleteCreatedForumMain(password) {
 
 async function fetchForumReviews() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/rate/all",
       {
@@ -3151,6 +3347,8 @@ async function fetchForumReviews() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".review-forum-list");
     if (!!data && data.success == true) {
@@ -3195,6 +3393,8 @@ async function fetchForumReviews() {
 
 async function fetchForumReviewsScroll() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/rate/all",
       {
@@ -3210,6 +3410,8 @@ async function fetchForumReviewsScroll() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".review-forum-list");
     if (!!data && data.success == true) {
@@ -3248,6 +3450,8 @@ async function fetchForumReviewsScroll() {
 // FETCH THE FORUM RATING IF ANY
 async function fetchForumRating() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/rate/get",
       {
@@ -3263,6 +3467,8 @@ async function fetchForumRating() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       prevRating = data.rating;
       if (data.rating == 1) {
@@ -3283,6 +3489,8 @@ async function fetchForumRating() {
 // SUBMIT THE NEW RATING OR UPDATE THE PREVIOUS ONE
 async function submitForumRating() {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/forum/rate", {
       method: "POST",
       body: JSON.stringify({
@@ -3296,6 +3504,8 @@ async function submitForumRating() {
       },
     });
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       showNotification("Feedback updated successfully.");
     } else {
@@ -3330,6 +3540,8 @@ async function leftJoinedForum() {
 
 async function leftJoinedForumMain(password) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/left",
       {
@@ -3347,6 +3559,8 @@ async function leftJoinedForumMain(password) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     if (!!data && data.success == true) {
       document
         .querySelector(".user-confirm-pass-container")
@@ -3373,6 +3587,8 @@ async function leftJoinedForumMain(password) {
 // ** SEARCH FILTER
 async function searchForumFilter(query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/member/search/filter",
       {
@@ -3387,6 +3603,8 @@ async function searchForumFilter(query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".main-forums-searched-container");
     let result_no = document.querySelector(
@@ -3434,6 +3652,8 @@ async function searchForumFilter(query) {
 
 async function searchForumFilterScroll(query) {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/forum/join/member/search/filter",
       {
@@ -3449,6 +3669,8 @@ async function searchForumFilterScroll(query) {
       }
     );
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".main-forums-searched-container");
     if (!!data && data.success == true) {
@@ -3511,6 +3733,8 @@ async function createForum(data) {
 
 async function createForumMain(query, password) {
   try {
+    loader(1);
+
     let response = await fetch("https://opentalks.cyclic.app/api/forum/add", {
       method: "POST",
       body: JSON.stringify({
@@ -3524,6 +3748,8 @@ async function createForumMain(query, password) {
       },
     });
     let data = await response.json();
+    loader(0);
+
     let result = "";
     let container = document.querySelector(".main-forums-created-container");
     if (!!data && data.success == true) {
@@ -3559,6 +3785,8 @@ async function createForumMain(query, password) {
 // ** FORGET PASSWORD
 async function forgetPassword() {
   try {
+    loader(1);
+
     let response = await fetch(
       "https://opentalks.cyclic.app/api/password/forget",
       {
@@ -3571,6 +3799,8 @@ async function forgetPassword() {
       }
     );
     let data = await response.json();
+    loader(0);
+
     showNotification(data.message, 2500);
   } catch (error) {
     console.log(`Error: ${error.toString()} in forgetPasswordC`);
@@ -3733,9 +3963,6 @@ document.querySelector(".edit-user-profile").addEventListener("click", () => {
   document.querySelector(".edit-user-details-department").innerHTML = list;
   document.querySelector(".edit-user-details-department").value =
     user_details.user.departmentId._id;
-
-  document.querySelector(".edit-user-details-email").value =
-    user_details.user.email;
 });
 
 document.querySelector(".close-edit-user2").addEventListener("click", () => {
@@ -3750,9 +3977,6 @@ document
       .querySelector(".edit-user-details-name")
       .value.trim();
 
-    let userEmail = document
-      .querySelector(".edit-user-details-email")
-      .value.trim();
     let userDepId = document
       .querySelector(".edit-user-details-department")
       .value.trim();
@@ -3763,10 +3987,6 @@ document
       count++;
     }
 
-    if (user_details.user.email != userEmail) {
-      toUpdate.email = userEmail;
-      count++;
-    }
     if (user_details.user.departmentId._id != userDepId) {
       toUpdate.departmentId = userDepId;
       count++;
@@ -3796,6 +4016,8 @@ document
     let { scrollHeight, scrollTop, clientHeight } = event.target;
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      loader(1);
+
       let response = await fetch(
         "https://opentalks.cyclic.app/api/post/recent/5",
         {
@@ -3812,6 +4034,7 @@ document
       );
 
       let data = await response.json();
+      loader(0);
 
       let container = document.querySelector(".recent-main-posts-container");
       let result = "";
@@ -3858,6 +4081,8 @@ document
     let { scrollHeight, scrollTop, clientHeight } = event.target;
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      loader(1);
+
       let response = await fetch("https://opentalks.cyclic.app/api/post/top", {
         method: "POST",
         body: JSON.stringify({
@@ -3870,6 +4095,8 @@ document
         },
       });
       let data = await response.json();
+      loader(0);
+
       let result = "";
       let container = document.querySelector(".liked-main-posts-container");
 
@@ -3918,6 +4145,8 @@ document
     let target = document.querySelector(".search-post-main-posts").value.trim();
     if (e.key == "Enter" && target != "") {
       myPost_search = target;
+      loader(1);
+
       let response = await fetch(
         "https://opentalks.cyclic.app/api/post/search",
         {
@@ -3933,6 +4162,8 @@ document
         }
       );
       let data = await response.json();
+      loader(0);
+
       let results = document.querySelector(".searched-posts-main h2 span");
       let result = "";
       let container = document.querySelector(".searched-main-posts-container");
@@ -4006,6 +4237,8 @@ document
     let { scrollHeight, scrollTop, clientHeight } = event.target;
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      loader(1);
+
       let response = await fetch(
         "https://opentalks.cyclic.app/api/post/search",
         {
@@ -4022,6 +4255,7 @@ document
         }
       );
       let data = await response.json();
+      loader(0);
 
       let result = "";
       let container = document.querySelector(".searched-main-posts-container");
@@ -4090,6 +4324,8 @@ document
     let { scrollHeight, scrollTop, clientHeight } = event.target;
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      loader(1);
+
       let response = await fetch(
         "https://opentalks.cyclic.app/api/post/favourite",
         {
@@ -4105,6 +4341,8 @@ document
         }
       );
       let data = await response.json();
+      loader(0);
+
       let result = "";
       let container = document.querySelector(".favourite-main-posts-container");
       if (!!data && data.success == true) {
@@ -4167,6 +4405,8 @@ document
     forum_search = target.value.trim();
     if (event.key == "Enter" && forum_search != "") {
       is_forum_filter = false;
+      loader(1);
+
       let response = await fetch(
         "https://opentalks.cyclic.app/api/forum/search",
         {
@@ -4179,6 +4419,8 @@ document
         }
       );
       let data = await response.json();
+      loader(0);
+
       document.querySelector(".main-forums-joined-list").classList.add("hide");
       document
         .querySelector(".main-forums-searched-list")
@@ -4242,6 +4484,8 @@ document
       Math.abs(scrollHeight - clientHeight - scrollTop) < 1 &&
       is_forum_filter == false
     ) {
+      loader(1);
+
       let response = await fetch(
         "https://opentalks.cyclic.app/api/forum/search",
         {
@@ -4257,6 +4501,8 @@ document
         }
       );
       let data = await response.json();
+      loader(0);
+
       let result = "";
       let container = document.querySelector(".main-forums-searched-container");
       if (!!data && data.success == true) {
@@ -4825,6 +5071,8 @@ document
     let isAtTop = container.scrollTop === 0;
 
     if (isAtTop) {
+      loader(1);
+
       let response = await fetch("https://opentalks.cyclic.app/api/post/all", {
         method: "POST",
         body: JSON.stringify({
@@ -4838,6 +5086,8 @@ document
         },
       });
       let data = await response.json();
+      loader(0);
+
       let result = "";
       let container = document.querySelector(".forum-main-layout-container");
       if (!!data && data.success == true) {
@@ -4966,6 +5216,8 @@ document
     let isAtTop = container.scrollTop === 0;
 
     if (isAtTop) {
+      loader(1);
+
       let response = await fetch("https://opentalks.cyclic.app/api/post/all", {
         method: "POST",
         body: JSON.stringify({
@@ -4979,6 +5231,8 @@ document
         },
       });
       let data = await response.json();
+      loader(0);
+
       let result = "";
       let container = document.querySelector(".forum-joined-layout-container");
       if (!!data && data.success == true) {
@@ -5850,6 +6104,17 @@ document
         "New Password does not match confirmation password"
       );
     }
+
+    if (newPassword.length < 5 && confirmPassword.length < 5) {
+      return showNotification("Password must be at least 5 characters.");
+    }
+
+    if (prevPassword == newPassword) {
+      return showNotification(
+        "New password should be different from previous password."
+      );
+    }
+
     await updateUserPassword(prevPassword, newPassword);
     document.querySelector(".edit-user-previous-password").value = "";
     document.querySelector(".edit-user-new-password").value = "";

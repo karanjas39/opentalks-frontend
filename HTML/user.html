@@ -23,6 +23,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href=".././CSS/user.css" />
+    <!-- LOADING STYLES -->
     <link rel="stylesheet" href=".././CSS/loading.css" />
   </head>
   <body onload="getDetails()">
@@ -58,8 +59,8 @@
             <div class="user-more-info">
               <div class="user-more-info-top">
                 <div class="user-salute">
-                  <span class="time">Good Morning,</span>
-                  <span class="user-name">Jaskaran Singh</span>
+                  <span class="time">Good Moring,</span>
+                  <span class="user-name">Adam Smith</span>
                 </div>
                 <div class="user-info-links">
                   <i
@@ -77,7 +78,7 @@
                 <div class="bottom-fields">
                   <i class="fa-solid fa-address-card"></i>
                   <p class="user-regisNo">
-                    Registration Number: <span>12100160</span>
+                    Registration Number: <span>1200****</span>
                   </p>
                 </div>
                 <div class="bottom-fields">
@@ -103,7 +104,7 @@
             <div class="stat-card-content">
               <p class="stat-card-title">Total Posts</p>
               <p class="stat-card-count stat-card-post-a">
-                Active: <span>10</span>
+                Active: <span>0</span>
               </p>
               <p class="stat-card-count stat-card-post-ia">
                 Inactive: <span>0</span>
@@ -117,7 +118,7 @@
             <div class="stat-card-content">
               <p class="stat-card-title">Forums Created</p>
               <p class="stat-card-count stat-card-created-a">
-                Active: <span>10</span>
+                Active: <span>0</span>
               </p>
               <p class="stat-card-count stat-card-created-ia">
                 Inactive: <span>0</span>
@@ -131,7 +132,7 @@
             <div class="stat-card-content">
               <p class="stat-card-title">Forums Joined</p>
               <p class="stat-card-count stat-card-joined-a">
-                Active: <span>10</span>
+                Active: <span>0</span>
               </p>
               <p class="stat-card-count stat-card-joined-ia">
                 Inactive: <span>0</span>
@@ -145,7 +146,7 @@
             <div class="stat-card-content">
               <p class="stat-card-title">Total Replies</p>
               <p class="stat-card-count stat-card-reply-a">
-                Active: <span>10</span>
+                Active: <span>0</span>
               </p>
               <p class="stat-card-count stat-card-reply-ia">
                 Inactive: <span>0</span>
@@ -359,14 +360,6 @@
         <div class="edit-user-details-field">
           <label for="edit-user-details-department">Department</label>
           <select class="edit-user-details-department" required></select>
-        </div>
-        <div class="edit-user-details-field">
-          <label for="edit-user-details-email">Email</label>
-          <input
-            type="email"
-            class="edit-user-details-email"
-            id="edit-user-details-email"
-          />
         </div>
         <button class="edit-user-details-btn">Submit Details</button>
       </section>
@@ -874,7 +867,15 @@
 
     <!-- BLUR -->
     <div class="blur hide"></div>
+
     <div class="blur2 hide"></div>
+
+    <!--LOADER  -->
+    <img
+      src=".././CSS/IMAGES/loading.svg"
+      class="loading hide"
+      alt="loading-svg"
+    />
 
     <!-- NOTIFICATION POPUP -->
     <div class="popup-msg-notification">
