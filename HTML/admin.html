@@ -44,6 +44,9 @@
         >
         <a href="#" class="nav-link" data-value="main-posts-panel">Posts</a>
         <a href="#" class="nav-link" data-value="main-users-panel">Users</a>
+        <a href="#" class="nav-link" data-value="main-allowed-users-panel"
+          >Allowed Users</a
+        >
         <a href="#" class="nav-link" data-value="main-notification-panel"
           >Notifications</a
         >
@@ -53,7 +56,7 @@
     <section class="main-section">
       <div class="main-window">
         <!-- **************************************************** DASHBOARD MAIN  -->
-        <section class="main-dashboard-panel">
+        <section class="main-dashboard-panel hide">
           <div class="top-part-main-dashboard-panel">
             <div class="admin-profile-top">
               <img
@@ -321,6 +324,26 @@
           </div>
         </section>
 
+        <!-- **************************************************** ALLOWED USER MAIN -->
+        <section class="main-allowed-users-panel">
+          <h2>User's Allowance Section</h2>
+          <div class="user-allowed-top-links">
+            <input
+              type="number"
+              class="user-allowed-search-inp"
+              placeholder="Search by user's registration number..."
+            />
+            <div class="user-allowed-top-links-btns">
+              <button class="add-new-user-allowed-btn">Add User</button>
+            </div>
+          </div>
+          <div class="main-user-allowed-container">
+            <h2>Recent Allowed Users</h2>
+            <div class="main-user-allowed-list"></div>
+            <div class="main-user-allowed-search-list hide"></div>
+          </div>
+        </section>
+
         <!-- **************************************************** NOTIFICATIONS MAIN -->
         <section class="main-notification-panel hide">
           <h2>Notification Section</h2>
@@ -363,6 +386,20 @@
         </section>
       </div>
     </section>
+
+    <!-- ******************************************** USER ALLOWED POPUPS-->
+    <div class="add-new-user-allowed-container hide">
+      <div class="add-new-user-allowed-top">
+        <h2>Add Allowed User</h2>
+        <i class="fa-solid fa-xmark close-add-new-user-allowed"></i>
+      </div>
+      <input
+        type="number"
+        class="new-allowed-user-regisno"
+        placeholder="Type Registration Number of new user..."
+      />
+      <button class="add-new-user-btn">Add User</button>
+    </div>
 
     <!-- ******************************************** JOINED FORUMS POPUPS-->
     <div class="forum-joinee-filter-container hide">

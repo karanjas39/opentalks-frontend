@@ -21,6 +21,7 @@ let notification_search_startPoint;
 let recent_joinee_startPoint;
 let search_joinee_startPoint;
 let admin_notification_startPoint;
+let recentAllowedUser_startPoint;
 
 let department_search;
 let forum_member_search;
@@ -306,7 +307,7 @@ function formatDate2(dateData) {
     const oneWeek = 7 * oneDay;
 
     if (timeDifference < oneMinute) {
-      return "just now";
+      return "Just now";
     } else if (timeDifference < oneHour) {
       const minutesAgo = Math.floor(timeDifference / oneMinute);
       return `${minutesAgo} mins ago`;
@@ -5002,6 +5003,264 @@ async function filterJoineeScroll() {
     console.log(`Error: ${error.toString()} in filterJoineeScrollC`);
   }
 }
+
+// ALLOWED USER
+async function addNewAllowedUser(registration_number) {
+  try {
+    document
+      .querySelector(".add-new-user-allowed-container")
+      .classList.add("hide");
+    let confirm = await showConfirmation(
+      "Do you want to add this user to Allowed users?"
+    );
+    if (confirm) {
+      document.querySelector(".admin-confirm-pass-input").value = "";
+      document
+        .querySelector(".admin-confirm-pass-container")
+        .classList.remove("hide");
+      document.querySelector(".blur").classList.remove("hide");
+      document
+        .querySelector(".admin-confirm-pass-button")
+        .classList.add("addUserToAllowedUser");
+      document.querySelector(".admin-confirm-pass-button").value =
+        JSON.stringify(registration_number);
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in addNewAllowedUserC`);
+  }
+}
+
+async function addNewAllowedUserMain(password, registration_number) {
+  try {
+    loader(1);
+    let response = await fetch(
+      "https://opentalks.cyclic.app/admin/user/allowed/create",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          registration_number: Number(registration_number),
+          userIdA: sessionStorage.getItem("user"),
+          password,
+        }),
+        headers: {
+          "Content-type": "application/json;charset=utf-8",
+          Authorization: sessionStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    loader(0);
+    if (!!data && data.success == true) {
+      showNotification("User is added to allowed users successfully.");
+      document
+        .querySelector(".admin-confirm-pass-button")
+        .classList.remove("addUserToAllowedUser");
+      document
+        .querySelector(".admin-confirm-pass-container")
+        .classList.add("hide");
+      document.querySelector(".blur").classList.add("hide");
+    } else {
+      showNotification(data.message);
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in addNewAllowedUserMainC`);
+  }
+}
+
+async function recentAllowedusers() {
+  try {
+    loader(1);
+    let response = await fetch(
+      "https://opentalks.cyclic.app/admin/user/allowed/recent",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json;charset=utf-8",
+          Authorization: sessionStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    loader(0);
+    let result = "";
+    let container = document.querySelector(".main-user-allowed-list");
+    if (!!data && data.success == true) {
+      data.users.forEach((el) => {
+        result += `<div class="allowed-user-template">
+                <div class="allowed-user-template-main">
+                  <div class="allowed-user-regisno">
+                    Registration Number: <span>${el.registration_number}</span>
+                  </div>
+                  <div class="allowed-user-createdAt">
+                    ${formatDate2(el.createdAt)}
+                  </div>
+                </div>
+                <button class="delete-allowed-user" value="${
+                  el.registration_number
+                }">Remove</button>
+              </div>`;
+      });
+      container.innerHTML = result;
+      container.scrollTop = 0;
+      recentAllowedUser_startPoint = data.nextStartPoint;
+    } else {
+      container.innerHTML = "No new allowed user found.";
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in recentAllowedusersC`);
+  }
+}
+
+async function recentAllowedUsersScroll() {
+  try {
+    loader(1);
+    let response = await fetch(
+      "https://opentalks.cyclic.app/admin/user/allowed/recent",
+      {
+        method: "POST",
+        body: JSON.stringify({ startPoint: recentAllowedUser_startPoint }),
+        headers: {
+          "Content-type": "application/json;charset=utf-8",
+          Authorization: sessionStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    loader(0);
+    let result = "";
+    let container = document.querySelector(".main-user-allowed-list");
+    if (!!data && data.success == true) {
+      data.users.forEach((el) => {
+        result += `<div class="allowed-user-template">
+                <div class="allowed-user-template-main">
+                  <div class="allowed-user-regisno">
+                    Registration Number: <span>${el.registration_number}</span>
+                  </div>
+                  <div class="allowed-user-createdAt">
+                    ${formatDate2(el.createdAt)}
+                  </div>
+                </div>
+                <button class="delete-allowed-user" value="${
+                  el.registration_number
+                }">Remove</button>
+              </div>`;
+      });
+      let prevScrollHeight = container.scrollHeight;
+      container.insertAdjacentHTML("beforeend", result);
+      container.scrollTop = prevScrollHeight;
+      recentAllowedUser_startPoint = data.nextStartPoint;
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in recentAllowedUsersScrollC`);
+  }
+}
+
+async function searchAllowedUser(registration_number) {
+  try {
+    loader(1);
+    let response = await fetch(
+      "https://opentalks.cyclic.app/admin/user/allowed/get",
+      {
+        method: "POST",
+        body: JSON.stringify({ registration_number }),
+        headers: {
+          "Content-type": "application/json;charset=utf-8",
+          Authorization: sessionStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    loader(0);
+    let result = "";
+    let container = document.querySelector(".main-user-allowed-search-list");
+    if (!!data && data.success == true) {
+      document.querySelector(".main-user-allowed-container>h2").textContent =
+        "Search Result: 1";
+      let el = { ...data.user };
+      result += `
+<div class="allowed-user-template">
+                <div class="allowed-user-template-main">
+                  <div class="allowed-user-regisno">
+                    Registration Number: <span>${el.registration_number}</span>
+                  </div>
+                  <div class="allowed-user-createdAt">
+                    ${formatDate2(el.createdAt)}
+                  </div>
+                </div>
+                <button class="delete-allowed-user" value="${
+                  el.registration_number
+                }">Remove</button>
+              </div>`;
+      container.innerHTML = result;
+      container.scrollTop = 0;
+    } else {
+      document.querySelector(".main-user-allowed-container>h2").textContent =
+        "Search Result: 0";
+      container.innerHTML = data.message;
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in searchAllowedUserC`);
+  }
+}
+
+async function deleteAllowedUser(registration_number) {
+  try {
+    let confirm = await showConfirmation("Do you want to remove this user?");
+    if (confirm) {
+      document.querySelector(".admin-confirm-pass-input").value = "";
+      document
+        .querySelector(".admin-confirm-pass-container")
+        .classList.remove("hide");
+      document.querySelector(".blur").classList.remove("hide");
+      document
+        .querySelector(".admin-confirm-pass-button")
+        .classList.add("deleteAllowedUser");
+      document.querySelector(".admin-confirm-pass-button").value =
+        JSON.stringify(registration_number);
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in deleteAllowedUserC`);
+  }
+}
+
+async function deleteAllowedUserMain(password, registration_number) {
+  try {
+    loader(1);
+    let response = await fetch(
+      "https://opentalks.cyclic.app/admin/user/allowed/delete",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          registration_number: Number(registration_number),
+          password,
+          userIdA: sessionStorage.getItem("user"),
+        }),
+        headers: {
+          "Content-type": "application/json;charset=utf-8",
+          Authorization: sessionStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    loader(0);
+    if (!!data && data.success == true) {
+      showNotification("User removed from Allowed user list.");
+      document
+        .querySelector(".admin-confirm-pass-container")
+        .classList.add("hide");
+      document.querySelector(".blur").classList.add("hide");
+      document
+        .querySelector(".admin-confirm-pass-button")
+        .classList.remove("deleteAllowedUser");
+      targetedDepratmentContainer.remove();
+    } else {
+      showNotification(data.message);
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in deleteAllowedUserMainC`);
+  }
+}
+
 //! EVENT LISTNERS
 
 // ** LOGOUT
@@ -5069,6 +5328,17 @@ document.querySelectorAll(".nav-link").forEach((el) => {
         "Recent Joinees";
       document.querySelector(".forum-joinee-search-inp").value = "";
       await recentJoinees();
+    } else if (targetClass == "main-allowed-users-panel") {
+      document
+        .querySelector(".main-user-allowed-list")
+        .classList.remove("hide");
+      document
+        .querySelector(".main-user-allowed-search-list")
+        .classList.add("hide");
+      document.querySelector(".main-user-allowed-container>h2").textContent =
+        "Recent Allowed Users";
+      document.querySelector(".user-allowed-search-inp").value = "";
+      await recentAllowedusers();
     }
     document.querySelector(`.${targetClass}`).classList.remove("hide");
   });
@@ -5258,6 +5528,10 @@ document
         await deleteNotificationMain(password, JSON.parse(confirmBtn.value));
       } else if (confirmBtn.classList.contains("removeJoinee")) {
         await removeJoineeMain(password, JSON.parse(confirmBtn.value));
+      } else if (confirmBtn.classList.contains("addUserToAllowedUser")) {
+        await addNewAllowedUserMain(password, JSON.parse(confirmBtn.value));
+      } else if (confirmBtn.classList.contains("deleteAllowedUser")) {
+        await deleteAllowedUserMain(password, JSON.parse(confirmBtn.value));
       }
     } else {
       message.textContent = "Password is required";
@@ -7920,5 +8194,75 @@ document
       let data = JSON.parse(target.value);
       targetedDepratmentContainer = target.closest(".forum-joinee-template");
       await removeJoinee(data);
+    }
+  });
+
+// ** ALLOWED USER SECTION
+document
+  .querySelector(".add-new-user-allowed-btn")
+  .addEventListener("click", () => {
+    document
+      .querySelector(".add-new-user-allowed-container")
+      .classList.remove("hide");
+    document.querySelector(".blur").classList.remove("hide");
+    document.querySelector(".new-allowed-user-regisno").value = "";
+  });
+
+document
+  .querySelector(".close-add-new-user-allowed")
+  .addEventListener("click", () => {
+    document
+      .querySelector(".add-new-user-allowed-container")
+      .classList.add("hide");
+    document.querySelector(".blur").classList.add("hide");
+  });
+
+document
+  .querySelector(".main-user-allowed-container")
+  .addEventListener("click", async (e) => {
+    let target = e.target;
+    if (target.classList.contains("delete-allowed-user")) {
+      await deleteAllowedUser(target.value);
+      targetedDepratmentContainer = target.closest(".allowed-user-template");
+    }
+  });
+
+// ADD USER
+document
+  .querySelector(".add-new-user-btn")
+  .addEventListener("click", async () => {
+    let registration_number = document
+      .querySelector(".new-allowed-user-regisno")
+      .value.trim();
+    if (!registration_number) {
+      return showNotification("Please enter a registration number.");
+    }
+    await addNewAllowedUser(Number(registration_number));
+  });
+
+// SEARCH ALLOWED USER
+document
+  .querySelector(".user-allowed-search-inp")
+  .addEventListener("keydown", async (e) => {
+    let registration_number = document
+      .querySelector(".user-allowed-search-inp")
+      .value.trim();
+    if (e.key == "Enter" && registration_number != "") {
+      document
+        .querySelector(".main-user-allowed-search-list")
+        .classList.remove("hide");
+      document.querySelector(".main-user-allowed-list").classList.add("hide");
+
+      await searchAllowedUser(Number(registration_number));
+    }
+  });
+
+// RECENT ALLOWED USERS SCROLL
+document
+  .querySelector(".main-user-allowed-list")
+  .addEventListener("scroll", async (event) => {
+    let { scrollHeight, scrollTop, clientHeight } = event.target;
+    if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      await recentAllowedUsersScroll();
     }
   });

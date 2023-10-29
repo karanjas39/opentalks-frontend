@@ -50,6 +50,8 @@ const blurElement = document.querySelector(".blur2");
 const loaderElement = document.querySelector(".loading");
 
 let i = 0;
+let posts = 0;
+let forums = 0;
 
 // ! **************************************************************************************************************************************************** GENERAL PURPOSE FUNCTION
 
@@ -4007,7 +4009,9 @@ document.querySelector(".show-posts").addEventListener("click", async () => {
   document.querySelector(".searched-posts-main").classList.add("hide");
   document.querySelector(".favourite-posts-main").classList.add("hide");
   document.querySelector(".search-post-main-posts").value = "";
-  await Promise.all([userRecentPosts(), userLikedPosts()]);
+  if (posts == 0) {
+    await Promise.all([userRecentPosts(), userLikedPosts()]);
+  }
 });
 
 document
@@ -5007,7 +5011,9 @@ document.querySelector(".show-forums").addEventListener("click", async () => {
   document.querySelector(".main-forums-bottom").classList.remove("hide");
   document.querySelector(".main-forum-parent-top").classList.remove("hide");
   document.querySelector(".main-forum-search-input").value = "";
-  await Promise.all([fetchCreatedForums(), fetchJoinedForums()]);
+  if (forums == 0) {
+    await Promise.all([fetchCreatedForums(), fetchJoinedForums()]);
+  }
 });
 
 document

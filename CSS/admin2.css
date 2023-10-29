@@ -2730,6 +2730,207 @@
   margin-top: 5px;
 }
 
+/*! USER'S ALLOWED SECTION  */
+.main-allowed-users-panel {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-allowed-top-links {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+}
+.main-allowed-users-panel > h2 {
+  font-size: 32px;
+  color: var(--main-color);
+}
+.user-allowed-top-links-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-allowed-top-links-btns > button {
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-color: var(--main-color);
+  color: var(--fff);
+  cursor: pointer;
+  outline: none;
+  box-shadow: 2px 5px 30px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  border: none;
+}
+.user-allowed-search-inp {
+  padding: 10px 0;
+  padding-right: 10px;
+  font-size: 16px;
+  color: var(--main-color);
+  outline: none;
+  border: none;
+  border-bottom: solid 2px var(--main-color);
+  background-color: transparent;
+}
+
+.main-user-allowed-container > h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.main-user-allowed-search-list,
+.main-user-allowed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 470px;
+  overflow: auto;
+  margin-top: 10px;
+}
+
+.main-user-allowed-search-list::-webkit-scrollbar-track,
+.main-user-allowed-list::-webkit-scrollbar-track {
+  background-color: var(--f1f1f1);
+}
+
+.main-user-allowed-search-list::-webkit-scrollbar-thumb,
+.main-user-allowed-list::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 20px;
+}
+
+.main-user-allowed-search-list::-webkit-scrollbar-thumb:hover,
+.main-user-allowed-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--main-color-shade2-dark);
+}
+
+.main-user-allowed-search-list::-webkit-scrollbar-thumb:active,
+.main-user-allowed-list::-webkit-scrollbar-thumb:active {
+  background-color: var(--main-color-shade3-extra-dark);
+}
+
+.main-user-allowed-search-list::-webkit-scrollbar-corner,
+.main-user-allowed-list::-webkit-scrollbar-corner {
+  background-color: var(--f1f1f1);
+}
+
+.main-user-allowed-search-list::-webkit-scrollbar,
+.main-user-allowed-list::-webkit-scrollbar {
+  width: 5px;
+  display: block;
+}
+
+.allowed-user-template {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--ffffff);
+  padding: 20px 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.allowed-user-template-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.allowed-user-regisno > span {
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.allowed-user-regisno {
+  font-size: 18px;
+  color: var(--C555);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.allowed-user-createdAt {
+  font-size: 14px;
+  color: var(--C3333333);
+}
+
+.delete-allowed-user {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--main-color);
+  color: var(--ffffff);
+  align-self: flex-end;
+}
+
+/*! ADD NEW ALLOWED USER  */
+
+.add-new-user-allowed-container {
+  width: 30%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid var(--ccc);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--ffffff);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-new-user-allowed-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.add-new-user-allowed-top h2 {
+  color: var(--main-color);
+  font-size: 24px;
+}
+
+.add-new-user-allowed-top i {
+  color: var(--C555);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.new-allowed-user-regisno {
+  border: none;
+  padding: 10px;
+  background-color: var(--f1f1f1);
+  color: var(--C3333333);
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+}
+.add-new-user-btn {
+  background-color: var(--main-color);
+  color: var(--fff);
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.4s;
+}
+.add-new-user-btn:hover {
+  transform: unset;
+  transform: scale(1.02);
+}
+
 /*! REMOVE BUTTONS IN NUMBER INPUT FIELD */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
