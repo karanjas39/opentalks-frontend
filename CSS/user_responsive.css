@@ -1,0 +1,235 @@
+/* ! COLORS */
+
+:root {
+  --background-color: #ebebeb;
+  --text-color: whitesmoke;
+  --main-color: #573f5d;
+  --f5f5f5: #f5f5f5;
+  --ccc: #ccc;
+  --for-date: #999;
+  --fff: #fff;
+  --f1f1f1: #f1f1f1;
+  --f2f2f2: #f2f2f2;
+  --main-color-shade2-dark: #3d2b40;
+  --main-color-shade3-extra-dark: #2b1d2b;
+  --f8f8f8f: #f8f8f8;
+  --dark-green: #45a049;
+  --light-green: #4caf50;
+  --red-warning: #f44336;
+  --yellow: yellow;
+  --ffffff: #ffffff;
+  --C555: #555;
+  --C3333333: #333333;
+  --lightRed: #f44336;
+  --darkRed: #d32f2f;
+  --VerylightRed: #ff000036;
+}
+
+/*!  MEDIA QUERIES  */
+@media screen and (max-width: 768px) {
+  /*! DASHBOARD */
+
+  nav {
+    padding: 10px;
+    position: relative;
+  }
+
+  .links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--main-color);
+    width: 80%;
+    height: 100vh;
+    align-items: center;
+    padding: 60px 0;
+    display: none;
+    z-index: 9999;
+  }
+  .links > a {
+    font-size: 24px;
+    color: var(--fff);
+    font-weight: bold;
+  }
+
+  .dashboard-nav-menubar {
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--ffffff);
+    cursor: pointer;
+  }
+
+  .cancel-dashboard-nav-menubar {
+    display: none;
+    font-weight: bold;
+    position: absolute;
+    position: fixed;
+    top: 20px;
+    right: 70%;
+    font-size: 24px;
+    color: var(--ffffff);
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+  .dashboard-stats-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .recent-updates {
+    grid-template-columns: repeat(1, 1fr);
+    position: unset;
+  }
+
+  .paddle-btns {
+    display: none;
+  }
+  .recent-replies {
+    display: block;
+  }
+  .user-profile-top {
+    flex-direction: column;
+    align-items: normal;
+  }
+  .user-profile-bottom {
+    gap: 10px;
+  }
+  .user-more-info-top {
+    flex-direction: column;
+    align-items: normal;
+  }
+  .user-info-links {
+    align-self: flex-end;
+  }
+
+  .edit-user-container2,
+  .edit-user-container3,
+  .edit-user-container {
+    width: 90%;
+  }
+  .edit-user-profile-pic {
+    flex-direction: column;
+  }
+
+  /*! MY POSTS  */
+  .main-posts-parent-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .main-posts-top {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .main-posts-top-buttons {
+    justify-self: flex-end;
+  }
+
+  /*! FORUMS  */
+  .main-forum-search-input {
+    font-size: 16px;
+  }
+  .add-forum-container,
+  .forum-filter-container,
+  .notification-container {
+    width: 90%;
+  }
+
+  .main-forums-top,
+  .main-forums-bottom {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .main-forum-top-buttons {
+    flex-wrap: wrap;
+  }
+
+  .created-forum-bottom,
+  .joined-forum-bottom,
+  .searched-forum-bottom {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .main-forum-top-buttons {
+    justify-self: flex-end;
+  }
+
+  /*! CREATED FORUM  */
+  .forum-main-layout-top-right {
+    flex-direction: column;
+    gap: 5px;
+    align-items: normal;
+  }
+
+  .forum-main-layout-top-buttons {
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .forum-main-layout-top-buttons > i {
+    font-size: 18px;
+  }
+
+  .forum-main-layout-buttons,
+  .forum-joined-layout-buttons {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    align-items: start;
+  }
+
+  .forum-post-template-main,
+  .forum-post-template {
+    width: 90%;
+  }
+
+  .forum-post-user-info-container {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .forum-main-layout-container {
+    height: 600px;
+  }
+
+  .details-of-forum,
+  .forum-members-container,
+  .user-created-forum-post-search-container,
+  .forum-complaints-container,
+  .forum-member-join-list,
+  .review-forum,
+  .post-editor-container,
+  .editor-add-link-container,
+  .display-added-links,
+  .display-post-preview,
+  .edit-forum,
+  .post-reply-container {
+    width: 90%;
+  }
+
+  /*! JOINED FORUM  */
+  .details-of-joined-forum,
+  .joined-forum-complaints-container,
+  .forum-rating {
+    width: 90%;
+  }
+
+  /*! ADDITIONAL  */
+  .popup-msg-notification {
+    bottom: 5px;
+    right: 5px;
+    width: 90%;
+  }
+  .confirm-box {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .forum-main-layout-buttons,
+  .forum-joined-layout-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    align-items: start;
+  }
+}
