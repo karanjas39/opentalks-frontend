@@ -52,12 +52,20 @@ nav {
   width: 100%;
   padding: 3px 20px;
   background-color: var(--main-color);
+  flex-wrap: wrap;
 }
 
 .links {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  gap: 10px;
+}
+
+.dashboard-nav-menubar {
+  display: none;
+}
+
+.cancel-dashboard-nav-menubar {
+  display: none;
 }
 
 nav a,
@@ -267,7 +275,7 @@ button:active {
 
 /* ADD DEPRATMENT */
 .add-department-form {
-  width: 400px;
+  width: 30%;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--fff);
@@ -336,7 +344,7 @@ button:active {
 
 /* EDIT DEPARTMENT */
 .edit-department-form {
-  width: 400px;
+  width: 30%;
   padding: 20px;
   background-color: var(--fff);
   border-radius: 5px;

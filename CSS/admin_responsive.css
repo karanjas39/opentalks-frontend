@@ -1,0 +1,243 @@
+/* ! COLORS */
+
+:root {
+  --background-color: #ebebeb;
+  --text-color: whitesmoke;
+  --main-color: #573f5d;
+  --f5f5f5: #f5f5f5;
+  --ccc: #ccc;
+  --for-date: #999;
+  --fff: #fff;
+  --f1f1f1: #f1f1f1;
+  --f2f2f2: #f2f2f2;
+  --main-color-shade2-dark: #3d2b40;
+  --main-color-shade3-extra-dark: #2b1d2b;
+  --f8f8f8f: #f8f8f8;
+  --dark-green: #45a049;
+  --light-green: #4caf50;
+  --red-warning: #f44336;
+  --yellow: yellow;
+  --ffffff: #ffffff;
+  --C555: #555;
+  --C3333333: #333333;
+  --lightRed: #f44336;
+  --darkRed: #d32f2f;
+  --VerylightRed: #ff000036;
+}
+
+/*!  MEDIA QUERIES  */
+@media screen and (max-width: 768px) {
+  /*! DASHBOARD */
+
+  nav {
+    padding: 10px;
+    position: relative;
+  }
+
+  .links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--main-color);
+    width: 80%;
+    height: 100vh;
+    align-items: center;
+    padding: 60px 0;
+    display: none;
+    z-index: 9999;
+  }
+  .links > a {
+    font-size: 24px;
+    color: var(--fff);
+    font-weight: bold;
+  }
+
+  .dashboard-nav-menubar {
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--ffffff);
+    cursor: pointer;
+  }
+
+  .cancel-dashboard-nav-menubar {
+    display: none;
+    font-weight: bold;
+    position: absolute;
+    position: fixed;
+    top: 20px;
+    right: 70%;
+    font-size: 24px;
+    color: var(--ffffff);
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+  .dashboard-stats-card,
+  .recent-updates {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .admin-profile-top,
+  .admin-profile-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .admin-profile-bottom {
+    align-items: normal;
+  }
+  /*! DEPARTMNETS  */
+  .departmnet-top-links {
+    grid-template-columns: 1fr;
+  }
+  .departmnet-top-links-btns {
+    justify-self: flex-end;
+  }
+  .add-department-form,
+  .edit-department-form {
+    width: 90%;
+  }
+
+  /*! FORUMS  */
+  .top-main-forum-links {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .forum-section-bottom {
+    flex-direction: column;
+    align-items: normal;
+    gap: 5px;
+  }
+
+  .forum-section-info-links {
+    top: 26px;
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .forum-filter-container,
+  .add-forum-container,
+  .post-editor-container,
+  .editor-add-link-container,
+  .display-added-links,
+  .display-post-preview,
+  .edit-forum,
+  .details-of-forum,
+  .forum-members-container,
+  .forum-complaints-container,
+  .forum-member-join-list,
+  .review-forum {
+    width: 90%;
+  }
+
+  .forum-post-template {
+    width: 90%;
+  }
+
+  .forum-m2-links {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    align-items: normal;
+  }
+
+  /*! FORUM JOINEES  */
+  .forum-joinee-top-links {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .forum-joinee-top-links-btns {
+    justify-content: flex-end;
+  }
+
+  .forum-joinee-filter-container {
+    width: 90%;
+  }
+
+  /*! POSTS  */
+  .post-main-panel1-links {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .top10-post-template {
+    padding: 20px 10px;
+  }
+
+  .top-10-post-links {
+    top: 2px;
+  }
+
+  .post-reply-container,
+  .post-likes-container,
+  .post-edit-container,
+  .post-reply-edit {
+    width: 90%;
+    margin: 0;
+  }
+
+  /*! USERS  */
+  .user-main-panel1-links {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .user-main-links-btns {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: normal;
+  }
+
+  .recent-user-imp-dates > p:nth-child(2),
+  .recent-user-imp-dates > p:nth-child(4) {
+    display: none;
+  }
+  .recent-user-imp-dates {
+    flex-direction: column;
+    align-items: normal;
+    gap: 0;
+  }
+
+  .recent-user-template,
+  .recent-user-template {
+    flex-direction: column;
+  }
+
+  .edit-user-container,
+  .filter-user-container,
+  .add-user-container {
+    width: 90%;
+  }
+
+  /*! ALLOWED USERS  */
+  .user-allowed-top-links {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .add-new-user-allowed-container {
+    width: 90%;
+  }
+
+  /*! NOTIFICATIONS  */
+  .notification-top-links {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .edit-notification-container,
+  .create-notification,
+  .admin-notification {
+    width: 90%;
+  }
+
+  /*! ADDITIONAL  */
+  .admin-confirm-pass-container {
+    width: 95%;
+  }
+  .popup-msg-notification {
+    bottom: 5px;
+    right: 5px;
+    width: 90%;
+  }
+  .confirm-box {
+    width: 70%;
+  }
+}

@@ -8266,3 +8266,21 @@ document
       await recentAllowedUsersScroll();
     }
   });
+
+//! **********************************************************************************************************RESPONSIVE DESIGN
+document
+  .querySelector(".dashboard-nav-menubar")
+  .addEventListener("click", () => {
+    let navLinks = document.querySelector(".links");
+    navLinks.style.display = "flex";
+    document.querySelector(".cancel-dashboard-nav-menubar").style.display =
+      "block";
+  });
+
+document
+  .querySelector(".cancel-dashboard-nav-menubar")
+  .addEventListener("click", () => {
+    document.querySelector(".links").style.display = "";
+    document.querySelector(".cancel-dashboard-nav-menubar").style.display =
+      "none";
+  });
