@@ -47,7 +47,7 @@
     align-items: center;
     padding: 60px 0;
     display: none;
-    z-index: 9999;
+    z-index: 999999;
   }
   .links > a {
     font-size: 24px;
@@ -73,7 +73,7 @@
     font-size: 24px;
     color: var(--ffffff);
     cursor: pointer;
-    z-index: 9999;
+    z-index: 999999;
   }
 
   .dashboard-stats-card,
@@ -172,7 +172,9 @@
   .post-reply-container,
   .post-likes-container,
   .post-edit-container,
-  .post-reply-edit {
+  .post-reply-edit,
+  .post-filter-container,
+  .add-post-postSection-container {
     width: 90%;
     margin: 0;
   }

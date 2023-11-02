@@ -57,6 +57,7 @@ let forums = 0;
 
 async function getDetails() {
   try {
+    handleScreenSize();
     loader(1);
     let response1 = fetch("https://opentalks.cyclic.app/api/detail", {
       method: "POST",
@@ -148,6 +149,23 @@ async function getDetails() {
     loader(0);
   } catch (error) {
     console.log(`Error: ${error.toString()} in getDetailsC`);
+  }
+}
+
+function handleScreenSize() {
+  try {
+    let containers = ["recent-posts-all", "top-forums-all", "recent-replies"];
+    if (window.innerWidth < 768) {
+      containers.forEach((el) => {
+        document.querySelector(`.${el}`).classList.remove("hide");
+      });
+    } else {
+      document.querySelector(".recent-posts-all").classList.remove("hide");
+      document.querySelector(".top-forums-all").classList.remove("hide");
+      document.querySelector(".recent-replies").classList.add("hide");
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in handleScreenSizeC`);
   }
 }
 
@@ -6151,6 +6169,7 @@ document
   .querySelector(".dashboard-nav-menubar")
   .addEventListener("click", () => {
     let navLinks = document.querySelector(".links");
+    document.querySelector(".blur").classList.remove("hide");
     navLinks.style.display = "flex";
     document.querySelector(".cancel-dashboard-nav-menubar").style.display =
       "block";
@@ -6162,4 +6181,9 @@ document
     document.querySelector(".links").style.display = "";
     document.querySelector(".cancel-dashboard-nav-menubar").style.display =
       "none";
+    document.querySelector(".blur").classList.add("hide");
   });
+
+window.addEventListener("resize", () => {
+  handleScreenSize();
+});

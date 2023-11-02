@@ -47,7 +47,7 @@
     align-items: center;
     padding: 60px 0;
     display: none;
-    z-index: 9999;
+    z-index: 999999;
   }
   .links > a {
     font-size: 24px;
@@ -73,7 +73,7 @@
     font-size: 24px;
     color: var(--ffffff);
     cursor: pointer;
-    z-index: 9999;
+    z-index: 999999;
   }
 
   .dashboard-stats-card {
@@ -218,6 +218,9 @@
   .popup-msg-notification {
     bottom: 5px;
     right: 5px;
+    width: 90%;
+  }
+  .user-confirm-pass-container {
     width: 90%;
   }
   .confirm-box {

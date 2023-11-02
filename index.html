@@ -9,6 +9,13 @@
       href="./CSS/IMAGES/microphone.png"
       type="image/x-icon"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,15 +23,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./CSS/index.css" />
+    <link rel="stylesheet" href="./CSS/index_responsive.css" />
   </head>
   <body>
+    <div id="top"></div>
     <header>
       <nav>
         <a class="website-name" href="./index.html">Opentalks🎙️</a>
         <div class="links">
-          <a href="./HTML/login.html" class="login-button-index">Login</a>
-          <a href="#" class="contact_us_index">Contact Us</a>
+          <a href="#overview">Overview</a>
+          <a href="#mission">Our Mission</a>
+          <a href="#features">Key Features</a>
+          <a href="./HTML/login.html">Register</a>
         </div>
+        <i class="fa-solid fa-bars menubar-main-index"></i>
+        <i class="fa-solid fa-xmark cancel-dashboard-nav-menubar"></i>
       </nav>
       <p class="motive">
         🙶Great minds discuss ideas; average minds discuss events; small minds
@@ -37,6 +50,8 @@
         >
       </p>
     </header>
+
+    <!-- *************************************************************************************************MISSION -->
     <section class="mission" id="mission">
       <h2>Our Mission</h2>
       <p>
@@ -53,13 +68,117 @@
       </p>
     </section>
 
+    <!-- *************************************************************************************************INTRO VIDEO -->
+    <section class="intro-video" id="overview">
+      <h2>Welcome to Opentalks</h2>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/c_Vx1xWRmpA?si=6oiJVqrE-hcOmL7p"
+            frameborder="0"
+            allowfullscreen
+            class="styled-video"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- *************************************************************************************************FEATURES -->
+    <section class="features" id="features">
+      <h2>Key Features</h2>
+      <div class="features-container">
+        <div class="feature">
+          <h2>01</h2>
+          <h3>Engaging Discussions</h3>
+          <p>
+            Dive into lively conversations with peers who share your passions,
+            sparking enriching dialogue and exchange of ideas.
+          </p>
+        </div>
+        <div class="feature">
+          <h2>02</h2>
+          <h3>Tailored Forums</h3>
+          <p>
+            Craft forums that cater to your interests, cultivating a space where
+            enthusiasts gather to explore and converse.
+          </p>
+        </div>
+        <div class="feature">
+          <h2>03</h2>
+          <h3>Community Recognition</h3>
+          <p>
+            Earn acknowledgement within the community for your invaluable
+            contributions and insightful participation.
+          </p>
+        </div>
+        <div class="feature">
+          <h2>04</h2>
+          <h3>Classic Charm, Modern Interaction</h3>
+          <p>
+            Rediscover the nostalgic appeal of traditional communities while
+            embracing contemporary dynamics that enable seamless and meaningful
+            interactions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- *************************************************************************************************FOOTER -->
     <footer>
+      <h2>Opentalks.</h2>
+
+      <div class="footer-links">
+        <a href="https://forms.gle/h6EqsvZxR7sbfebr5" target="_blank"
+          >Request a demo</a
+        >
+        <a href="./HTML/login.html">Create Account</a>
+        <a class="contact-me">Contact Me</a>
+      </div>
+
+      <div class="social-links">
+        <p>Stay in touch</p>
+        <div class="social-links-inner">
+          <a href="https://github.com/karanjas39" target="_blank">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jaskaran-singh-b805a7233"
+            target="_blank"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://wa.me/+917347588266" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
       <p>
-        Copyright &copy; 2023 | Developed by
+        Copyright &copy; 2023 | Developed and Designed by
         <a href="https://karanjas39.github.io/My-Portfolio/" target="_blank"
-          >Jaskaran Singh</a
+          >Jaskaran Singh Dhillon</a
         >
       </p>
     </footer>
+
+    <!-- *************************************************************************************************ADDITIONALS -->
+    <!-- NAVIGATION BAR -->
+    <a href="#top"><i class="fa-solid fa-arrow-up navigate-to-top"></i></a>
+
+    <!-- BLUR -->
+    <div class="blur hide"></div>
+
+    <!-- NOTIFICATION POPUP -->
+    <div class="popup-msg-notification">
+      <div class="popup-msg" id="notification">
+        <div class="popup-msg-content">
+          <span class="popup-msg-message">This is a notification message.</span>
+          <span class="popup-msg-close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="popup-msg-progress"></div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./JS/index.js"></script>
   </body>
 </html>
