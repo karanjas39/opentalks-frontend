@@ -32,4 +32,29 @@
     width: 90%;
     left: 50%;
   }
+  .website-name {
+    font-size: 24px;
+  }
+
+  .login-inner-top,
+  .signup-inner-top {
+    margin: 20px 0;
+  }
+
+  .login-bottom,
+  .signup-bottom {
+    margin: 10px 0;
+    margin-bottom: 15px;
+  }
+
+  .links > a::after {
+    content: unset;
+    position: unset;
+    width: 0%;
+    height: 0;
+    background-color: unset;
+    bottom: unset;
+    left: unset;
+    transition: unset;
+  }
 }
