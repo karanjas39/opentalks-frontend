@@ -109,7 +109,7 @@
   .links > a::after,
   .motive a::after,
   .footer-links a::after,
-  .footer p a::after {
+  footer p a::after {
     content: unset;
     position: unset;
     width: 0%;
