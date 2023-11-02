@@ -121,6 +121,11 @@ header .links a {
   padding-left: 50px;
 }
 
+.motive > sup {
+  font-size: 32px;
+  padding: 0 5px;
+}
+
 .motive a {
   text-decoration: none;
   color: var(--ffffff);

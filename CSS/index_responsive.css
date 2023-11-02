@@ -80,6 +80,10 @@
     width: 80%;
   }
 
+  .motive > sup {
+    font-size: 18px;
+  }
+
   .feature {
     width: 100%;
   }
