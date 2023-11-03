@@ -130,7 +130,7 @@ function setUserDetails_Dashboard(data) {
       user_time.textContent = "Good evening,";
     }
     user_name.textContent = data.name;
-    date_joined.textContent = formatDate(data.createdAt);
+    date_joined.textContent = formatDate2(data.createdAt);
     user_email.textContent = data.email;
     user_pic.src = `https://opentalks.cyclic.app${data.image}`;
   } catch (error) {
@@ -205,7 +205,7 @@ function fetchRecentPosts(data) {
                   </div>
                   <div class="recent-post-footer">
                     <div class="created-on-recent-post">
-                      ${formatDate(el.createdAt)}
+                      ${formatDate2(el.createdAt)}
                     </div>
                     <div class="user-info">
                       <img
@@ -247,7 +247,7 @@ function fetchRecentForums(data) {
       </div>
       <div class="recent-forum-footer">
         <div class="created-on-recent-forum">
-          ${formatDate(el.createdAt)}
+          ${formatDate2(el.createdAt)}
         </div>
         <div class="user-info">
           <img
@@ -328,7 +328,7 @@ function formatDate2(dateData) {
       return formattedDate;
     }
   } catch (error) {
-    console.log(`Error: ${error.toString()} in formatDate`);
+    console.log(`Error: ${error.toString()} in formatDate2`);
     return "Invalid Date";
   }
 }
@@ -627,7 +627,7 @@ async function addNewDepartment(newDepName, password) {
   </div>
   <div class="department-name">${data.created_department.name}</div>
   <div class="department-dates">
-  <div class="department-createdAt">Created On: ${formatDate(
+  <div class="department-createdAt">Created On: ${formatDate2(
     data.created_department.createdAt
   )}</div>
   <div class="department-updatedAt">Not updated yet</div>
@@ -671,7 +671,7 @@ async function fetchAllDepartments() {
       data.departments.forEach((el) => {
         let updatedAt =
           el.updatedAt != null
-            ? `Updated On: ${formatDate(el.updatedAt)}`
+            ? `Updated On: ${formatDate2(el.updatedAt)}`
             : "Not updated yet";
         result += `
   <div class="main-department-template">
@@ -683,7 +683,7 @@ async function fetchAllDepartments() {
   </div>
   <div class="department-name">${el.name}</div>
   <div class="department-dates">
-  <div class="department-createdAt">Created On: ${formatDate(
+  <div class="department-createdAt">Created On: ${formatDate2(
     el.createdAt
   )}</div>
   <div class="department-updatedAt">${updatedAt}</div>
@@ -735,7 +735,7 @@ async function searchDepartment(name) {
 
         let updatedAt =
           el.updatedAt != null
-            ? `Updated On: ${formatDate(el.updatedAt)}`
+            ? `Updated On: ${formatDate2(el.updatedAt)}`
             : "Not updated yet";
         result += `
   <div class="main-department-template">
@@ -747,7 +747,7 @@ async function searchDepartment(name) {
   </div>
   <div class="department-name">${highlightedName}</div>
   <div class="department-dates">
-  <div class="department-createdAt">Created On: ${formatDate(
+  <div class="department-createdAt">Created On: ${formatDate2(
     el.createdAt
   )}</div>
   <div class="department-updatedAt">${updatedAt}</div>
@@ -799,7 +799,7 @@ async function searchDepartmentScroll() {
 
         let updatedAt =
           el.updatedAt != null
-            ? `Updated On: ${formatDate(el.updatedAt)}`
+            ? `Updated On: ${formatDate2(el.updatedAt)}`
             : "Not updated yet";
         result += `
   <div class="main-department-template">
@@ -811,7 +811,7 @@ async function searchDepartmentScroll() {
   </div>
   <div class="department-name">${highlightedName}</div>
   <div class="department-dates">
-  <div class="department-createdAt">Created On: ${formatDate(
+  <div class="department-createdAt">Created On: ${formatDate2(
     el.createdAt
   )}</div>
   <div class="department-updatedAt">${updatedAt}</div>
@@ -861,7 +861,7 @@ async function fetchtop3Forums() {
             <p class="created-by-forum-section">
               Created by <span>${
                 el.userId.name
-              }</span> <span class="forum-card-separator">|</span> Created on <span>${formatDate(
+              }</span> <span class="forum-card-separator">|</span> Created on <span>${formatDate2(
           el.createdAt
         )}</span>
             </p>
@@ -936,7 +936,7 @@ async function getForumBySearch(searchQuery) {
                   <p class="created-by-forum-section">
                     Created by <span>${el.userId.name}</span>
                     <span class="forum-card-separator">|</span> Created on
-                    <span>${formatDate(el.createdAt)}</span>
+                    <span>${formatDate2(el.createdAt)}</span>
                   </p>
                   <button
                     class="view-detail-btn-forum-section"
@@ -1152,7 +1152,9 @@ async function editForumMain(password) {
 function fetchForumDetails(forum) {
   try {
     let updatedAt =
-      forum.updatedAt == null ? "Not updated yet" : formatDate(forum.updatedAt);
+      forum.updatedAt == null
+        ? "Not updated yet"
+        : formatDate2(forum.updatedAt);
     document.querySelector(".details-of-forum-name").textContent = forum.name;
     document.querySelector(".details-of-forum-description").textContent =
       forum.description;
@@ -1161,7 +1163,7 @@ function fetchForumDetails(forum) {
     document.querySelector(".details-of-forum-department").textContent =
       forum.departmentId.name;
     document.querySelector(".details-of-forum-createdOn").textContent =
-      formatDate(forum.createdAt);
+      formatDate2(forum.createdAt);
     document.querySelector(".details-of-forum-updatedOn").textContent =
       updatedAt;
     document.querySelector(".details-of-forum-members").textContent =
@@ -1288,7 +1290,7 @@ async function fetchUserPosts() {
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
               <span class="forum-post-date"
-                >${formatDate(el.createdAt)}</span
+                >${formatDate2(el.createdAt)}</span
               >
             </div>
             <div class="forum-post-user-info">
@@ -1323,7 +1325,7 @@ async function fetchUserPosts() {
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
               <span class="forum-post-date"
-                >${formatDate(el.createdAt)}</span
+                >${formatDate2(el.createdAt)}</span
               >
             </div>
             <div class="forum-post-user-info">
@@ -1401,7 +1403,7 @@ async function fetchPostLikes(target) {
           </div>
           <div class="post-like-info">
             <span class="post-like-user">${el.userId.name}</span><br />
-            <span class="post-like-date">Liked on ${formatDate(
+            <span class="post-like-date">Liked on ${formatDate2(
               el.createdAt
             )}</span>
           </div>
@@ -1464,7 +1466,7 @@ async function fetchPostLikesScroll() {
           </div>
           <div class="post-like-info">
             <span class="post-like-user">${el.userId.name}</span><br />
-            <span class="post-like-date">Liked on ${formatDate(
+            <span class="post-like-date">Liked on ${formatDate2(
               el.createdAt
             )}</span>
           </div>
@@ -1695,7 +1697,7 @@ async function fetchPostComments(target) {
               }" alt="user-profile-pic" />
               <div class="post-reply-template-inner">
                 <p class="post-reply-user-name">${el.byWhom.name}</p>
-                <p class="reply-profile-creation-date">${formatDate(
+                <p class="reply-profile-creation-date">${formatDate2(
                   el.createdAt
                 )}</p>
               </div>
@@ -1723,7 +1725,7 @@ data-replyid="${el._id}"
               }" alt="user-profile-pic" />
               <div class="post-reply-template-inner">
                 <p class="post-reply-user-name">${el.byWhom.name}</p>
-                <p class="reply-profile-creation-date">${formatDate(
+                <p class="reply-profile-creation-date">${formatDate2(
                   el.createdAt
                 )}</p>
               </div>
@@ -2003,7 +2005,7 @@ async function fetchMemberJoinRequests() {
             />
             <div class="forum-member-join-inner-wrap">
               <p class="forum-member-join-user-name">${el.userId.name}</p>
-              <p class="forum-member-join-date">${formatDate(el.createdAt)}</p>
+              <p class="forum-member-join-date">${formatDate2(el.createdAt)}</p>
             </div>
           </div>
           <div class="forum-member-join-list-btns">
@@ -2133,7 +2135,7 @@ async function getForumMembers() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
           <button class="forum-member-remove-user" value="${
             el.userId._id
           }">Remove user</button>
@@ -2151,7 +2153,7 @@ async function getForumMembers() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
         </div>
       </div>`;
         }
@@ -2288,7 +2290,7 @@ async function fetchSearchedForumMembers() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
           <button class="forum-member-remove-user" value="${
             el.userId._id
           }">Remove user</button>
@@ -2306,7 +2308,7 @@ async function fetchSearchedForumMembers() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
         </div>
       </div>`;
         }
@@ -2367,7 +2369,7 @@ async function fetchForumMemberScroll() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
           <button class="forum-member-remove-user" value="${
             el.userId._id
           }">Remove user</button>
@@ -2385,7 +2387,7 @@ async function fetchForumMemberScroll() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
         </div>
       </div>`;
         }
@@ -2500,7 +2502,7 @@ async function fetchForumComplaint() {
       }" alt="user-image" />${el.userId.name}
     </div>
     <span> /</span>
-    <div>On ${formatDate(el.createdAt)}</div>
+    <div>On ${formatDate2(el.createdAt)}</div>
   </div>
 </div>
   `;
@@ -2565,7 +2567,7 @@ async function fetchForumComplaintScroll() {
       }" alt="user-image" />${el.userId.name}
     </div>
     <span> /</span>
-    <div>On ${formatDate(el.createdAt)}</div>
+    <div>On ${formatDate2(el.createdAt)}</div>
   </div>
 </div>
   `;
@@ -2624,7 +2626,7 @@ async function responsesToForumCompalints(btnData, target) {
         result += `
         <div class="forum-response-template ${isDeleted}">
           <div class="forum-response-message highlight">${el.response}</div>
-          <div class="forum-response-date">On ${formatDate(el.createdAt)}</div>
+          <div class="forum-response-date">On ${formatDate2(el.createdAt)}</div>
         </div>
         `;
       });
@@ -2768,7 +2770,7 @@ async function fetchTop10Posts() {
     if (!!data && data.success == true) {
       data.topPosts.forEach((el) => {
         let isUpdated =
-          el.updatedAt == null ? "Not updated yet" : formatDate(el.updatedAt);
+          el.updatedAt == null ? "Not updated yet" : formatDate2(el.updatedAt);
         let isLiked = el.likes > 0 ? "fa-solid" : "fa-regular";
         result += `
         <div class="top10-post-template">
@@ -2790,7 +2792,7 @@ async function fetchTop10Posts() {
             <div class="top-10-post-user-details">
               <p class="top-10-post-user-name">${el.userId.name}</p>
               <p class="top-10-post-date">
-                Created at: ${formatDate(el.createdAt)}
+                Created at: ${formatDate2(el.createdAt)}
               </p>
               <p class="top-10-post-date">
                 Updated at: ${isUpdated}
@@ -2905,7 +2907,7 @@ async function searchPost(search) {
       container.scrollTop = 0;
       data.posts.forEach((el) => {
         let isUpdated =
-          el.updatedAt == null ? "Not updated yet" : formatDate(el.updatedAt);
+          el.updatedAt == null ? "Not updated yet" : formatDate2(el.updatedAt);
         let isLiked = el.likes > 0 ? "fa-solid" : "fa-regular";
         let isDeleted = el.active == true ? "" : "deletedPost";
         let ifDeleted =
@@ -2944,7 +2946,7 @@ async function searchPost(search) {
       <div class="top-10-post-user-details">
         <p class="top-10-post-user-name">${el.userId.name}</p>
         <p class="top-10-post-date">
-          Created at: ${formatDate(el.createdAt)}
+          Created at: ${formatDate2(el.createdAt)}
         </p>
         <p class="top-10-post-date">
           Updated at: ${isUpdated}
@@ -3020,7 +3022,7 @@ async function postSearchWithFilter(filter) {
       container.scrollTop = 0;
       data.posts.forEach((el) => {
         let isUpdated =
-          el.updatedAt == null ? "Not updated yet" : formatDate(el.updatedAt);
+          el.updatedAt == null ? "Not updated yet" : formatDate2(el.updatedAt);
         let isLiked = el.likes > 0 ? "fa-solid" : "fa-regular";
         let isDeleted = el.active == true ? "" : "deletedPost";
         let ifDeleted =
@@ -3051,7 +3053,7 @@ async function postSearchWithFilter(filter) {
       <div class="top-10-post-user-details">
         <p class="top-10-post-user-name">${el.userId.name}</p>
         <p class="top-10-post-date">
-          Created at: ${formatDate(el.createdAt)}
+          Created at: ${formatDate2(el.createdAt)}
         </p>
         <p class="top-10-post-date">
           Updated at: ${isUpdated}
@@ -3193,10 +3195,10 @@ async function fetchRecent5Users() {
       data.users.forEach((el) => {
         let isDeleted = el.active == true ? "" : "deletedUser";
         let updatedAt =
-          el.updatedAt != null ? formatDate(el.updatedAt) : "Not updated yet";
+          el.updatedAt != null ? formatDate2(el.updatedAt) : "Not updated yet";
         let isAdmin = el.admin == true ? "isAdmin" : "";
         let lastLogin =
-          el.lastLogin == null ? "No logined yet" : formatDate(el.lastLogin);
+          el.lastLogin == null ? "No logined yet" : formatDate2(el.lastLogin);
         let ifAdmin =
           el.admin == true
             ? ""
@@ -3229,7 +3231,7 @@ async function fetchRecent5Users() {
           <div class="recent-user-imp-dates">
             <p class="recent-user-created-at">
               <span>Joined Opentalks:</span>
-              <span class="data">${formatDate(el.createdAt)}</span>
+              <span class="data">${formatDate2(el.createdAt)}</span>
             </p>
             <p>/</p>
             <p class="recent-user-updated-at">
@@ -3568,13 +3570,13 @@ function renderSearchedUser_single(data) {
       let isDeleted = data.user.active == true ? "" : "deletedUser";
       let updatedAt =
         data.user.updatedAt != null
-          ? formatDate(data.user.updatedAt)
+          ? formatDate2(data.user.updatedAt)
           : "Not updated yet";
       let isAdmin = data.user.admin == true ? "isAdmin" : "";
       let lastLogin =
         data.user.lastLogin == null
           ? "No logined yet"
-          : formatDate(data.user.lastLogin);
+          : formatDate2(data.user.lastLogin);
       let ifAdmin =
         data.user.admin == true
           ? ""
@@ -3607,7 +3609,7 @@ function renderSearchedUser_single(data) {
           <div class="recent-user-imp-dates">
             <p class="recent-user-created-at">
               <span>Joined Opentalks:</span>
-              <span class="data">${formatDate(data.user.createdAt)}</span>
+              <span class="data">${formatDate2(data.user.createdAt)}</span>
             </p>
             <p>/</p>
             <p class="recent-user-updated-at">
@@ -3650,9 +3652,9 @@ function renderSearchedUser_multiple(data, query) {
         );
         let isDeleted = el.active == true ? "" : "deletedUser";
         let lastLogin =
-          el.lastLogin == null ? "No logined yet" : formatDate(el.lastLogin);
+          el.lastLogin == null ? "No logined yet" : formatDate2(el.lastLogin);
         let updatedAt =
-          el.updatedAt != null ? formatDate(el.updatedAt) : "Not updated yet";
+          el.updatedAt != null ? formatDate2(el.updatedAt) : "Not updated yet";
         let isAdmin = el.admin == true ? "isAdmin" : "";
         let ifAdmin =
           el.admin == true
@@ -3687,7 +3689,7 @@ function renderSearchedUser_multiple(data, query) {
           <div class="recent-user-imp-dates">
             <p class="recent-user-created-at">
               <span>Joined Opentalks:</span>
-              <span class="data">${formatDate(el.createdAt)}</span>
+              <span class="data">${formatDate2(el.createdAt)}</span>
             </p>
             <p>/</p>
             <p class="recent-user-updated-at">
@@ -3751,7 +3753,7 @@ async function getUserBySearchWithFilter(filter) {
       data.users.forEach((el) => {
         let highlightedEmail;
         let lastLogin =
-          el.lastLogin == null ? "No logined yet" : formatDate(el.lastLogin);
+          el.lastLogin == null ? "No logined yet" : formatDate2(el.lastLogin);
         if (!!filter.email) {
           highlightedEmail = el.email.replace(
             new RegExp(filter.email.trim(), "gi"),
@@ -3762,7 +3764,7 @@ async function getUserBySearchWithFilter(filter) {
         }
         let isDeleted = el.active == true ? "" : "deletedUser";
         let updatedAt =
-          el.updatedAt != null ? formatDate(el.updatedAt) : "Not updated yet";
+          el.updatedAt != null ? formatDate2(el.updatedAt) : "Not updated yet";
         let isAdmin = el.admin == true ? "isAdmin" : "";
         let ifAdmin =
           el.admin == true
@@ -3797,7 +3799,7 @@ async function getUserBySearchWithFilter(filter) {
           <div class="recent-user-imp-dates">
             <p class="recent-user-created-at">
               <span>Joined Opentalks:</span>
-              <span class="data">${formatDate(el.createdAt)}</span>
+              <span class="data">${formatDate2(el.createdAt)}</span>
             </p>
             <p>/</p>
             <p class="recent-user-updated-at">
@@ -3880,7 +3882,7 @@ async function getForumByFilter(filter) {
                   <p class="created-by-forum-section">
                     Created by <span>${highlightedName}</span>
                     <span class="forum-card-separator">|</span> Created on
-                    <span>${formatDate(el.createdAt)}</span>
+                    <span>${formatDate2(el.createdAt)}</span>
                   </p>
                   <button
                     class="view-detail-btn-forum-section"
@@ -3953,7 +3955,7 @@ async function fetchForumReviews() {
       <p>By ${el.userId.name}</p>
     </div>
     <div class="review-forum-template-date">
-      On ${formatDate(el.createdAt)}
+      On ${formatDate2(el.createdAt)}
     </div>
   </div>
   <div class="review-forum-template-right">
@@ -4016,7 +4018,7 @@ async function fetchForumReviewsScroll() {
       <p>By ${el.userId.name}</p>
     </div>
     <div class="review-forum-template-date">
-      On ${formatDate(el.createdAt)}
+      On ${formatDate2(el.createdAt)}
     </div>
   </div>
   <div class="review-forum-template-right">
@@ -5675,7 +5677,7 @@ document
             <div class="forum-post-user-info-container">
               <div class="forum-post-date-time">
                 <span class="forum-post-date"
-                  >${formatDate(el.createdAt)}</span
+                  >${formatDate2(el.createdAt)}</span
                 >
               </div>
               <div class="forum-post-user-info">
@@ -5710,7 +5712,7 @@ document
             <div class="forum-post-user-info-container">
               <div class="forum-post-date-time">
                 <span class="forum-post-date"
-                  >${formatDate(el.createdAt)}</span
+                  >${formatDate2(el.createdAt)}</span
                 >
               </div>
               <div class="forum-post-user-info">
@@ -6329,7 +6331,9 @@ document
         post_startPoint = data.nextStartPoint;
         data.posts.forEach((el) => {
           let isUpdated =
-            el.updatedAt == null ? "Not updated yet" : formatDate(el.updatedAt);
+            el.updatedAt == null
+              ? "Not updated yet"
+              : formatDate2(el.updatedAt);
           let isLiked = el.likes > 0 ? "fa-solid" : "fa-regular";
           let isDeleted = el.active == true ? "" : "deletedPost";
           let ifDeleted =
@@ -6372,7 +6376,7 @@ document
       <div class="top-10-post-user-details">
         <p class="top-10-post-user-name">${el.userId.name}</p>
         <p class="top-10-post-date">
-          Created at: ${formatDate(el.createdAt)}
+          Created at: ${formatDate2(el.createdAt)}
         </p>
         <p class="top-10-post-date">
           Updated at: ${isUpdated}
@@ -6946,7 +6950,7 @@ document
         data.users.forEach((el) => {
           let highlightedEmail;
           let lastLogin =
-            el.lastLogin == null ? "No logined yet" : formatDate(el.lastLogin);
+            el.lastLogin == null ? "No logined yet" : formatDate2(el.lastLogin);
           if (!!userFilter.email) {
             highlightedEmail = el.email.replace(
               new RegExp(userFilter.email.trim(), "gi"),
@@ -6957,7 +6961,9 @@ document
           }
           let isDeleted = el.active == true ? "" : "deletedUser";
           let updatedAt =
-            el.updatedAt != null ? formatDate(el.updatedAt) : "Not updated yet";
+            el.updatedAt != null
+              ? formatDate2(el.updatedAt)
+              : "Not updated yet";
           let isAdmin = el.admin == true ? "isAdmin" : "";
           let ifAdmin =
             el.admin == true
@@ -6992,7 +6998,7 @@ document
             <div class="recent-user-imp-dates">
               <p class="recent-user-created-at">
                 <span>Joined Opentalks:</span>
-                <span class="data">${formatDate(el.createdAt)}</span>
+                <span class="data">${formatDate2(el.createdAt)}</span>
               </p>
               <p>/</p>
               <p class="recent-user-updated-at">
@@ -7057,9 +7063,11 @@ document
           );
           let isDeleted = el.active == true ? "" : "deletedUser";
           let lastLogin =
-            el.lastLogin == null ? "No logined yet" : formatDate(el.lastLogin);
+            el.lastLogin == null ? "No logined yet" : formatDate2(el.lastLogin);
           let updatedAt =
-            el.updatedAt != null ? formatDate(el.updatedAt) : "Not updated yet";
+            el.updatedAt != null
+              ? formatDate2(el.updatedAt)
+              : "Not updated yet";
           let isAdmin = el.admin == true ? "isAdmin" : "";
           let ifAdmin =
             el.admin == true
@@ -7094,7 +7102,7 @@ document
           <div class="recent-user-imp-dates">
             <p class="recent-user-created-at">
               <span>Joined Opentalks:</span>
-              <span class="data">${formatDate(el.createdAt)}</span>
+              <span class="data">${formatDate2(el.createdAt)}</span>
             </p>
             <p>/</p>
             <p class="recent-user-updated-at">
@@ -7392,7 +7400,7 @@ document
                     <p class="created-by-forum-section">
                       Created by <span>${highlightedName}</span>
                       <span class="forum-card-separator">|</span> Created on
-                      <span>${formatDate(el.createdAt)}</span>
+                      <span>${formatDate2(el.createdAt)}</span>
                     </p>
                     <button
                       class="view-detail-btn-forum-section"
@@ -7472,7 +7480,7 @@ document
                   <p class="created-by-forum-section">
                     Created by <span>${el.userId.name}</span>
                     <span class="forum-card-separator">|</span> Created on
-                    <span>${formatDate(el.createdAt)}</span>
+                    <span>${formatDate2(el.createdAt)}</span>
                   </p>
                   <button
                     class="view-detail-btn-forum-section"
@@ -7545,7 +7553,7 @@ document
           </div>
           <div class="recent-post-footer">
             <div class="created-on-recent-post">
-              ${formatDate(el.createdAt)}
+              ${formatDate2(el.createdAt)}
             </div>
             <div class="user-info">
               <img
@@ -7609,7 +7617,7 @@ document
           </div>
           <div class="recent-forum-footer">
             <div class="created-on-recent-forum">
-              ${formatDate(el.createdAt)}
+              ${formatDate2(el.createdAt)}
             </div>
             <div class="user-info">
               <img
@@ -7907,7 +7915,7 @@ document
   <p class="forum-post-description">${description}</p>
   <div class="forum-post-user-info-container">
     <div class="forum-post-date-time">
-      <span class="forum-post-date">${formatDate(Date.now())}</span>
+      <span class="forum-post-date">${formatDate2(Date.now())}</span>
     </div>
     <div class="forum-post-user-info">
       <img

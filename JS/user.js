@@ -188,7 +188,7 @@ function setUserDetails_Dashboard(data) {
       user_time.textContent = "Good evening,";
     }
     user_name.textContent = data.name;
-    date_joined.textContent = formatDate(data.createdAt);
+    date_joined.textContent = formatDate2(data.createdAt);
     user_email.textContent = data.email;
     user_regisNo.textContent = data.registration_number;
     user_pic.src = `https://opentalks.cyclic.app${data.image}`;
@@ -264,7 +264,7 @@ function fetchRecentPosts(data) {
                       </div>
                       <div class="recent-post-footer">
                         <div class="created-on-recent-post">
-                          ${formatDate(el.createdAt)}
+                          ${formatDate2(el.createdAt)}
                         </div>
                         <div class="user-info">
                           <img
@@ -311,7 +311,7 @@ function fetchtopForums(data) {
                   </div>
                   <div class="top-forum-footer">
                     <div class="created-on-top-forum">
-                      ${formatDate(el.createdAt)}
+                      ${formatDate2(el.createdAt)}
                     </div>
                     <div class="user-info">
                       <img
@@ -350,7 +350,7 @@ function formatDate(dateData) {
 
     return formattedDate;
   } catch (error) {
-    console.log(`Error: ${error.toString()} in formatDateC`);
+    console.log(`Error: ${error.toString()} in formatDate2C`);
   }
 }
 
@@ -387,7 +387,7 @@ function formatDate2(dateData) {
       return formattedDate;
     }
   } catch (error) {
-    console.log(`Error: ${error.toString()} in formatDate`);
+    console.log(`Error: ${error.toString()} in formatDate2`);
     return "Invalid Date";
   }
 }
@@ -707,7 +707,7 @@ async function fetchPostsAfterLastLogin() {
           </div>
           <div class="recent-post-footer">
             <div class="created-on-recent-post">
-              ${formatDate(el.createdAt)}
+              ${formatDate2(el.createdAt)}
             </div>
             <div class="user-info">
               <img
@@ -771,7 +771,7 @@ async function fetchtopForumsScroll() {
                       </div>
                       <div class="top-forum-footer">
                         <div class="created-on-top-forum">
-                          ${formatDate(el.createdAt)}
+                          ${formatDate2(el.createdAt)}
                         </div>
                         <div class="user-info">
                           <img
@@ -814,7 +814,7 @@ async function fetchRecentReplies(data) {
                   </div>
                   <div class="recent-reply-bottom">
                     <div class="recent-reply-date">
-                      On ${formatDate(el.createdAt)}
+                      On ${formatDate2(el.createdAt)}
                     </div>
                     <div class="recent-reply-user-info">
                       <img src="https://opentalks.cyclic.app${
@@ -870,7 +870,7 @@ async function fetchRecentRepliesScroll() {
                   </div>
                   <div class="recent-reply-bottom">
                     <div class="recent-reply-date">
-                      On ${formatDate(el.createdAt)}
+                      On ${formatDate2(el.createdAt)}
                     </div>
                     <div class="recent-reply-user-info">
                       <img src="https://opentalks.cyclic.app${
@@ -919,7 +919,7 @@ async function fetchNotifications() {
       data.notifications.forEach((el) => {
         result += `<div class="notification-template">
 <p class="notification-msg">${el.message}</p>
-<p class="notification-date">${formatDate2(el.createdAt)}</p>
+<p class="notification-date">${formatDate22(el.createdAt)}</p>
 </div>`;
       });
       container.innerHTML = result;
@@ -961,7 +961,7 @@ async function fetchNotificationsScroll() {
       data.notifications.forEach((el) => {
         result += `<div class="notification-template">
 <p class="notification-msg">${el.message}</p>
-<p class="notification-date">${formatDate2(el.createdAt)}</p>
+<p class="notification-date">${formatDate22(el.createdAt)}</p>
 </div>`;
       });
       let prevScrollHeight = container.scrollHeight;
@@ -1080,7 +1080,7 @@ async function userRecentPosts() {
   </div>
   <div class="recent-main-post-description">${el.description}</div>
   <div class="recent-main-post-bottom">
-    <div class="recent-main-post-createdOn">${formatDate(el.createdAt)}</div>
+    <div class="recent-main-post-createdOn">${formatDate2(el.createdAt)}</div>
     <div class="recent-main-post-buttons">
       <i class="fa-solid fa-thumbs-up recent-main-post-likes" data-postid="${
         el._id
@@ -1139,7 +1139,7 @@ async function userLikedPosts() {
         </div>
         <div class="liked-main-post-description">${el.description}</div>
         <div class="liked-main-post-bottom">
-          <div class="liked-main-post-createdOn">${formatDate(
+          <div class="liked-main-post-createdOn">${formatDate2(
             el.createdAt
           )}</div>
           <div class="liked-main-post-buttons">
@@ -1203,7 +1203,9 @@ async function fetchFavouritePosts() {
   <div class="favourite-main-post-description">${el.postId.description}</div>
 
   <div class="favourite-main-post-bottom">
-    <div class="favourite-main-post-createdOn">${formatDate(el.createdAt)}</div>
+    <div class="favourite-main-post-createdOn">${formatDate2(
+      el.createdAt
+    )}</div>
     <div class="favourite-main-post-info">
       <img
         src="https://opentalks.cyclic.app${el.postId.userId.image}"
@@ -1261,7 +1263,7 @@ async function fetchCreatedForums() {
                 <div class="created-forum-name">${el.name}</div>
                 <div class="created-forum-description">${el.description}</div>
                 <div class="created-forum-bottom">
-                  <p>${formatDate(el.createdAt)}</p>
+                  <p>${formatDate2(el.createdAt)}</p>
                   <button class="created-forum-vist" value="${
                     el._id
                   }">Visit Forum</button>
@@ -1309,7 +1311,7 @@ async function fetchJoinedForums() {
                   el.forumId.description
                 }</div>
                 <div class="joined-forum-bottom">
-                  <p>${formatDate(el.createdAt)}</p>
+                  <p>${formatDate2(el.createdAt)}</p>
                   <button class="joined-forum-vist" value="${
                     el.forumId._id
                   }">Visit Forum</button>
@@ -1384,9 +1386,9 @@ function fetchForumDetails(data) {
     forumDescription.textContent = data.description;
     forumDepartment.textContent = data.departmentId.name;
     forumCreatedBy.textContent = data.userId.name;
-    forumCreatedOn.textContent = formatDate(data.createdAt);
+    forumCreatedOn.textContent = formatDate2(data.createdAt);
     forumUpdatedOn.textContent =
-      data.updatedAt == null ? "Not updated yet" : formatDate(data.updatedAt);
+      data.updatedAt == null ? "Not updated yet" : formatDate2(data.updatedAt);
     members.textContent = data.members;
   } catch (error) {
     console.log(`Error: ${error.toString()} in fetchForumDetailsC`);
@@ -1419,7 +1421,7 @@ function fetchJoinedForumDetails(data) {
     forumDescription.textContent = data.description;
     forumDepartment.textContent = data.departmentId.name;
     forumCreatedBy.textContent = data.userId.name;
-    forumCreatedOn.textContent = formatDate(data.createdAt);
+    forumCreatedOn.textContent = formatDate2(data.createdAt);
   } catch (error) {
     console.log(`Error: ${error.toString()} in fetchForumDetailsC`);
   }
@@ -1526,7 +1528,7 @@ async function fetchForumMembers() {
           </p>
         </div>
         <div class="forum-member-bottom">
-          <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+          <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
           <button class="forum-member-remove-user" value="${
             el.userId._id
           }">Remove user</button>
@@ -1584,7 +1586,7 @@ async function fetchForumMemberScroll() {
         </p>
       </div>
       <div class="forum-member-bottom">
-        <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+        <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
         <button class="forum-member-remove-user" value="${
           el.userId._id
         }">Remove user</button>
@@ -1644,7 +1646,7 @@ async function fetchSearchedForumMembers() {
         </p>
       </div>
       <div class="forum-member-bottom">
-        <p class="forum-member-joinedOn">${formatDate(el.createdAt)}</p>
+        <p class="forum-member-joinedOn">${formatDate2(el.createdAt)}</p>
         <button class="forum-member-remove-user" value="${
           el.userId._id
         }">Remove user</button>
@@ -1783,7 +1785,7 @@ async function fetchAllComplaints() {
           el.complaint
         }</p>
         <div class="forum-complaint-info">
-          <div>On ${formatDate(el.createdAt)}</div>
+          <div>On ${formatDate2(el.createdAt)}</div>
           <div>
             <img src="https://opentalks.cyclic.app${
               el.userId.image
@@ -1862,7 +1864,7 @@ async function fetchAllComplaintsScroll() {
       </div>
       <p class="forum-complaint-message highlight-complaint">${el.complaint}</p>
       <div class="forum-complaint-info">
-        <div>On ${formatDate(el.createdAt)}</div>
+        <div>On ${formatDate2(el.createdAt)}</div>
         <div>
           <img src="https://opentalks.cyclic.app${
             el.userId.image
@@ -1938,7 +1940,7 @@ async function fetchJoinedForumComplaints() {
           ${el.complaint}
         </p>
         <div class="forum-complaint-info">
-          <div>On ${formatDate(el.createdAt)}</div>
+          <div>On ${formatDate2(el.createdAt)}</div>
         </div>
       </div>`;
       });
@@ -2002,7 +2004,7 @@ async function fetchJoinedForumComplaintsScroll() {
           ${el.complaint}
         </p>
         <div class="forum-complaint-info">
-          <div>On ${formatDate(el.createdAt)}</div>
+          <div>On ${formatDate2(el.createdAt)}</div>
         </div>
       </div>`;
       });
@@ -2062,7 +2064,7 @@ async function fetchSearchedComplaintinJoinedForum() {
         complaint.complaint
       }</p>
       <div class="forum-complaint-info">
-        <div>On ${formatDate(complaint.createdAt)}</div>
+        <div>On ${formatDate2(complaint.createdAt)}</div>
       </div>
     </div>`;
 
@@ -2128,7 +2130,7 @@ async function fetchSearchedComplaint() {
         complaint.complaint
       }</p>
       <div class="forum-complaint-info">
-        <div>On ${formatDate(complaint.createdAt)}</div>
+        <div>On ${formatDate2(complaint.createdAt)}</div>
         <div>
           <img src="https://opentalks.cyclic.app${
             complaint.userId.image
@@ -2228,7 +2230,7 @@ async function fetchComplaintResponses(data1, target) {
           <div class="forum-response-message highlight-complaint">${
             el.response
           }</div>
-          <div class="forum-response-date">On ${formatDate(el.createdAt)}</div>
+          <div class="forum-response-date">On ${formatDate2(el.createdAt)}</div>
         </div>
         `;
       });
@@ -2277,7 +2279,7 @@ async function fetchJoinedForumComplaintResponses(data1, target) {
           <div class="forum-response-message highlight-complaint">${
             el.response
           }</div>
-          <div class="forum-response-date">On ${formatDate(el.createdAt)}</div>
+          <div class="forum-response-date">On ${formatDate2(el.createdAt)}</div>
         </div>
         `;
       });
@@ -2324,7 +2326,7 @@ async function createComplaint(complaint) {
           ${el.complaint}
         </p>
         <div class="forum-complaint-info">
-          <div>On ${formatDate(el.createdAt)}</div>
+          <div>On ${formatDate2(el.createdAt)}</div>
         </div>
       </div>`;
       container.innerHTML != "No complaints created yet."
@@ -2383,7 +2385,7 @@ async function fetchMemberJoinRequests() {
             />
             <div class="forum-member-join-inner-wrap">
               <p class="forum-member-join-user-name">${el.userId.name}</p>
-              <p class="forum-member-join-date">${formatDate(el.createdAt)}</p>
+              <p class="forum-member-join-date">${formatDate2(el.createdAt)}</p>
             </div>
           </div>
           <div class="forum-member-join-list-btns">
@@ -2473,7 +2475,7 @@ async function fetchForumPosts_initially(forumId, joined = false) {
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -2506,7 +2508,7 @@ async function fetchForumPosts_initially(forumId, joined = false) {
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -2682,7 +2684,7 @@ data-replyid="${el._id}"
           }" alt="user-profile-pic" />
           <div class="post-reply-template-inner">
             <p class="post-reply-user-name">${el.byWhom.name}</p>
-            <p class="reply-profile-creation-date">${formatDate(
+            <p class="reply-profile-creation-date">${formatDate2(
               el.createdAt
             )}</p>
           </div>
@@ -2864,7 +2866,7 @@ async function searchForumPost(query) {
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -2897,7 +2899,7 @@ async function searchForumPost(query) {
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -2984,7 +2986,7 @@ async function searchForumPostScroll(query) {
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -3017,7 +3019,7 @@ async function searchForumPostScroll(query) {
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -3146,7 +3148,7 @@ async function fetchPostLikesUsers(target) {
         </div>
         <div class="post-like-info">
           <span class="post-like-user">By ${el.userId.name}</span><br />
-          <span class="post-like-date">Liked on ${formatDate(
+          <span class="post-like-date">Liked on ${formatDate2(
             el.createdAt
           )}</span>
         </div>
@@ -3199,7 +3201,7 @@ async function fetchPostLikesUsersScroll(target) {
         </div>
         <div class="post-like-info">
           <span class="post-like-user">By ${el.userId.name}</span><br />
-          <span class="post-like-date">Liked on ${formatDate(
+          <span class="post-like-date">Liked on ${formatDate2(
             el.createdAt
           )}</span>
         </div>
@@ -3384,7 +3386,7 @@ async function fetchForumReviews() {
       <p>By ${el.userId.name}</p>
     </div>
     <div class="review-forum-template-date">
-      On ${formatDate(el.createdAt)}
+      On ${formatDate2(el.createdAt)}
     </div>
   </div>
   <div class="review-forum-template-right">
@@ -3447,7 +3449,7 @@ async function fetchForumReviewsScroll() {
       <p>By ${el.userId.name}</p>
     </div>
     <div class="review-forum-template-date">
-      On ${formatDate(el.createdAt)}
+      On ${formatDate2(el.createdAt)}
     </div>
   </div>
   <div class="review-forum-template-right">
@@ -3640,7 +3642,7 @@ async function searchForumFilter(query) {
             ${el.description}
           </div>
           <div class="searched-forum-bottom">
-            <p>${formatDate(el.createdAt)}</p>
+            <p>${formatDate2(el.createdAt)}</p>
             <button
               class="searched-forum-join"
               value="${el._id}"
@@ -3701,7 +3703,7 @@ async function searchForumFilterScroll(query) {
           ${el.description}
         </div>
         <div class="searched-forum-bottom">
-          <p>${formatDate(el.createdAt)}</p>
+          <p>${formatDate2(el.createdAt)}</p>
           <button
             class="searched-forum-join"
             value="${el._id}"
@@ -3785,7 +3787,7 @@ async function createForumMain(query, password) {
                 <div class="created-forum-name">${el.name}</div>
                 <div class="created-forum-description">${el.description}</div>
                 <div class="created-forum-bottom">
-                  <p>${formatDate(el.createdAt)}</p>
+                  <p>${formatDate2(el.createdAt)}</p>
                   <button class="created-forum-vist" value="${
                     el._id
                   }">Visit Forum</button>
@@ -4073,7 +4075,7 @@ document
   </div>
   <div class="recent-main-post-description">${el.description}</div>
   <div class="recent-main-post-bottom">
-    <div class="recent-main-post-createdOn">${formatDate(el.createdAt)}</div>
+    <div class="recent-main-post-createdOn">${formatDate2(el.createdAt)}</div>
     <div class="recent-main-post-buttons">
       <i class="fa-solid fa-thumbs-up recent-main-post-likes" data-postid="${
         el._id
@@ -4136,7 +4138,7 @@ document
           </div>
           <div class="liked-main-post-description">${el.description}</div>
           <div class="liked-main-post-bottom">
-            <div class="liked-main-post-createdOn">${formatDate(
+            <div class="liked-main-post-createdOn">${formatDate2(
               el.createdAt
             )}</div>
             <div class="liked-main-post-buttons">
@@ -4226,7 +4228,7 @@ document
         </div>
         <div class="searched-main-post-description">${el.description}</div>
         <div class="searched-main-post-bottom">
-          <div class="searched-main-post-createdOn">${formatDate(
+          <div class="searched-main-post-createdOn">${formatDate2(
             el.createdAt
           )}</div>
           <div class="searched-main-post-buttons">
@@ -4305,7 +4307,7 @@ document
     </div>
     <div class="searched-main-post-description">${el.description}</div>
     <div class="searched-main-post-bottom">
-      <div class="searched-main-post-createdOn">${formatDate(
+      <div class="searched-main-post-createdOn">${formatDate2(
         el.createdAt
       )}</div>
       <div class="searched-main-post-buttons">
@@ -4380,7 +4382,7 @@ document
     <div class="favourite-main-post-description">${el.postId.description}</div>
   
     <div class="favourite-main-post-bottom">
-      <div class="favourite-main-post-createdOn">${formatDate(
+      <div class="favourite-main-post-createdOn">${formatDate2(
         el.createdAt
       )}</div>
       <div class="favourite-main-post-info">
@@ -4469,7 +4471,7 @@ document
             ${highlightedDescription}
           </div>
           <div class="searched-forum-bottom">
-            <p>${formatDate(el.createdAt)}</p>
+            <p>${formatDate2(el.createdAt)}</p>
             <button
               class="searched-forum-join"
               value="${el._id}"
@@ -4544,7 +4546,7 @@ document
             ${highlightedDescription}
           </div>
           <div class="searched-forum-bottom">
-            <p>${formatDate(el.createdAt)}</p>
+            <p>${formatDate2(el.createdAt)}</p>
             <button
               class="searched-forum-join"
               value="${el._id}"
@@ -5125,7 +5127,7 @@ document
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -5158,7 +5160,7 @@ document
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -5270,7 +5272,7 @@ document
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -5303,7 +5305,7 @@ document
           <p class="forum-post-description">${el.description}</p>
           <div class="forum-post-user-info-container">
             <div class="forum-post-date-time">
-              <span class="forum-post-date">${formatDate(el.createdAt)}</span>
+              <span class="forum-post-date">${formatDate2(el.createdAt)}</span>
             </div>
             <div class="forum-post-user-info">
               <img
@@ -5830,7 +5832,7 @@ document
   <p class="forum-post-description">${description}</p>
   <div class="forum-post-user-info-container">
     <div class="forum-post-date-time">
-      <span class="forum-post-date">${formatDate(Date.now())}</span>
+      <span class="forum-post-date">${formatDate2(Date.now())}</span>
     </div>
     <div class="forum-post-user-info">
       <img

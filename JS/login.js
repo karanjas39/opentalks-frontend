@@ -324,3 +324,8 @@ document.querySelector(".login-btn").addEventListener("click", async () => {
   let data = { registration_number: Number(registration_number), password };
   await login(data);
 });
+
+// ** FORGET PASSWORD
+document.querySelector(".forget-password").addEventListener("click", () => {
+  showNotification("This feature is not yet implemented.");
+});
