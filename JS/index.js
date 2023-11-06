@@ -86,9 +86,9 @@ document.querySelectorAll(".links a").forEach((el) => {
   });
 });
 
-document.querySelector(".contact-me").addEventListener("click", () => {
-  showNotification(`You can mail me at dhillonjaskaran4486@gmail.com`, 4000);
-});
+// document.querySelector(".contact-me").addEventListener("click", () => {
+//   showNotification(`You can mail me at dhillonjaskaran4486@gmail.com`, 4000);
+// });
 
 document.querySelector(".popup-msg-close").addEventListener("click", () => {
   hideNotification();
