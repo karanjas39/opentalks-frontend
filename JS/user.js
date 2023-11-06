@@ -919,7 +919,7 @@ async function fetchNotifications() {
       data.notifications.forEach((el) => {
         result += `<div class="notification-template">
 <p class="notification-msg">${el.message}</p>
-<p class="notification-date">${formatDate22(el.createdAt)}</p>
+<p class="notification-date">${formatDate2(el.createdAt)}</p>
 </div>`;
       });
       container.innerHTML = result;
@@ -961,7 +961,7 @@ async function fetchNotificationsScroll() {
       data.notifications.forEach((el) => {
         result += `<div class="notification-template">
 <p class="notification-msg">${el.message}</p>
-<p class="notification-date">${formatDate22(el.createdAt)}</p>
+<p class="notification-date">${formatDate2(el.createdAt)}</p>
 </div>`;
       });
       let prevScrollHeight = container.scrollHeight;
