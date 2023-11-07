@@ -6062,6 +6062,9 @@ document
     document.querySelector(".notification-container").classList.remove("hide");
     document.querySelector(".blur").classList.remove("hide");
     await fetchNotifications();
+    if (window.innerWidth < 768) {
+      document.querySelector(".blur").classList.remove("hide");
+    }
   });
 
 document
@@ -6185,6 +6188,15 @@ document
       "none";
     document.querySelector(".blur").classList.add("hide");
   });
+
+document.querySelectorAll(".links a").forEach((el) => {
+  el.addEventListener("click", () => {
+    document.querySelector(".links").style.display = "";
+    document.querySelector(".cancel-dashboard-nav-menubar").style.display =
+      "none";
+    document.querySelector(".blur").classList.add("hide");
+  });
+});
 
 window.addEventListener("resize", () => {
   handleScreenSize();

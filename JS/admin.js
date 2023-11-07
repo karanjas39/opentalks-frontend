@@ -8294,3 +8294,12 @@ document
     document.querySelector(".cancel-dashboard-nav-menubar").style.display =
       "none";
   });
+
+document.querySelectorAll(".links a").forEach((el) => {
+  el.addEventListener("click", () => {
+    document.querySelector(".links").style.display = "";
+    document.querySelector(".cancel-dashboard-nav-menubar").style.display =
+      "none";
+    document.querySelector(".blur").classList.add("hide");
+  });
+});
