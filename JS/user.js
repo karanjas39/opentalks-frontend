@@ -6152,9 +6152,8 @@ document
 
 // ** LOGOUT
 document.querySelector(".user-logout-btn").addEventListener("click", () => {
-  sessionStorage.removeItem("lastLogin");
-  sessionStorage.removeItem("user");
-  sessionStorage.removeItem("token");
+  sessionStorage.clear();
+  window.location.href = ".././index.html";
 });
 
 // ** FORGET PASSWORD

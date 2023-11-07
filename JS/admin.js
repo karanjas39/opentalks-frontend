@@ -8275,6 +8275,10 @@ document
     }
   });
 
+document.querySelector(".admin-logout-btn").addEventListener("click", () => {
+  sessionStorage.clear();
+});
+
 //! **********************************************************************************************************RESPONSIVE DESIGN
 document
   .querySelector(".dashboard-nav-menubar")
