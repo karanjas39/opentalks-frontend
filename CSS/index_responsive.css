@@ -119,4 +119,8 @@
     left: unset;
     transition: unset;
   }
+
+  .contact-container {
+    width: 80%;
+  }
 }

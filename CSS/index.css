@@ -155,7 +155,8 @@ header .links a {
 .mission,
 .features,
 .video-container,
-.intro-video {
+.intro-video,
+.contact {
   padding: 0 20px;
   width: 90%;
   margin: 0 auto;
@@ -163,7 +164,8 @@ header .links a {
 
 .mission h2,
 .features > h2,
-.intro-video > h2 {
+.intro-video > h2,
+.contact h2 {
   max-width: max-content;
   font-size: 42px;
   margin-top: 50px;
@@ -176,7 +178,8 @@ header .links a {
 
 .mission h2::after,
 .features > h2::after,
-.intro-video > h2::after {
+.intro-video > h2::after,
+.contact h2::after {
   content: "";
   position: absolute;
   width: 70%;
@@ -242,6 +245,54 @@ header .links a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 550px;
+}
+
+/*! CONATCT US SECTION  */
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 40%;
+}
+
+.contact-container input {
+  padding: 15px;
+  border: solid 1px var(--ccc);
+  outline: none;
+  background-color: var(--ffffff);
+  border-radius: 20px;
+}
+
+.contact-container textarea {
+  resize: none;
+  padding: 15px;
+  border: none;
+  outline: none;
+  background-color: var(--ffffff);
+  border-radius: 20px;
+  border: solid 1px var(--ccc);
+}
+
+.contact-send-btn {
+  font-size: 18px;
+  background-color: var(--main-color);
+  padding: 10px 15px;
+  border-radius: 30px;
+  margin-top: 10px;
+  width: max-content;
+  outline: none;
+  border: none;
+  color: var(--ffffff);
+  transition: transform 0.4s !important;
+  cursor: pointer;
+}
+
+.contact-send-btn:hover {
+  transform: scale(1.02) !important;
+}
+
+.contact-send-btn:active {
+  transform: scale(0.95) !important;
 }
 
 /*! FOOTER */
@@ -425,4 +476,13 @@ button:active {
 
 .hide {
   display: none;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999;
+  width: 100px;
 }

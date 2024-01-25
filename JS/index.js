@@ -46,6 +46,55 @@ function showNotification(message, duration = 2500) {
   }
 }
 
+function loader(state) {
+  const blurElement = document.querySelector(".blur");
+  const loaderElement = document.querySelector(".loading");
+
+  if (state === 1) {
+    blurElement.classList.remove("hide");
+    loaderElement.classList.remove("hide");
+  } else if (state === 0) {
+    blurElement.classList.add("hide");
+    loaderElement.classList.add("hide");
+  }
+}
+
+//  SEND CONTACT
+function isWordCountExceed(text, limit) {
+  try {
+    text = text.trim();
+    var words = text.split(/\s+/);
+    return words.length <= limit;
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in isWordCountExceed`);
+  }
+}
+
+async function sendMessage(query) {
+  try {
+    loader(1);
+    let response = await fetch(
+      `https://developerjaskaran.cyclic.app/api/v1/contact/add`,
+      {
+        method: "POST",
+        body: JSON.stringify(query),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let data = await response.json();
+    loader(0);
+    if (!!data && data.success == true) {
+      showNotification("Jaskaran Singh will be in touch with you shortly.");
+    } else {
+      showNotification(data.message);
+    }
+  } catch (error) {
+    console.log(`Error: ${error.toString()} in sendMessage`);
+  }
+}
+
 //! ****************************************************************************************************************EVENT LISTNERS
 
 document.querySelector(".menubar-main-index").addEventListener("click", () => {
@@ -93,3 +142,47 @@ document.querySelectorAll(".links a").forEach((el) => {
 document.querySelector(".popup-msg-close").addEventListener("click", () => {
   hideNotification();
 });
+
+// ** SEND CONTACT
+document
+  .querySelector(".contact-send-btn")
+  .addEventListener("click", async () => {
+    let name = document.querySelector(".contact-name").value.trim();
+    let email = document.querySelector(".contact-email").value.trim();
+    let message = document.querySelector(".contact-message").value.trim();
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let invalidFields = [];
+    if (!name) {
+      invalidFields.push("Name");
+    }
+    if (!email) {
+      invalidFields.push("Email");
+    }
+    if (!message) {
+      invalidFields.push("Message");
+    }
+    if (invalidFields.length != 0) {
+      return showNotification(`Required: ${invalidFields.join(", ")}`);
+    }
+    if (!emailRegex.test(email)) {
+      return showNotification("Please provide a valid email address.");
+    }
+    if (!isWordCountExceed(name, 5)) {
+      return showNotification("Please enter a name with a maximum of 5 words.");
+    }
+    if (!isWordCountExceed(message, 30)) {
+      return showNotification(
+        "Please limit your message to a maximum of 30 words."
+      );
+    }
+    let data = {
+      name,
+      email,
+      message,
+      from: "Opentalks",
+    };
+    await sendMessage(data);
+    document.querySelector(".contact-name").value = "";
+    document.querySelector(".contact-email").value = "";
+    document.querySelector(".contact-message").value = "";
+  });

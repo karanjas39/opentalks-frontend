@@ -129,6 +129,34 @@
       </div>
     </section>
 
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <div class="contact-container">
+        <input
+          type="text"
+          placeholder="Enter your name"
+          class="contact-name"
+          id="contact-name"
+        />
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="contact-email"
+          id="contact-email"
+        />
+        <textarea
+          id="contact-message"
+          class="contact-message"
+          cols="30"
+          rows="5"
+          placeholder="Type your message"
+        ></textarea>
+        <button class="contact-send-btn" id="contact-send-btn">
+          Send message
+        </button>
+      </div>
+    </section>
+
     <!-- *************************************************************************************************FOOTER -->
     <footer>
       <h2>Opentalks.</h2>
@@ -140,7 +168,7 @@
         <a href="./HTML/login.html">Create Account</a>
         <a
           href="mailto:dhillonjaskaran4486@gmail.com?subject=Hi!! Opentalks Administrator"
-          >Contact Me</a
+          >Email Me</a
         >
         <!-- <a class="contact-me">Contact Me</a> -->
       </div>
@@ -156,6 +184,12 @@
             target="_blank"
           >
             <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/jaskaransingh.dhillon.712"
+            target="_blank"
+          >
+            <i class="fa-brands fa-facebook"></i>
           </a>
         </div>
       </div>
@@ -184,6 +218,13 @@
         <div class="popup-msg-progress"></div>
       </div>
     </div>
+
+    <!--LOADER  -->
+    <img
+      src="./CSS/IMAGES/loading.svg"
+      class="loading hide"
+      alt="loading-svg"
+    />
 
     <!-- SCRIPTS -->
     <script src="./JS/index.js"></script>
