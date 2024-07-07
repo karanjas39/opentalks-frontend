@@ -91,7 +91,7 @@ async function fetchDepartments() {
   try {
     loader(1);
     let response = await fetch(
-      "https://opentalks-backend.onrender.com/api/department/all",
+      "https://opentalks-backend.vercel.app/api/department/all",
       {
         method: "POST",
         headers: {
@@ -124,7 +124,7 @@ async function isUserAllowed(query) {
   try {
     loader(1);
     let response = await fetch(
-      "https://opentalks-backend.onrender.com/api/user/allowed",
+      "https://opentalks-backend.vercel.app/api/user/allowed",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -153,7 +153,7 @@ async function createUser(password) {
   try {
     loader(1);
     let response = await fetch(
-      "https://opentalks-backend.onrender.com/api/register",
+      "https://opentalks-backend.vercel.app/api/register",
       {
         method: "POST",
         body: JSON.stringify({ password, ...signUp_data }),
@@ -182,7 +182,7 @@ async function login(query) {
   try {
     loader(1);
     let response = await fetch(
-      "https://opentalks-backend.onrender.com/api/login",
+      "https://opentalks-backend.vercel.app/api/login",
       {
         method: "POST",
         body: JSON.stringify(query),
