@@ -59,7 +59,7 @@ async function getDetails() {
   try {
     handleScreenSize();
     loader(1);
-    let response1 = fetch("https://opentalks-backend.vercel.app/api/detail", {
+    let response1 = fetch("https://opentalks-backend.onrender.com/api/detail", {
       method: "POST",
       body: JSON.stringify({
         _id: sessionStorage.getItem("user"),
@@ -71,7 +71,7 @@ async function getDetails() {
       },
     });
 
-    let response2 = fetch("https://opentalks-backend.vercel.app/api/stats", {
+    let response2 = fetch("https://opentalks-backend.onrender.com/api/stats", {
       method: "POST",
       body: JSON.stringify({ _id: sessionStorage.getItem("user") }),
       headers: {
@@ -81,7 +81,7 @@ async function getDetails() {
     });
 
     let response3 = fetch(
-      "https://opentalks-backend.vercel.app/api/post/recent",
+      "https://opentalks-backend.onrender.com/api/post/recent",
       {
         method: "POST",
         body: JSON.stringify({
@@ -96,7 +96,7 @@ async function getDetails() {
     );
 
     let response4 = fetch(
-      "https://opentalks-backend.vercel.app/api/forum/top",
+      "https://opentalks-backend.onrender.com/api/forum/top",
       {
         method: "POST",
         headers: {
@@ -107,7 +107,7 @@ async function getDetails() {
     );
 
     let response5 = fetch(
-      "https://opentalks-backend.vercel.app/api/department/all",
+      "https://opentalks-backend.onrender.com/api/department/all",
       {
         method: "POST",
         headers: {
@@ -118,7 +118,7 @@ async function getDetails() {
     );
 
     let response6 = fetch(
-      "https://opentalks-backend.vercel.app/api/post/reply/recent",
+      "https://opentalks-backend.onrender.com/api/post/reply/recent",
       {
         method: "POST",
         body: JSON.stringify({
@@ -200,7 +200,7 @@ function setUserDetails_Dashboard(data) {
     date_joined.textContent = formatDate2(data.createdAt);
     user_email.textContent = data.email;
     user_regisNo.textContent = data.registration_number;
-    user_pic.src = `https://opentalks-backend.vercel.app${data.image}`;
+    user_pic.src = `https://opentalks-backend.onrender.com${data.image}`;
   } catch (error) {
     console.log(`Error: ${error.toString()} in setUserDetails_Dashboard`);
   }
@@ -277,7 +277,7 @@ function fetchRecentPosts(data) {
                         </div>
                         <div class="user-info">
                           <img
-                            src="https://opentalks-backend.vercel.app${
+                            src="https://opentalks-backend.onrender.com${
                               el.userId.image
                             }"
                             alt="User Avatar"
@@ -326,7 +326,7 @@ function fetchtopForums(data) {
                     </div>
                     <div class="user-info">
                       <img
-                        src="https://opentalks-backend.vercel.app${
+                        src="https://opentalks-backend.onrender.com${
                           el.userId.image
                         }"
                         alt="User Avatar"
@@ -514,7 +514,7 @@ async function sentForumJoinRequest(forumId) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/request",
+      "https://opentalks-backend.onrender.com/api/forum/join/request",
       {
         method: "POST",
         body: JSON.stringify({
@@ -571,7 +571,7 @@ async function updateUserProfileMain(updateData, password) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/update/details",
+      "https://opentalks-backend.onrender.com/api/update/details",
       {
         method: "POST",
         body: JSON.stringify({
@@ -643,7 +643,7 @@ async function updateUserPicMain(password) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/update/image",
+      "https://opentalks-backend.onrender.com/api/update/image",
       {
         method: "POST",
         body: formData,
@@ -667,10 +667,10 @@ async function updateUserPicMain(password) {
       user_details.user.image = data.updated_user.image;
       document.querySelector(
         ".edit-user-profile-pic-img"
-      ).src = `https://opentalks-backend.vercel.app${user_details.user.image}`;
+      ).src = `https://opentalks-backend.onrender.com${user_details.user.image}`;
       document.querySelector(
         ".user-profile-pic-change"
-      ).src = `https://opentalks-backend.vercel.app${user_details.user.image}`;
+      ).src = `https://opentalks-backend.onrender.com${user_details.user.image}`;
       showNotification("User profile updated", 3000);
     } else {
       showNotification(data.message, 3000);
@@ -686,7 +686,7 @@ async function fetchPostsAfterLastLogin() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/recent",
+      "https://opentalks-backend.onrender.com/api/post/recent",
       {
         method: "POST",
         body: JSON.stringify({
@@ -727,7 +727,7 @@ async function fetchPostsAfterLastLogin() {
             </div>
             <div class="user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 alt="User Avatar"
                 class="avatar-image-small recent-post-user-image"
               />
@@ -758,7 +758,7 @@ async function fetchtopForumsScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/top",
+      "https://opentalks-backend.onrender.com/api/forum/top",
       {
         method: "POST",
         body: JSON.stringify({
@@ -794,7 +794,7 @@ async function fetchtopForumsScroll() {
                         </div>
                         <div class="user-info">
                           <img
-                            src="https://opentalks-backend.vercel.app${
+                            src="https://opentalks-backend.onrender.com${
                               el.userId.image
                             }"
                             alt="User Avatar"
@@ -838,7 +838,7 @@ async function fetchRecentReplies(data) {
                       On ${formatDate2(el.createdAt)}
                     </div>
                     <div class="recent-reply-user-info">
-                      <img src="https://opentalks-backend.vercel.app${
+                      <img src="https://opentalks-backend.onrender.com${
                         el.byWhom.image
                       }" alt="user-image" />
                       <p>By ${el.byWhom.name}</p>
@@ -863,7 +863,7 @@ async function fetchRecentRepliesScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/reply/recent",
+      "https://opentalks-backend.onrender.com/api/post/reply/recent",
       {
         method: "POST",
         body: JSON.stringify({
@@ -894,7 +894,7 @@ async function fetchRecentRepliesScroll() {
                       On ${formatDate2(el.createdAt)}
                     </div>
                     <div class="recent-reply-user-info">
-                      <img src="https://opentalks-backend.vercel.app${
+                      <img src="https://opentalks-backend.onrender.com${
                         el.byWhom.image
                       }" alt="user-image" />
                       <p>By ${el.byWhom.name}</p>
@@ -919,7 +919,7 @@ async function fetchNotifications() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/notification/all",
+      "https://opentalks-backend.onrender.com/api/notification/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -960,7 +960,7 @@ async function fetchNotificationsScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/notification/all",
+      "https://opentalks-backend.onrender.com/api/notification/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1001,7 +1001,7 @@ async function clearNotifications() {
     loader(1);
 
     await fetch(
-      "https://opentalks-backend.vercel.app/api/notification/delete/all",
+      "https://opentalks-backend.onrender.com/api/notification/delete/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1040,7 +1040,7 @@ async function updateUserPassword(prevPassword, newPassword) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/update/password",
+      "https://opentalks-backend.onrender.com/api/update/password",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1077,7 +1077,7 @@ async function userRecentPosts() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/recent/5",
+      "https://opentalks-backend.onrender.com/api/post/recent/5",
       {
         method: "POST",
         body: JSON.stringify({ userId: sessionStorage.getItem("user") }),
@@ -1138,7 +1138,7 @@ async function userLikedPosts() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/top",
+      "https://opentalks-backend.onrender.com/api/post/top",
       {
         method: "POST",
         body: JSON.stringify({ userId: sessionStorage.getItem("user") }),
@@ -1200,7 +1200,7 @@ async function fetchFavouritePosts() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/favourite",
+      "https://opentalks-backend.onrender.com/api/post/favourite",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1235,7 +1235,7 @@ async function fetchFavouritePosts() {
     )}</div>
     <div class="favourite-main-post-info">
       <img
-        src="https://opentalks-backend.vercel.app${el.postId.userId.image}"
+        src="https://opentalks-backend.onrender.com${el.postId.userId.image}"
         class="favourite-main-post-user-image"
         alt="post-owner-image"
       />
@@ -1269,7 +1269,7 @@ async function fetchCreatedForums() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/created/detail",
+      "https://opentalks-backend.onrender.com/api/forum/created/detail",
       {
         method: "POST",
         body: JSON.stringify({ userId: sessionStorage.getItem("user") }),
@@ -1313,7 +1313,7 @@ async function fetchJoinedForums() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/member",
+      "https://opentalks-backend.onrender.com/api/forum/join/member",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1362,7 +1362,7 @@ async function fetchForumData_initially(forumId, joined = false) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/detail",
+      "https://opentalks-backend.onrender.com/api/forum/detail",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1483,7 +1483,7 @@ async function updateForumDetailsMain(password, query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/update",
+      "https://opentalks-backend.onrender.com/api/forum/update",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1527,7 +1527,7 @@ async function fetchForumMembers() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/member",
+      "https://opentalks-backend.onrender.com/api/forum/join/member",
       {
         method: "POST",
         body: JSON.stringify({ forumId: createdForumID }),
@@ -1547,7 +1547,7 @@ async function fetchForumMembers() {
         result += `
         <div class="forum-member-template">
         <div class="forum-member-top">
-          <img src="https://opentalks-backend.vercel.app${
+          <img src="https://opentalks-backend.onrender.com${
             el.userId.image
           }" alt="user-image" />
           <p class="forum-member-user-info">
@@ -1576,7 +1576,7 @@ async function fetchForumMemberScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/member/search",
+      "https://opentalks-backend.onrender.com/api/forum/join/member/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1605,7 +1605,7 @@ async function fetchForumMemberScroll() {
         result += `
 <div class="forum-member-template">
       <div class="forum-member-top">
-        <img src="https://opentalks-backend.vercel.app${
+        <img src="https://opentalks-backend.onrender.com${
           el.userId.image
         }" alt="user-image" />
         <p class="forum-member-user-info">
@@ -1637,7 +1637,7 @@ async function fetchSearchedForumMembers() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/member/search",
+      "https://opentalks-backend.onrender.com/api/forum/join/member/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1665,7 +1665,7 @@ async function fetchSearchedForumMembers() {
         result += `
 <div class="forum-member-template">
       <div class="forum-member-top">
-        <img src="https://opentalks-backend.vercel.app${
+        <img src="https://opentalks-backend.onrender.com${
           el.userId.image
         }" alt="user-image" />
         <p class="forum-member-user-info">
@@ -1725,7 +1725,7 @@ async function removeForumMemberMain(password, query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/left",
+      "https://opentalks-backend.onrender.com/api/forum/join/left",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1767,7 +1767,7 @@ async function fetchAllComplaints() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint/all",
+      "https://opentalks-backend.onrender.com/api/forum/complaint/all",
       {
         method: "POST",
         body: JSON.stringify({ forumId: createdForumID }),
@@ -1814,7 +1814,7 @@ async function fetchAllComplaints() {
         <div class="forum-complaint-info">
           <div>On ${formatDate2(el.createdAt)}</div>
           <div>
-            <img src="https://opentalks-backend.vercel.app${
+            <img src="https://opentalks-backend.onrender.com${
               el.userId.image
             }" alt="user-image" />By
             ${el.userId.name}
@@ -1845,7 +1845,7 @@ async function fetchAllComplaintsScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint/all",
+      "https://opentalks-backend.onrender.com/api/forum/complaint/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1893,7 +1893,7 @@ async function fetchAllComplaintsScroll() {
       <div class="forum-complaint-info">
         <div>On ${formatDate2(el.createdAt)}</div>
         <div>
-          <img src="https://opentalks-backend.vercel.app${
+          <img src="https://opentalks-backend.onrender.com${
             el.userId.image
           }" alt="user-image" />By
           ${el.userId.name}
@@ -1924,7 +1924,7 @@ async function fetchJoinedForumComplaints() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint/user/all",
+      "https://opentalks-backend.onrender.com/api/forum/complaint/user/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -1987,7 +1987,7 @@ async function fetchJoinedForumComplaintsScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint/user/all",
+      "https://opentalks-backend.onrender.com/api/forum/complaint/user/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2051,7 +2051,7 @@ async function fetchSearchedComplaintinJoinedForum() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint/search",
+      "https://opentalks-backend.onrender.com/api/forum/complaint/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2110,7 +2110,7 @@ async function fetchSearchedComplaint() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint/search",
+      "https://opentalks-backend.onrender.com/api/forum/complaint/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2159,7 +2159,7 @@ async function fetchSearchedComplaint() {
       <div class="forum-complaint-info">
         <div>On ${formatDate2(complaint.createdAt)}</div>
         <div>
-          <img src="https://opentalks-backend.vercel.app${
+          <img src="https://opentalks-backend.onrender.com${
             complaint.userId.image
           }" alt="user-image" />By
           ${complaint.userId.name}
@@ -2192,7 +2192,7 @@ async function sendResponseToComplaint(complaintId, userId, response, target) {
 
   try {
     let response1 = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/response",
+      "https://opentalks-backend.onrender.com/api/forum/response",
       {
         method: "POST",
         body: JSON.stringify({ complaintId, userId, forumId, response }),
@@ -2231,7 +2231,7 @@ async function fetchComplaintResponses(data1, target) {
     }`;
     document.querySelector(".forum-response-top h2").textContent = complainth2;
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/response/all",
+      "https://opentalks-backend.onrender.com/api/forum/response/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2280,7 +2280,7 @@ async function fetchJoinedForumComplaintResponses(data1, target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/response/all",
+      "https://opentalks-backend.onrender.com/api/forum/response/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2323,7 +2323,7 @@ async function createComplaint(complaint) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/complaint",
+      "https://opentalks-backend.onrender.com/api/forum/complaint",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2381,7 +2381,7 @@ async function fetchMemberJoinRequests() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/request/list",
+      "https://opentalks-backend.onrender.com/api/forum/join/request/list",
       {
         method: "POST",
         body: JSON.stringify(query),
@@ -2406,7 +2406,7 @@ async function fetchMemberJoinRequests() {
       <div class="forum-member-join-list-template">
           <div class="forum-member-join-info">
             <img
-              src="https://opentalks-backend.vercel.app${el.userId.image}"
+              src="https://opentalks-backend.onrender.com${el.userId.image}"
               class="forum-member-join-user-pic"
               alt="user-pic"
             />
@@ -2441,7 +2441,7 @@ async function respondJoinRequest(target, status) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join",
+      "https://opentalks-backend.onrender.com/api/forum/join",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2476,7 +2476,7 @@ async function fetchForumPosts_initially(forumId, joined = false) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/all",
+      "https://opentalks-backend.onrender.com/api/post/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2512,7 +2512,7 @@ async function fetchForumPosts_initially(forumId, joined = false) {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -2545,7 +2545,7 @@ async function fetchForumPosts_initially(forumId, joined = false) {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -2582,7 +2582,7 @@ async function likeUserPost(target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/like",
+      "https://opentalks-backend.onrender.com/api/post/like",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2616,7 +2616,7 @@ async function unlikeUserPost(target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/unlike",
+      "https://opentalks-backend.onrender.com/api/post/unlike",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2650,7 +2650,7 @@ async function unlikeUserFavouritePost(target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/unlike",
+      "https://opentalks-backend.onrender.com/api/post/unlike",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2688,7 +2688,7 @@ async function fetchUserComments(target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/reply/all",
+      "https://opentalks-backend.onrender.com/api/post/reply/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2721,7 +2721,7 @@ data-replyid="${el._id}"
 <div class="post-reply-template">
       <div class="post-reply-info">
         <div class="post-reply-profile-pic">
-          <img src="https://opentalks-backend.vercel.app${
+          <img src="https://opentalks-backend.onrender.com${
             el.byWhom.image
           }" alt="user-profile-pic" />
           <div class="post-reply-template-inner">
@@ -2756,7 +2756,7 @@ async function addPostReply(reply, target, isJoined = false) {
     loader(1);
 
     const response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/reply/add",
+      "https://opentalks-backend.onrender.com/api/post/reply/add",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2820,7 +2820,7 @@ async function deleteReplyMain(password, query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/reply/delete",
+      "https://opentalks-backend.onrender.com/api/post/reply/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2861,7 +2861,7 @@ async function searchForumPost(query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/post/search",
+      "https://opentalks-backend.onrender.com/api/forum/post/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -2912,7 +2912,7 @@ async function searchForumPost(query) {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -2945,7 +2945,7 @@ async function searchForumPost(query) {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -2982,7 +2982,7 @@ async function searchForumPostScroll(query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/post/search",
+      "https://opentalks-backend.onrender.com/api/forum/post/search",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3032,7 +3032,7 @@ async function searchForumPostScroll(query) {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -3065,7 +3065,7 @@ async function searchForumPostScroll(query) {
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -3121,7 +3121,7 @@ async function deleteUserPostMain(password, query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/delete",
+      "https://opentalks-backend.onrender.com/api/post/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3163,7 +3163,7 @@ async function fetchPostLikesUsers(target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/like/user",
+      "https://opentalks-backend.onrender.com/api/post/like/user",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3187,7 +3187,7 @@ async function fetchPostLikesUsers(target) {
         result += `
         <div class="post-like-template">
         <div class="post-like-profile">
-          <img src="https://opentalks-backend.vercel.app${
+          <img src="https://opentalks-backend.onrender.com${
             el.userId.image
           }" alt="User Profile" />
         </div>
@@ -3215,7 +3215,7 @@ async function fetchPostLikesUsersScroll(target) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/like/user",
+      "https://opentalks-backend.onrender.com/api/post/like/user",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3240,7 +3240,7 @@ async function fetchPostLikesUsersScroll(target) {
         result += `
         <div class="post-like-template">
         <div class="post-like-profile">
-          <img src="https://opentalks-backend.vercel.app${
+          <img src="https://opentalks-backend.onrender.com${
             el.userId.image
           }" alt="User Profile" />
         </div>
@@ -3297,7 +3297,7 @@ async function createPostMain(query, password) {
       currentForumID == createdForumID ? createdForumID : joinedForumID;
     let joined = currentForumID == createdForumID ? false : true;
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/post/add",
+      "https://opentalks-backend.onrender.com/api/post/add",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3358,7 +3358,7 @@ async function deleteCreatedForumMain(password) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/delete",
+      "https://opentalks-backend.onrender.com/api/forum/delete",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3404,7 +3404,7 @@ async function fetchForumReviews() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/rate/all",
+      "https://opentalks-backend.onrender.com/api/forum/rate/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3428,7 +3428,7 @@ async function fetchForumReviews() {
   <div class="review-forum-template">
   <div class="review-forum-template-left">
     <div class="review-forum-template-info">
-      <img src="https://opentalks-backend.vercel.app${
+      <img src="https://opentalks-backend.onrender.com${
         el.userId.image
       }" alt="user-image" />
       <p>By ${el.userId.name}</p>
@@ -3466,7 +3466,7 @@ async function fetchForumReviewsScroll() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/rate/all",
+      "https://opentalks-backend.onrender.com/api/forum/rate/all",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3491,7 +3491,7 @@ async function fetchForumReviewsScroll() {
   <div class="review-forum-template">
   <div class="review-forum-template-left">
     <div class="review-forum-template-info">
-      <img src="https://opentalks-backend.vercel.app${
+      <img src="https://opentalks-backend.onrender.com${
         el.userId.image
       }" alt="user-image" />
       <p>By ${el.userId.name}</p>
@@ -3523,7 +3523,7 @@ async function fetchForumRating() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/rate/get",
+      "https://opentalks-backend.onrender.com/api/forum/rate/get",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3562,7 +3562,7 @@ async function submitForumRating() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/rate",
+      "https://opentalks-backend.onrender.com/api/forum/rate",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3616,7 +3616,7 @@ async function leftJoinedForumMain(password) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/left",
+      "https://opentalks-backend.onrender.com/api/forum/join/left",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3663,7 +3663,7 @@ async function searchForumFilter(query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/member/search/filter",
+      "https://opentalks-backend.onrender.com/api/forum/join/member/search/filter",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3704,7 +3704,7 @@ async function searchForumFilter(query) {
           <p class="searched-forum-admin-name">
             <span>
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 alt="admin-profile-pic"
               />Created By ${el.userId.name}</span
             >
@@ -3728,7 +3728,7 @@ async function searchForumFilterScroll(query) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/join/member/search/filter",
+      "https://opentalks-backend.onrender.com/api/forum/join/member/search/filter",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3765,7 +3765,7 @@ async function searchForumFilterScroll(query) {
         <p class="searched-forum-admin-name">
           <span>
             <img
-              src="https://opentalks-backend.vercel.app${el.userId.image}"
+              src="https://opentalks-backend.onrender.com${el.userId.image}"
               alt="admin-profile-pic"
             />Created By ${el.userId.name}</span
           >
@@ -3809,7 +3809,7 @@ async function createForumMain(query, password) {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/forum/add",
+      "https://opentalks-backend.onrender.com/api/forum/add",
       {
         method: "POST",
         body: JSON.stringify({
@@ -3864,7 +3864,7 @@ async function forgetPassword() {
     loader(1);
 
     let response = await fetch(
-      "https://opentalks-backend.vercel.app/api/password/forget",
+      "https://opentalks-backend.onrender.com/api/password/forget",
       {
         method: "POST",
         body: JSON.stringify({ userId: sessionStorage.getItem("user") }),
@@ -3992,7 +3992,7 @@ document
     document.querySelector(".blur").classList.remove("hide");
     document.querySelector(
       ".edit-user-profile-pic-img"
-    ).src = `https://opentalks-backend.vercel.app${user_details.user.image}`;
+    ).src = `https://opentalks-backend.onrender.com${user_details.user.image}`;
   });
 
 document.querySelector(".close-edit-user").addEventListener("click", () => {
@@ -4097,7 +4097,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/recent/5",
+        "https://opentalks-backend.onrender.com/api/post/recent/5",
         {
           method: "POST",
           body: JSON.stringify({
@@ -4162,7 +4162,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/top",
+        "https://opentalks-backend.onrender.com/api/post/top",
         {
           method: "POST",
           body: JSON.stringify({
@@ -4229,7 +4229,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/search",
+        "https://opentalks-backend.onrender.com/api/post/search",
         {
           method: "POST",
           body: JSON.stringify({
@@ -4321,7 +4321,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/search",
+        "https://opentalks-backend.onrender.com/api/post/search",
         {
           method: "POST",
           body: JSON.stringify({
@@ -4408,7 +4408,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/favourite",
+        "https://opentalks-backend.onrender.com/api/post/favourite",
         {
           method: "POST",
           body: JSON.stringify({
@@ -4444,7 +4444,7 @@ document
       )}</div>
       <div class="favourite-main-post-info">
         <img
-          src="https://opentalks-backend.vercel.app${el.postId.userId.image}"
+          src="https://opentalks-backend.onrender.com${el.postId.userId.image}"
           class="favourite-main-post-user-image"
           alt="post-owner-image"
         />
@@ -4489,7 +4489,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/forum/search",
+        "https://opentalks-backend.onrender.com/api/forum/search",
         {
           method: "POST",
           body: JSON.stringify({ searchQuery: forum_search }),
@@ -4539,7 +4539,7 @@ document
           <p class="searched-forum-admin-name">
             <span>
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 alt="admin-profile-pic"
               />Created By ${el.userId.name}</span
             >
@@ -4568,7 +4568,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/forum/search",
+        "https://opentalks-backend.onrender.com/api/forum/search",
         {
           method: "POST",
           body: JSON.stringify({
@@ -4614,7 +4614,7 @@ document
           <p class="searched-forum-admin-name">
             <span>
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 alt="admin-profile-pic"
               />Created By ${el.userId.name}</span
             >
@@ -5157,7 +5157,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/all",
+        "https://opentalks-backend.onrender.com/api/post/all",
         {
           method: "POST",
           body: JSON.stringify({
@@ -5191,7 +5191,7 @@ document
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -5224,7 +5224,7 @@ document
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -5305,7 +5305,7 @@ document
       loader(1);
 
       let response = await fetch(
-        "https://opentalks-backend.vercel.app/api/post/all",
+        "https://opentalks-backend.onrender.com/api/post/all",
         {
           method: "POST",
           body: JSON.stringify({
@@ -5339,7 +5339,7 @@ document
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -5372,7 +5372,7 @@ document
             </div>
             <div class="forum-post-user-info">
               <img
-                src="https://opentalks-backend.vercel.app${el.userId.image}"
+                src="https://opentalks-backend.onrender.com${el.userId.image}"
                 class="forum-post-main-user-profile"
               />
               <span class="forum-post-user-name">By ${el.userId.name}</span>
@@ -5899,7 +5899,7 @@ document
     </div>
     <div class="forum-post-user-info">
       <img
-        src="https://opentalks-backend.vercel.app${user_details.user.image}"
+        src="https://opentalks-backend.onrender.com${user_details.user.image}"
         class="forum-post-main-user-profile"
       />
       <span class="forum-post-user-name">By ${user_details.user.name}</span>

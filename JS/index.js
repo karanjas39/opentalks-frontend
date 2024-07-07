@@ -74,7 +74,7 @@ async function sendMessage(query) {
   try {
     loader(1);
     let response = await fetch(
-      `https://opentalks-backend.vercel.app/api/v1/contact/add`,
+      `https://opentalks-backend.onrender.com/api/v1/contact/add`,
       {
         method: "POST",
         body: JSON.stringify(query),
