@@ -1709,9 +1709,7 @@ async function fetchPostComments(target) {
           <div class="post-reply-template">
           <div class="post-reply-info">
             <div class="post-reply-profile-pic">
-              <img src="https://opentalks-backend.onrender.com${
-                el.byWhom.image
-              }" alt="user-profile-pic" />
+              <img src="${el.byWhom.image}" alt="user-profile-pic" />
               <div class="post-reply-template-inner">
                 <p class="post-reply-user-name">${el.byWhom.name}</p>
                 <p class="reply-profile-creation-date">${formatDate2(
@@ -1737,9 +1735,7 @@ data-replyid="${el._id}"
           result += `<div class="post-reply-template ${isDeleted}">
           <div class="post-reply-info">
             <div class="post-reply-profile-pic">
-              <img src="https://opentalks-backend.onrender.com${
-                el.byWhom.image
-              }" alt="user-profile-pic" />
+              <img src="${el.byWhom.image}" alt="user-profile-pic" />
               <div class="post-reply-template-inner">
                 <p class="post-reply-user-name">${el.byWhom.name}</p>
                 <p class="reply-profile-creation-date">${formatDate2(
@@ -2808,7 +2804,7 @@ async function fetchTop10Posts() {
           </div>
           <div class="top-10-post-user-info-main">
             <img
-              src="https://opentalks-backend.onrender.com${el.userId.image}"
+              src="${el.userId.image}"
               alt="user-profile-pic"
               class="top-10-post-user-profile"
             />
@@ -2962,7 +2958,7 @@ async function searchPost(search) {
     </div>
     <div class="top-10-post-user-info-main">
       <img
-        src="https://opentalks-backend.onrender.com${el.userId.image}"
+        src="${el.userId.image}"
         alt="user-profile-pic"
         class="top-10-post-user-profile"
       />
@@ -3069,7 +3065,7 @@ async function postSearchWithFilter(filter) {
     </div>
     <div class="top-10-post-user-info-main">
       <img
-        src="https://opentalks-backend.onrender.com${el.userId.image}"
+        src="${el.userId.image}"
         alt="user-profile-pic"
         class="top-10-post-user-profile"
       />
@@ -3232,7 +3228,7 @@ async function fetchRecent5Users() {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://opentalks-backend.onrender.com${el.image}"
+            src="${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3400,7 +3396,7 @@ async function editUser(userId) {
       document.querySelector(".edit-user-details-email").value = user.email;
       document.querySelector(
         ".edit-user-profile-pic-img"
-      ).src = `https://opentalks-backend.onrender.com${user.image}`;
+      ).src = `${user.image}`;
       document.querySelector(".edit-user-details-btn").value =
         JSON.stringify(user);
       document.querySelector(".edit-user-save-password-btn").value =
@@ -3619,7 +3615,7 @@ function renderSearchedUser_single(data) {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://opentalks-backend.onrender.com${data.user.image}"
+            src="${data.user.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3699,7 +3695,7 @@ function renderSearchedUser_multiple(data, query) {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://opentalks-backend.onrender.com${el.image}"
+            src="${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -3809,7 +3805,7 @@ async function getUserBySearchWithFilter(filter) {
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://opentalks-backend.onrender.com${el.image}"
+            src="${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />
@@ -6413,7 +6409,7 @@ document
     </div>
     <div class="top-10-post-user-info-main">
       <img
-        src="https://opentalks-backend.onrender.com${el.userId.image}"
+        src="${el.userId.image}"
         alt="user-profile-pic"
         class="top-10-post-user-profile"
       />
@@ -7020,7 +7016,7 @@ document
           <div class="recent-user-template ${isDeleted} ${isAdmin}">
           <div class="recent-user-profile">
             <img
-              src="https://opentalks-backend.onrender.com${el.image}"
+              src="${el.image}"
               alt="User Profile Pic"
               class="recent-user-profile-pic"
             />
@@ -7124,7 +7120,7 @@ document
         <div class="recent-user-template ${isDeleted} ${isAdmin}">
         <div class="recent-user-profile">
           <img
-            src="https://opentalks-backend.onrender.com${el.image}"
+            src="${el.image}"
             alt="User Profile Pic"
             class="recent-user-profile-pic"
           />

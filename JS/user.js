@@ -667,10 +667,10 @@ async function updateUserPicMain(password) {
       user_details.user.image = data.updated_user.image;
       document.querySelector(
         ".edit-user-profile-pic-img"
-      ).src = `https://opentalks-backend.onrender.com${user_details.user.image}`;
+      ).src = `${user_details.user.image}`;
       document.querySelector(
         ".user-profile-pic-change"
-      ).src = `https://opentalks-backend.onrender.com${user_details.user.image}`;
+      ).src = `${user_details.user.image}`;
       showNotification("User profile updated", 3000);
     } else {
       showNotification(data.message, 3000);
@@ -2721,7 +2721,7 @@ data-replyid="${el._id}"
 <div class="post-reply-template">
       <div class="post-reply-info">
         <div class="post-reply-profile-pic">
-          <img src="https://opentalks-backend.onrender.com${
+          <img src="${
             el.byWhom.image
           }" alt="user-profile-pic" />
           <div class="post-reply-template-inner">
@@ -3992,7 +3992,7 @@ document
     document.querySelector(".blur").classList.remove("hide");
     document.querySelector(
       ".edit-user-profile-pic-img"
-    ).src = `https://opentalks-backend.onrender.com${user_details.user.image}`;
+    ).src = `${user_details.user.image}`;
   });
 
 document.querySelector(".close-edit-user").addEventListener("click", () => {
