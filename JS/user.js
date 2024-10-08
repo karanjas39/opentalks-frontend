@@ -277,9 +277,7 @@ function fetchRecentPosts(data) {
                         </div>
                         <div class="user-info">
                           <img
-                            src="https://opentalks-backend.onrender.com${
-                              el.userId.image
-                            }"
+                            src="${el.userId.image}"
                             alt="User Avatar"
                             class="avatar-image-small recent-post-user-image"
                           />
@@ -326,9 +324,7 @@ function fetchtopForums(data) {
                     </div>
                     <div class="user-info">
                       <img
-                        src="https://opentalks-backend.onrender.com${
-                          el.userId.image
-                        }"
+                        src="${el.userId.image}"
                         alt="User Avatar"
                         class="avatar-image-small top-post-user-image"
                       />
@@ -727,7 +723,7 @@ async function fetchPostsAfterLastLogin() {
             </div>
             <div class="user-info">
               <img
-                src="https://opentalks-backend.onrender.com${el.userId.image}"
+                src="${el.userId.image}"
                 alt="User Avatar"
                 class="avatar-image-small recent-post-user-image"
               />
@@ -794,9 +790,7 @@ async function fetchtopForumsScroll() {
                         </div>
                         <div class="user-info">
                           <img
-                            src="https://opentalks-backend.onrender.com${
-                              el.userId.image
-                            }"
+                            src="${el.userId.image}"
                             alt="User Avatar"
                             class="avatar-image-small top-post-user-image"
                           />
@@ -838,9 +832,7 @@ async function fetchRecentReplies(data) {
                       On ${formatDate2(el.createdAt)}
                     </div>
                     <div class="recent-reply-user-info">
-                      <img src="https://opentalks-backend.onrender.com${
-                        el.byWhom.image
-                      }" alt="user-image" />
+                      <img src="${el.byWhom.image}" alt="user-image" />
                       <p>By ${el.byWhom.name}</p>
                     </div>
                   </div>
@@ -894,9 +886,7 @@ async function fetchRecentRepliesScroll() {
                       On ${formatDate2(el.createdAt)}
                     </div>
                     <div class="recent-reply-user-info">
-                      <img src="https://opentalks-backend.onrender.com${
-                        el.byWhom.image
-                      }" alt="user-image" />
+                      <img src="${el.byWhom.image}" alt="user-image" />
                       <p>By ${el.byWhom.name}</p>
                     </div>
                   </div>
@@ -1235,7 +1225,7 @@ async function fetchFavouritePosts() {
     )}</div>
     <div class="favourite-main-post-info">
       <img
-        src="https://opentalks-backend.onrender.com${el.postId.userId.image}"
+        src="${el.postId.userId.image}"
         class="favourite-main-post-user-image"
         alt="post-owner-image"
       />
@@ -1547,9 +1537,7 @@ async function fetchForumMembers() {
         result += `
         <div class="forum-member-template">
         <div class="forum-member-top">
-          <img src="https://opentalks-backend.onrender.com${
-            el.userId.image
-          }" alt="user-image" />
+          <img src="${el.userId.image}" alt="user-image" />
           <p class="forum-member-user-info">
             ${el.userId.name} <span>(${el.userId.registration_number})</span>
           </p>
@@ -1605,9 +1593,7 @@ async function fetchForumMemberScroll() {
         result += `
 <div class="forum-member-template">
       <div class="forum-member-top">
-        <img src="https://opentalks-backend.onrender.com${
-          el.userId.image
-        }" alt="user-image" />
+        <img src="${el.userId.image}" alt="user-image" />
         <p class="forum-member-user-info">
           ${highlightedName} <span>(${el.userId.registration_number})</span>
         </p>
@@ -1665,9 +1651,7 @@ async function fetchSearchedForumMembers() {
         result += `
 <div class="forum-member-template">
       <div class="forum-member-top">
-        <img src="https://opentalks-backend.onrender.com${
-          el.userId.image
-        }" alt="user-image" />
+        <img src="${el.userId.image}" alt="user-image" />
         <p class="forum-member-user-info">
           ${highlightedName} <span>(${el.userId.registration_number})</span>
         </p>
@@ -1814,9 +1798,7 @@ async function fetchAllComplaints() {
         <div class="forum-complaint-info">
           <div>On ${formatDate2(el.createdAt)}</div>
           <div>
-            <img src="https://opentalks-backend.onrender.com${
-              el.userId.image
-            }" alt="user-image" />By
+            <img src="${el.userId.image}" alt="user-image" />By
             ${el.userId.name}
           </div>
         </div>
@@ -1893,9 +1875,7 @@ async function fetchAllComplaintsScroll() {
       <div class="forum-complaint-info">
         <div>On ${formatDate2(el.createdAt)}</div>
         <div>
-          <img src="https://opentalks-backend.onrender.com${
-            el.userId.image
-          }" alt="user-image" />By
+          <img src="${el.userId.image}" alt="user-image" />By
           ${el.userId.name}
         </div>
       </div>
@@ -2159,9 +2139,7 @@ async function fetchSearchedComplaint() {
       <div class="forum-complaint-info">
         <div>On ${formatDate2(complaint.createdAt)}</div>
         <div>
-          <img src="https://opentalks-backend.onrender.com${
-            complaint.userId.image
-          }" alt="user-image" />By
+          <img src="${complaint.userId.image}" alt="user-image" />By
           ${complaint.userId.name}
         </div>
       </div>
@@ -2721,9 +2699,7 @@ data-replyid="${el._id}"
 <div class="post-reply-template">
       <div class="post-reply-info">
         <div class="post-reply-profile-pic">
-          <img src="${
-            el.byWhom.image
-          }" alt="user-profile-pic" />
+          <img src="${el.byWhom.image}" alt="user-profile-pic" />
           <div class="post-reply-template-inner">
             <p class="post-reply-user-name">${el.byWhom.name}</p>
             <p class="reply-profile-creation-date">${formatDate2(
@@ -3428,9 +3404,7 @@ async function fetchForumReviews() {
   <div class="review-forum-template">
   <div class="review-forum-template-left">
     <div class="review-forum-template-info">
-      <img src="https://opentalks-backend.onrender.com${
-        el.userId.image
-      }" alt="user-image" />
+      <img src="${el.userId.image}" alt="user-image" />
       <p>By ${el.userId.name}</p>
     </div>
     <div class="review-forum-template-date">
@@ -3491,9 +3465,7 @@ async function fetchForumReviewsScroll() {
   <div class="review-forum-template">
   <div class="review-forum-template-left">
     <div class="review-forum-template-info">
-      <img src="https://opentalks-backend.onrender.com${
-        el.userId.image
-      }" alt="user-image" />
+      <img src="${el.userId.image}" alt="user-image" />
       <p>By ${el.userId.name}</p>
     </div>
     <div class="review-forum-template-date">
@@ -4444,7 +4416,7 @@ document
       )}</div>
       <div class="favourite-main-post-info">
         <img
-          src="https://opentalks-backend.onrender.com${el.postId.userId.image}"
+          src="${el.postId.userId.image}"
           class="favourite-main-post-user-image"
           alt="post-owner-image"
         />
