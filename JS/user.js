@@ -200,7 +200,7 @@ function setUserDetails_Dashboard(data) {
     date_joined.textContent = formatDate2(data.createdAt);
     user_email.textContent = data.email;
     user_regisNo.textContent = data.registration_number;
-    user_pic.src = `https://opentalks-backend.onrender.com${data.image}`;
+    user_pic.src = data.image;
   } catch (error) {
     console.log(`Error: ${error.toString()} in setUserDetails_Dashboard`);
   }
